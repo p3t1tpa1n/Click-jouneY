@@ -107,7 +107,7 @@ class JsonDataManager {
             $users[] = $userData;
             
             // Enregistrer les utilisateurs
-            return self::writeJsonFile('users.json', $users);
+            return self::writeJsonFile('users/users.json', $users);
         } catch (Exception $e) {
             error_log('Erreur lors de la création de l\'utilisateur : ' . $e->getMessage());
             return 'Une erreur est survenue lors de la création de votre compte. Veuillez réessayer.';
@@ -143,7 +143,7 @@ class JsonDataManager {
             }
             
             if ($updated) {
-                return self::writeJsonFile('users.json', $users);
+                return self::writeJsonFile('users/users.json', $users);
             }
             
             return 'Utilisateur non trouvé.';
