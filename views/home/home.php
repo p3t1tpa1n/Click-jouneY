@@ -82,16 +82,16 @@
     </div>
 </section>
 
-<!-- Testimonials Section -->
-<section class="testimonials-section bg-light">
+<!-- Section témoignages -->
+<section class="testimonials-section py-5">
     <div class="container">
-        <div class="section-header text-center mb-4">
-            <h2>Ce que disent nos voyageurs</h2>
-            <p>Découvrez les témoignages de ceux qui ont déjà vécu l'aventure Route 66 avec nous.</p>
+        <div class="section-header text-center mb-5">
+            <h2 class="section-title">Ce que disent nos voyageurs</h2>
+            <p class="section-subtitle">Découvrez les témoignages de ceux qui ont déjà vécu l'aventure Route 66 avec nous.</p>
         </div>
         
         <div class="testimonials-grid">
-            <div class="testimonial-card">
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="testimonial-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -99,19 +99,21 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                 </div>
-                <p class="testimonial-text">"Une expérience inoubliable ! L'organisation était parfaite, les hébergements charmants et authentiques, et les paysages à couper le souffle."</p>
+                <div class="testimonial-content">
+                    <p>"Une expérience inoubliable ! L'organisation était parfaite, les hébergements charmants et authentiques, et les paysages à couper le souffle."</p>
+                </div>
                 <div class="testimonial-author">
-                    <div class="testimonial-author-photo">
-                        <img src="images/about/member1.jpg" alt="Jean Dupont">
+                    <div class="author-avatar">
+                        <img src="images/avatars/traveler1.jpg" alt="Jean Dupont" onerror="this.src='images/avatars/default.jpg'">
                     </div>
-                    <div class="testimonial-author-info">
+                    <div class="author-info">
                         <h4>Jean Dupont</h4>
                         <p>Chicago - Los Angeles, Juillet 2023</p>
                     </div>
                 </div>
             </div>
             
-            <div class="testimonial-card">
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="testimonial-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -119,17 +121,45 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                 </div>
-                <p class="testimonial-text">"Notre voyage en famille sur la Route 66 restera gravé dans nos mémoires. Merci à toute l'équipe pour votre professionnalisme et votre passion."</p>
+                <div class="testimonial-content">
+                    <p>"Notre voyage en famille sur la Route 66 restera gravé dans nos mémoires. Merci à toute l'équipe pour votre professionnalisme et votre passion."</p>
+                </div>
                 <div class="testimonial-author">
-                    <div class="testimonial-author-photo">
-                        <img src="images/about/member3.jpg" alt="Marie Durand">
+                    <div class="author-avatar">
+                        <img src="images/avatars/traveler2.jpg" alt="Marie Durand" onerror="this.src='images/avatars/default.jpg'">
                     </div>
-                    <div class="testimonial-author-info">
+                    <div class="author-info">
                         <h4>Marie Durand</h4>
                         <p>Route complète, Août 2023</p>
                     </div>
                 </div>
             </div>
+            
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="testimonial-content">
+                    <p>"Les diners typiques, les motels vintage et les paysages variés font de ce voyage une expérience unique. Je recommande vivement Click-jouneY pour découvrir la Route 66."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="images/avatars/traveler3.jpg" alt="Pierre Martin" onerror="this.src='images/avatars/default.jpg'">
+                    </div>
+                    <div class="author-info">
+                        <h4>Pierre Martin</h4>
+                        <p>Chicago - Santa Monica, Juin 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="index.php?route=testimonials" class="btn btn-outline-primary">Voir tous les témoignages</a>
         </div>
     </div>
 </section>
@@ -149,112 +179,201 @@
 </section>
 
 <style>
+    /* Section Témoignages */
+    .testimonials-section {
+        background-color: var(--blanc);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .testimonials-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('images/backgrounds/route66-pattern.png');
+        background-size: 200px;
+        opacity: 0.03;
+        z-index: 0;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        color: var(--rouge-primary);
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--rouge-primary);
+        border-radius: 3px;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--gris-fonce);
+        max-width: 700px;
+        margin: 1.5rem auto 0;
+    }
+
     .testimonials-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 2rem;
-        margin: 2rem 0;
+        gap: 30px;
+        padding: 20px 0;
+        position: relative;
+        z-index: 1;
     }
-    
+
     .testimonial-card {
-        background-color: white;
-        border-radius: 10px;
-        padding: 2rem;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 30px;
         transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
-    
+
+    .testimonial-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--rouge-primary), var(--orange-vintage));
+    }
+
     .testimonial-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
     }
-    
+
     .testimonial-rating {
+        margin-bottom: 20px;
         color: #FFD700;
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
+        font-size: 18px;
     }
-    
-    .testimonial-text {
+
+    .testimonial-content {
+        flex-grow: 1;
         font-style: italic;
-        margin-bottom: 1.5rem;
-        color: var(--gris-vintage);
+        color: var(--gris-fonce);
+        font-size: 1.05rem;
         line-height: 1.6;
+        margin-bottom: 30px;
+        position: relative;
     }
-    
+
+    .testimonial-content::before {
+        content: '"';
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        font-size: 60px;
+        color: rgba(0, 0, 0, 0.05);
+        font-family: Georgia, serif;
+    }
+
     .testimonial-author {
         display: flex;
         align-items: center;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        padding-top: 20px;
     }
-    
-    .testimonial-author-photo {
-        width: 50px;
-        height: 50px;
+
+    .author-avatar {
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         overflow: hidden;
-        margin-right: 1rem;
+        margin-right: 15px;
+        border: 3px solid var(--blanc-casse);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
-    
-    .testimonial-author-photo img {
+
+    .author-avatar img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
-    
-    .testimonial-author-info h4 {
-        margin: 0 0 0.2rem;
-        font-size: 1.1rem;
-    }
-    
-    .testimonial-author-info p {
+
+    .author-info h4 {
         margin: 0;
+        font-size: 1.1rem;
+        color: var(--gris-fonce);
+        font-weight: 600;
+    }
+
+    .author-info p {
+        margin: 5px 0 0;
         font-size: 0.9rem;
-        color: #777;
+        color: var(--gris-vintage);
     }
-    
-    .cta-section {
-        background-color: var(--rouge-vintage);
-        color: white;
-        padding: 4rem 0;
-    }
-    
-    .cta-content {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    
-    .cta-content h2 {
-        color: white;
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-    }
-    
-    .cta-content p {
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-        opacity: 0.9;
-    }
-    
-    .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-    
-    .cta-buttons .btn-outline {
-        border-color: white;
-        color: white;
-    }
-    
-    .cta-buttons .btn-outline:hover {
-        background-color: white;
-        color: var(--rouge-vintage);
-    }
-    
+
     @media (max-width: 768px) {
         .testimonials-grid {
             grid-template-columns: 1fr;
         }
+        
+        .section-title {
+            font-size: 2rem;
+        }
     }
-</style> 
+</style>
+
+<!-- Animation script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation simple pour les témoignages
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+    
+    function animateTestimonials() {
+        testimonials.forEach((testimonial, index) => {
+            if (isInViewport(testimonial)) {
+                setTimeout(() => {
+                    testimonial.classList.add('animated');
+                    testimonial.style.opacity = '1';
+                    testimonial.style.transform = 'translateY(0)';
+                }, index * 100);
+            }
+        });
+    }
+    
+    // Initialiser les styles
+    testimonials.forEach(testimonial => {
+        testimonial.style.opacity = '0';
+        testimonial.style.transform = 'translateY(30px)';
+        testimonial.style.transition = 'all 0.5s ease';
+    });
+    
+    // Animer au chargement initial
+    setTimeout(animateTestimonials, 300);
+    
+    // Animer au défilement
+    window.addEventListener('scroll', animateTestimonials);
+});
+</script> 

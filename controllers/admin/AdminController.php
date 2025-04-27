@@ -2,6 +2,14 @@
 /**
  * Contrôleur pour la partie administration
  */
+namespace controllers\admin;
+
+use models\user\User;
+use models\trip\Trip;
+use models\payment\Payment;
+use core\Auth;
+use core\Session;
+
 class AdminController {
     /**
      * Fonction d'initialisation commune à toutes les actions admin
@@ -9,12 +17,15 @@ class AdminController {
      */
     private function init() {
         // Vérifier si l'utilisateur est connecté
-        requireLogin();
+        if (!Auth::check()) {
+            Session::set('redirect_after_login', $_SERVER['REQUEST_URI']);
+            Session::set('error', 'Veuillez vous connecter pour accéder à cette page.');
+            redirect('index.php?route=login');
+        }
         
         // Vérifier si l'utilisateur est un administrateur
-        if (!isAdmin()) {
-            $alertType = 'error';
-            $alertMessage = 'Accès refusé. Vous n\'avez pas les droits d\'administration.';
+        if (!Auth::isAdmin()) {
+            Session::set('error', 'Accès refusé. Vous n\'avez pas les droits d\'administration.');
             redirect('index.php');
         }
         

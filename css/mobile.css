@@ -312,7 +312,8 @@
 }
 
 /* Prevent scrolling when menu is open */
-body.no-scroll {
+body.no-scroll,
+body.mobile-menu-open {
     overflow: hidden;
     position: fixed;
     width: 100%;

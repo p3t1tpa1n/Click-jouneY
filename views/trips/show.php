@@ -10,8 +10,8 @@
 <div class="container my-5">
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
-            <li class="breadcrumb-item"><a href="/trips">Voyages</a></li>
+            <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/index.php?route=trips">Voyages</a></li>
             <li class="breadcrumb-item active" aria-current="page"><?= htmlspecialchars($trip['title']) ?></li>
         </ol>
     </nav>
@@ -32,7 +32,7 @@
                 <div class="carousel-inner rounded">
                     <?php foreach ($trip['images'] as $index => $image): ?>
                     <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                        <img src="/assets/images/trips/<?= htmlspecialchars($image) ?>" class="d-block w-100" alt="<?= htmlspecialchars($trip['title']) ?> - Image <?= $index + 1 ?>">
+                        <img src="<?= BASE_URL ?>/assets/images/trips/<?= htmlspecialchars($image) ?>" class="d-block w-100" alt="<?= htmlspecialchars($trip['title']) ?> - Image <?= $index + 1 ?>">
                     </div>
                     <?php endforeach; ?>
                 </div>
@@ -47,7 +47,7 @@
             </div>
             <?php elseif (isset($trip['main_image'])): ?>
             <div class="mb-4">
-                <img src="/assets/images/trips/<?= htmlspecialchars($trip['main_image']) ?>" class="img-fluid rounded" alt="<?= htmlspecialchars($trip['title']) ?>">
+                <img src="<?= BASE_URL ?>/assets/images/trips/<?= htmlspecialchars($trip['main_image']) ?>" class="img-fluid rounded" alt="<?= htmlspecialchars($trip['title']) ?>">
             </div>
             <?php endif; ?>
             
@@ -85,7 +85,8 @@
             
             <!-- Options du voyage -->
             <?php if (isset($trip['options']) && !empty($trip['options'])): ?>
-            <form action="/trip-recap" method="GET" id="tripOptionsForm">
+            <form action="index.php" method="GET" id="tripOptionsForm">
+                <input type="hidden" name="route" value="trip-recap">
                 <input type="hidden" name="id" value="<?= $trip['id'] ?>">
                 
                 <div class="card mb-4">
@@ -167,10 +168,10 @@
                 <div class="card-body p-0">
                     <div class="list-group list-group-flush">
                         <?php foreach ($similarTrips as $similarTrip): ?>
-                        <a href="/trip?id=<?= $similarTrip['id'] ?>" class="list-group-item list-group-item-action">
+                        <a href="<?= BASE_URL ?>/index.php?route=trip&id=<?= $similarTrip['id'] ?>" class="list-group-item list-group-item-action">
                             <div class="d-flex align-items-center">
                                 <?php if (isset($similarTrip['main_image'])): ?>
-                                <img src="/assets/images/trips/<?= htmlspecialchars($similarTrip['main_image']) ?>" class="img-thumbnail me-3" style="width: 70px; height: 50px; object-fit: cover;" alt="<?= htmlspecialchars($similarTrip['title']) ?>">
+                                <img src="<?= BASE_URL ?>/assets/images/trips/<?= htmlspecialchars($similarTrip['main_image']) ?>" class="img-thumbnail me-3" style="width: 70px; height: 50px; object-fit: cover;" alt="<?= htmlspecialchars($similarTrip['title']) ?>">
                                 <?php endif; ?>
                                 <div>
                                     <h6 class="mb-0"><?= htmlspecialchars($similarTrip['title']) ?></h6>

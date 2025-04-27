@@ -41,7 +41,7 @@ class JsonDataManager {
      * @return array Liste des utilisateurs
      */
     public static function getUsers() {
-        return self::readJsonFile('users.json');
+        return self::readJsonFile('users/users.json');
     }
     
     /**
@@ -160,7 +160,8 @@ class JsonDataManager {
      */
     public static function getTrips() {
         $data = self::readJsonFile('trips.json');
-        return isset($data['trips']) ? $data['trips'] : [];
+        // Les données sont déjà au bon format, pas besoin de chercher une sous-propriété "trips"
+        return is_array($data) ? $data : [];
     }
     
     /**

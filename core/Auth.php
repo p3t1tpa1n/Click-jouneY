@@ -16,7 +16,7 @@ class Auth
      */
     public static function check()
     {
-        return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
+        return isset($_SESSION['user']) && !empty($_SESSION['user']);
     }
     
     /**
@@ -26,13 +26,13 @@ class Auth
      */
     public static function id()
     {
-        return self::check() ? $_SESSION['user_id'] : null;
+        return self::check() ? $_SESSION['user']['id'] : null;
     }
     
     /**
      * Retourne l'utilisateur connecté
      * 
-     * @return User|null
+     * @return array|null
      */
     public static function user()
     {
@@ -40,7 +40,7 @@ class Auth
             return null;
         }
         
-        return User::findById($_SESSION['user_id']);
+        return $_SESSION['user'];
     }
     
     /**
@@ -61,18 +61,18 @@ class Auth
     public static function isAdmin()
     {
         $user = self::user();
-        return $user && $user->role === 'admin';
+        return $user && $user['role'] === 'admin';
     }
     
     /**
      * Connecte un utilisateur
      * 
-     * @param int $userId ID de l'utilisateur
+     * @param array $user Données de l'utilisateur
      * @return void
      */
-    public static function login($userId)
+    public static function login($user)
     {
-        $_SESSION['user_id'] = $userId;
+        $_SESSION['user'] = $user;
         $_SESSION['last_activity'] = time();
     }
     
@@ -83,7 +83,7 @@ class Auth
      */
     public static function logout()
     {
-        unset($_SESSION['user_id']);
+        unset($_SESSION['user']);
         unset($_SESSION['last_activity']);
         session_destroy();
     }

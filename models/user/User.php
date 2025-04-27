@@ -43,11 +43,21 @@ class User {
             return false;
         }
         
-        // Vérifier le mot de passe
-        if (password_verify($password, $user['password'])) {
-            // Ne pas renvoyer le mot de passe
-            unset($user['password']);
-            return $user;
+        // Vérifier si le mot de passe est hashé (commence par $2y$)
+        if (isset($user['password'])) {
+            if (strpos($user['password'], '$2y$') === 0) {
+                // C'est un mot de passe hashé, utiliser password_verify
+                $passwordValid = password_verify($password, $user['password']);
+            } else {
+                // C'est un mot de passe en clair, comparer directement
+                $passwordValid = ($password === $user['password']);
+            }
+            
+            if ($passwordValid) {
+                // Ne pas renvoyer le mot de passe
+                unset($user['password']);
+                return $user;
+            }
         }
         
         return false;

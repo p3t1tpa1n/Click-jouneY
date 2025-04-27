@@ -16,101 +16,62 @@
     </div>
 </section>
 
-<section class="search-section py-5">
+<section class="search-section">
     <div class="container">
-        <!-- Barre de recherche avancée -->
+        <!-- Recherche simple uniquement -->
         <div class="search-box mb-5">
-            <form action="index.php" method="GET" id="search-form">
+            <form action="<?= BASE_URL ?>/index.php" method="GET" id="search-form">
                 <input type="hidden" name="route" value="trips">
                 
-                <div class="search-tabs-container">
-                    <ul class="nav nav-tabs search-tabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="simple-search-tab" data-bs-toggle="tab" data-bs-target="#simple-search-panel" type="button" role="tab" aria-controls="simple-search-panel" aria-selected="true">
-                                <i class="fas fa-search"></i> Recherche simple
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="advanced-search-tab" data-bs-toggle="tab" data-bs-target="#advanced-search-panel" type="button" role="tab" aria-controls="advanced-search-panel" aria-selected="false">
-                                <i class="fas fa-sliders-h"></i> Filtres avancés
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="search-body">
-                    <div class="tab-content">
-                        <!-- Recherche simple -->
-                        <div class="tab-pane fade show active" id="simple-search-panel" role="tabpanel" aria-labelledby="simple-search-tab">
-                            <div class="row g-3">
-                                <div class="col-md-8">
-                                    <div class="input-with-icon">
-                                        <i class="fas fa-route"></i>
-                                        <input type="text" class="form-control form-control-lg" id="query-simple" name="query" value="<?= htmlspecialchars($query) ?>" placeholder="Où souhaitez-vous voyager sur la Route 66 ?">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <button type="submit" class="btn btn-primary btn-lg w-100">
-                                        <i class="fas fa-search me-2"></i>Rechercher
-                                    </button>
-                                </div>
+                <div class="search-form-content">
+                    <div class="form-group">
+                        <label for="query">Recherche par mots-clés</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-search"></i>
+                            <input type="text" class="form-control form-control-lg" id="query" name="query" value="<?= htmlspecialchars($query) ?>" placeholder="Où souhaitez-vous voyager sur la Route 66 ?">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="region">Région</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <select class="form-control" id="region" name="region">
+                                    <option value="">Toutes les régions</option>
+                                    <?php foreach ($regions as $r): ?>
+                                    <option value="<?= htmlspecialchars($r) ?>" <?= $region == $r ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($r) ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
                         
-                        <!-- Recherche avancée -->
-                        <div class="tab-pane fade" id="advanced-search-panel" role="tabpanel" aria-labelledby="advanced-search-tab">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="query-advanced" class="form-label">Mots-clés</label>
-                                    <div class="input-with-icon">
-                                        <i class="fas fa-search"></i>
-                                        <input type="text" class="form-control" id="query-advanced" placeholder="Chicago, Grand Canyon, désert..." value="<?= htmlspecialchars($query) ?>">
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-3">
-                                    <label for="region" class="form-label">Région</label>
-                                    <div class="input-with-icon">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <select class="form-select" id="region" name="region">
-                                            <option value="">Toutes les régions</option>
-                                            <?php foreach ($regions as $r): ?>
-                                            <option value="<?= htmlspecialchars($r) ?>" <?= $region == $r ? 'selected' : '' ?>>
-                                                <?= htmlspecialchars($r) ?>
-                                            </option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-3">
-                                    <label class="form-label">Prix</label>
-                                    <div class="price-range-container">
-                                        <div id="price-range-slider"></div>
-                                        <div class="price-inputs mt-2">
-                                            <div class="input-group">
-                                                <span class="input-group-text">€</span>
-                                                <input type="number" class="form-control" id="min-price" name="min_price" value="<?= $minPrice ?>" placeholder="Min">
-                                            </div>
-                                            <div class="price-separator">-</div>
-                                            <div class="input-group">
-                                                <span class="input-group-text">€</span>
-                                                <input type="number" class="form-control" id="max-price" name="max_price" value="<?= $maxPrice ?>" placeholder="Max">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-12 d-flex justify-content-end mt-4">
-                                    <a href="index.php?route=trips" class="btn btn-outline-secondary me-2">
-                                        <i class="fas fa-redo me-1"></i>Réinitialiser
-                                    </a>
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-filter me-2"></i>Filtrer les résultats
-                                    </button>
-                                </div>
+                        <div class="form-group col-md-4">
+                            <label for="min-price">Prix min</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-euro-sign"></i>
+                                <input type="number" class="form-control" id="min-price" name="min_price" value="<?= $minPrice ?>" placeholder="0">
                             </div>
                         </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="max-price">Prix max</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-euro-sign"></i>
+                                <input type="number" class="form-control" id="max-price" name="max_price" value="<?= $maxPrice ?>" placeholder="10000">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="search-actions">
+                        <button type="reset" class="btn btn-outline-secondary">
+                            <i class="fas fa-redo"></i> Réinitialiser
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-filter"></i> Filtrer les résultats
+                        </button>
                     </div>
                 </div>
             </form>
@@ -124,7 +85,7 @@
             <h2 class="h4 mb-3">Aucun voyage ne correspond à votre recherche</h2>
             <p class="text-muted">Essayez d'autres critères ou parcourez tous nos voyages ci-dessous.</p>
             <a href="index.php?route=trips" class="btn btn-outline-primary mt-3">
-                <i class="fas fa-redo me-2"></i>Voir tous les voyages
+                <i class="fas fa-redo"></i> Voir tous les voyages
             </a>
         </div>
         <?php else: ?>
@@ -165,7 +126,7 @@
                             
                             <?php if (isset($trip['duration'])): ?>
                             <span class="badge bg-secondary">
-                                <i class="far fa-clock me-1"></i><?= $trip['duration'] ?> jours
+                                <i class="far fa-clock"></i> <?= $trip['duration'] ?> jours
                             </span>
                             <?php endif; ?>
                         </div>
@@ -199,11 +160,11 @@
                         
                         <div class="trip-footer">
                             <div class="trip-price">
-                                <span class="price-label">À partir de</span>
-                                <span class="price-value"><?= number_format($trip['price'] ?? 0, 0, ',', ' ') ?> €</span>
+                                <span class="trip-price-prefix">À partir de</span><br>
+                                <?= number_format($trip['price'] ?? 0, 2, ',', ' ') ?> €
                             </div>
-                            <a href="index.php?route=trip&id=<?= $trip['id'] ?? 0 ?>" class="btn btn-primary">
-                                Voir le détail
+                            <a href="<?= BASE_URL ?>/index.php?route=trip&id=<?= $trip['id'] ?>" class="btn btn-primary btn-sm">
+                                <i class="fas fa-info-circle"></i> Détails
                             </a>
                         </div>
                     </div>
@@ -211,25 +172,20 @@
                 <?php endforeach; ?>
             </div>
             
-            <!-- Pagination -->
-            <?php if ($pagination['total_pages'] > 1): ?>
-            <nav aria-label="Pagination" class="mt-5">
-                <ul class="pagination justify-content-center">
+            <?php if (isset($pagination) && $pagination['total_pages'] > 1): ?>
+            <div class="pagination-container text-center mt-5">
+                <ul class="pagination">
                     <?php if ($pagination['current_page'] > 1): ?>
                     <li class="page-item">
-                        <a class="page-link" href="index.php?route=trips&page=<?= $pagination['current_page'] - 1 ?>&query=<?= urlencode($query) ?>&region=<?= urlencode($region) ?>&min_price=<?= $minPrice ?>&max_price=<?= $maxPrice ?>">
+                        <a class="page-link" href="<?= BASE_URL ?>/index.php?route=trips&page=<?= $pagination['current_page'] - 1 ?>&query=<?= urlencode($query) ?>&region=<?= urlencode($region) ?>&min_price=<?= $minPrice ?>&max_price=<?= $maxPrice ?>">
                             <i class="fas fa-chevron-left"></i> Précédent
                         </a>
-                    </li>
-                    <?php else: ?>
-                    <li class="page-item disabled">
-                        <span class="page-link"><i class="fas fa-chevron-left"></i> Précédent</span>
                     </li>
                     <?php endif; ?>
                     
                     <?php for ($i = max(1, $pagination['current_page'] - 2); $i <= min($pagination['total_pages'], $pagination['current_page'] + 2); $i++): ?>
                     <li class="page-item <?= $i == $pagination['current_page'] ? 'active' : '' ?>">
-                        <a class="page-link" href="index.php?route=trips&page=<?= $i ?>&query=<?= urlencode($query) ?>&region=<?= urlencode($region) ?>&min_price=<?= $minPrice ?>&max_price=<?= $maxPrice ?>">
+                        <a class="page-link" href="<?= BASE_URL ?>/index.php?route=trips&page=<?= $i ?>&query=<?= urlencode($query) ?>&region=<?= urlencode($region) ?>&min_price=<?= $minPrice ?>&max_price=<?= $maxPrice ?>">
                             <?= $i ?>
                         </a>
                     </li>
@@ -237,34 +193,33 @@
                     
                     <?php if ($pagination['current_page'] < $pagination['total_pages']): ?>
                     <li class="page-item">
-                        <a class="page-link" href="index.php?route=trips&page=<?= $pagination['current_page'] + 1 ?>&query=<?= urlencode($query) ?>&region=<?= urlencode($region) ?>&min_price=<?= $minPrice ?>&max_price=<?= $maxPrice ?>">
+                        <a class="page-link" href="<?= BASE_URL ?>/index.php?route=trips&page=<?= $pagination['current_page'] + 1 ?>&query=<?= urlencode($query) ?>&region=<?= urlencode($region) ?>&min_price=<?= $minPrice ?>&max_price=<?= $maxPrice ?>">
                             Suivant <i class="fas fa-chevron-right"></i>
                         </a>
                     </li>
-                    <?php else: ?>
-                    <li class="page-item disabled">
-                        <span class="page-link">Suivant <i class="fas fa-chevron-right"></i></span>
-                    </li>
                     <?php endif; ?>
                 </ul>
-            </nav>
+            </div>
             <?php endif; ?>
+            
         </div>
         <?php endif; ?>
     </div>
 </section>
 
 <style>
-/* Styles pour la section hero de recherche */
+/* Styles spécifiques à cette page */
 .search-hero {
+    background-image: url('<?= BASE_URL ?>/images/backgrounds/route66-hero.jpg');
+    padding: 80px 0;
     position: relative;
-    background-image: url('../images/backgrounds/route66-hero.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 4rem 0;
+}
+
+.search-hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
     text-align: center;
-    color: #fff;
-    margin-bottom: 0;
 }
 
 .search-overlay {
@@ -273,65 +228,45 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
 }
 
-.search-hero-content {
+.search-section {
+    padding: 50px 0;
+}
+
+.search-box {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: -70px;
     position: relative;
     z-index: 10;
 }
 
-.search-hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+.search-form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.search-hero p {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+.form-row {
+    display: flex;
+    gap: 20px;
 }
 
-/* Barre de recherche améliorée */
-.search-box {
-    margin-top: -70px;
-    position: relative;
-    z-index: 20;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+.form-group {
+    flex: 1;
 }
 
-.search-tabs-container {
-    padding: 0 20px;
-}
-
-.search-tabs {
-    border-bottom: none;
-    padding-top: 15px;
-}
-
-.search-tabs .nav-link {
-    border: none;
-    color: var(--gris-vintage);
-    padding: 12px 20px;
-    font-weight: 500;
-}
-
-.search-tabs .nav-link.active {
-    color: var(--rouge-vintage);
-    background-color: transparent;
-    border-bottom: 2px solid var(--rouge-vintage);
-}
-
-.search-tabs .nav-link i {
-    margin-right: 5px;
-}
-
-.search-body {
-    padding: 20px;
+.form-control {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 .input-with-icon {
@@ -343,68 +278,67 @@
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--gris-vintage);
-    font-size: 1.1rem;
+    color: #777;
 }
 
-.input-with-icon input,
-.input-with-icon select {
-    padding-left: 45px;
-}
-
-.price-range-container {
-    padding: 0 10px;
-}
-
-.price-inputs {
+.search-actions {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 10px;
 }
 
-.price-separator {
-    color: var(--gris-vintage);
-    font-weight: bold;
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 30px;
+    margin-right: 5px;
 }
 
-/* Cartes de voyage améliorées */
+.bg-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.bg-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
 .trips-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    margin: 2rem 0;
+    margin-top: 30px;
 }
 
 .trip-card {
-    background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: white;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .trip-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .trip-image {
-    height: 220px;
     position: relative;
-    overflow: hidden;
+    height: 200px;
 }
 
 .trip-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.trip-card:hover .trip-image img {
-    transform: scale(1.1);
 }
 
 .trip-badges {
@@ -414,52 +348,43 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    align-items: flex-end;
-}
-
-.trip-badges .badge {
-    padding: 6px 10px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border-radius: 20px;
 }
 
 .trip-content {
     padding: 20px;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
 }
 
 .trip-title {
-    font-size: 1.3rem;
+    font-size: 20px;
     margin-bottom: 15px;
-    color: var(--rouge-vintage);
+    font-weight: 700;
 }
 
 .trip-features {
     list-style: none;
+    margin: 0 0 15px;
     padding: 0;
-    margin: 0 0 15px 0;
 }
 
 .trip-features li {
-    padding: 6px 0;
-    color: var(--gris-vintage);
-    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
 }
 
-.trip-features i {
-    color: var(--rouge-vintage);
-    margin-right: 8px;
-    width: 18px;
-    text-align: center;
+.trip-features li i {
+    width: 25px;
+    margin-right: 10px;
+    color: #5e3bee;
 }
 
 .trip-description {
-    color: var(--gris-vintage);
+    color: #666;
     margin-bottom: 20px;
-    flex-grow: 1;
+    line-height: 1.5;
 }
 
 .trip-footer {
@@ -467,81 +392,83 @@
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
+    border-top: 1px solid #eee;
     padding-top: 15px;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .trip-price {
-    display: flex;
-    flex-direction: column;
-}
-
-.price-label {
-    font-size: 0.8rem;
-    color: var(--gris-vintage);
-}
-
-.price-value {
-    font-size: 1.5rem;
+    font-size: 22px;
     font-weight: 700;
-    color: var(--rouge-vintage);
+    color: #5e3bee;
 }
 
-/* Aucun résultat */
+.trip-price-prefix {
+    font-size: 12px;
+    color: #777;
+    font-weight: normal;
+}
+
+.pagination-container {
+    margin-top: 30px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    list-style: none;
+    padding: 0;
+}
+
+.page-item {
+    display: inline-block;
+}
+
+.page-link {
+    display: block;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: #f8f9fa;
+    color: #5e3bee;
+    transition: background-color 0.3s;
+}
+
+.page-item.active .page-link {
+    background-color: #5e3bee;
+    color: white;
+}
+
+.page-link:hover {
+    background-color: #e9ecef;
+}
+
 .no-results {
-    background-color: #fff;
-    border-radius: 10px;
+    text-align: center;
     padding: 50px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background-color: #f8f9fa;
+    border-radius: 10px;
 }
 
 .no-results-icon {
-    font-size: 4rem;
-    color: var(--beige-fonce);
-    opacity: 0.5;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .trips-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .search-hero {
-        padding: 3rem 0;
-    }
-    
-    .search-hero h1 {
-        font-size: 2rem;
-    }
-    
-    .search-box {
-        margin-top: -50px;
-    }
+    font-size: 48px;
+    color: #aaa;
+    margin-bottom: 20px;
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Synchroniser les onglets de recherche
-    document.getElementById('query-simple').addEventListener('input', function() {
-        document.getElementById('query-advanced').value = this.value;
-    });
-    
-    document.getElementById('query-advanced').addEventListener('input', function() {
-        document.getElementById('query-simple').value = this.value;
-    });
-    
-    // Tri des résultats
+    // Tri des résultats de voyage
     const sortSelect = document.getElementById('sort-results');
-    
     if (sortSelect) {
         sortSelect.addEventListener('change', function() {
-            const tripCards = Array.from(document.querySelectorAll('.trip-card'));
             const tripsGrid = document.querySelector('.trips-grid');
+            if (!tripsGrid) return;
             
-            // Trier les cartes
-            tripCards.sort(function(a, b) {
+            const tripCards = Array.from(tripsGrid.querySelectorAll('.trip-card'));
+            
+            tripCards.sort((a, b) => {
                 const aPrice = parseFloat(a.dataset.price);
                 const bPrice = parseFloat(b.dataset.price);
                 const aDuration = parseInt(a.dataset.duration);
@@ -561,11 +488,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            // Vider la grille et ajouter les cartes triées
+            // Vider la grille et réinsérer les éléments triés
             tripsGrid.innerHTML = '';
-            tripCards.forEach(function(card) {
-                tripsGrid.appendChild(card);
-            });
+            tripCards.forEach(card => tripsGrid.appendChild(card));
         });
     }
 });
