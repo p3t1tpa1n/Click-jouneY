@@ -1,0 +1,152 @@
+{
+  "trips": [
+    {
+      "id": 1,
+      "title": "Route 66 - Chicago à Los Angeles",
+      "description": "Découvrez la légendaire Route 66, de Chicago à Los Angeles, à travers les paysages mythiques de l'Amérique.",
+      "start_date": "2024-06-15",
+      "end_date": "2024-06-30",
+      "price": 2999.99,
+      "participants": 2,
+      "image": "images/route66.jpg",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Chicago",
+          "description": "Départ de la Route 66",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Saint Louis",
+          "description": "La Gateway Arch",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Oklahoma City",
+          "description": "Le cœur de l'Oklahoma",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Amarillo",
+          "description": "Le Cadillac Ranch",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Grand Canyon",
+          "description": "Une des merveilles naturelles du monde",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 6,
+          "title": "Los Angeles",
+          "description": "Arrivée à Santa Monica",
+          "duration": 2,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Location de voiture",
+          "description": "Location d'une voiture de luxe pour le voyage",
+          "price": 999.99
+        },
+        {
+          "id": 2,
+          "title": "Guide touristique",
+          "description": "Guide professionnel pour tout le voyage",
+          "price": 799.99
+        },
+        {
+          "id": 3,
+          "title": "Assurance voyage",
+          "description": "Assurance complète pour le voyage",
+          "price": 299.99
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Floride - Miami à Key West",
+      "description": "Explorez la côte est de la Floride, de Miami à Key West, à travers les plages paradisiaques et les récifs coralliens.",
+      "start_date": "2024-07-01",
+      "end_date": "2024-07-15",
+      "price": 2499.99,
+      "participants": 2,
+      "image": "images/florida.jpg",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Miami",
+          "description": "Départ de Miami Beach",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Fort Lauderdale",
+          "description": "Les canaux de la Venise américaine",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Palm Beach",
+          "description": "Le paradis des millionnaires",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Key Largo",
+          "description": "Première île des Keys",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Islamorada",
+          "description": "La capitale mondiale de la pêche",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 6,
+          "title": "Key West",
+          "description": "Le point le plus au sud des États-Unis",
+          "duration": 2,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Location de voiture décapotable",
+          "description": "Location d'une voiture décapotable pour le voyage",
+          "price": 799.99
+        },
+        {
+          "id": 2,
+          "title": "Excursion en bateau",
+          "description": "Excursion d'une journée en bateau",
+          "price": 199.99
+        },
+        {
+          "id": 3,
+          "title": "Assurance voyage",
+          "description": "Assurance complète pour le voyage",
+          "price": 299.99
+        }
+      ]
+    }
+  ]
+} 

@@ -1,0 +1,24 @@
+{
+  "payments": [
+    {
+      "id": 1,
+      "user_login": "user1",
+      "trip_id": 1,
+      "total_price": 4799.97,
+      "transaction_id": "TRIP_65f1234567890",
+      "status": "accepted",
+      "payment_date": "2024-03-15 14:30:00",
+      "selected_options": [1, 2, 3]
+    },
+    {
+      "id": 2,
+      "user_login": "user2",
+      "trip_id": 2,
+      "total_price": 3499.97,
+      "transaction_id": "TRIP_65f1234567891",
+      "status": "accepted",
+      "payment_date": "2024-03-16 09:15:00",
+      "selected_options": [1, 3]
+    }
+  ]
+} 

@@ -21,7 +21,7 @@
   
   /* Corps global du site */
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: var(--beige-sable);
     color: var(--gris-vintage);
     line-height: 1.5;
@@ -31,6 +31,7 @@
   a {
     color: var(--rouge-vintage);
     text-decoration: none;
+    transition: color 0.3s ease;
   }
   a:hover {
     color: var(--beige-fonce);
@@ -40,6 +41,7 @@
   h1, h2, h3 {
     color: var(--rouge-vintage);
     margin-bottom: 1rem;
+    font-weight: 600;
   }
   
   /* Conteneur principal d'une page (optionnel) */
@@ -54,12 +56,14 @@
     background-color: var(--beige-fonce);
     padding: 1rem 0;
     margin-bottom: 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
   header h1 {
     text-align: center;
     color: var(--blanc-casse);
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    letter-spacing: 1px;
   }
   
   /* Navigation */
@@ -71,13 +75,15 @@
   }
   nav ul li a {
     color: var(--blanc-casse);
-    font-weight: bold;
+    font-weight: 500;
     padding: 0.5rem 1rem;
     border-radius: 4px;
+    transition: all 0.3s ease;
   }
   nav ul li a:hover {
     background-color: var(--rouge-vintage);
     color: var(--blanc-casse);
+    transform: translateY(-2px);
   }
   
   /* Section principale */
@@ -101,31 +107,164 @@
     gap: 1rem;
   }
   form label {
-    font-weight: bold;
+    font-weight: 500;
   }
   form input[type="text"],
   form input[type="email"],
   form input[type="password"],
+  form input[type="date"],
   form select,
   form textarea {
-    padding: 0.5rem;
-    border: 1px solid var(--gris-vintage);
-    border-radius: 4px;
+    padding: 0.75rem;
+    border: 1px solid rgba(85, 86, 82, 0.3);
+    border-radius: 8px;
     background-color: var(--blanc-casse);
     color: var(--gris-vintage);
+    font-size: 1rem;
+    width: 100%;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+  }
+  form input[type="text"]:focus,
+  form input[type="email"]:focus,
+  form input[type="password"]:focus,
+  form input[type="date"]:focus,
+  form select:focus,
+  form textarea:focus {
+    outline: none;
+    border-color: var(--rouge-vintage);
+    box-shadow: 0 0 0 3px rgba(187, 58, 43, 0.2);
   }
   form input[type="submit"],
-  button {
+  button,
+  .btn {
     background-color: var(--rouge-vintage);
     color: var(--blanc-casse);
     padding: 0.75rem 1rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
   }
   form input[type="submit"]:hover,
-  button:hover {
+  button:hover,
+  .btn:hover {
     background-color: var(--beige-fonce);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* Styles spécifiques pour les pages d'authentification */
+  .auth-form {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background-color: var(--blanc-casse);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  }
+  
+  .auth-form h2 {
+    text-align: center;
+    margin-bottom: 1.8rem;
+    color: var(--rouge-vintage);
+    font-size: 2rem;
+    position: relative;
+  }
+  
+  .auth-form h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--rouge-vintage);
+    border-radius: 3px;
+  }
+  
+  .auth-form .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .auth-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  
+  .auth-form small {
+    display: block;
+    color: #777;
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
+  }
+  
+  .auth-form textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .auth-form .form-actions {
+    margin-top: 2rem;
+  }
+  
+  .auth-form .btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+  }
+  
+  .auth-form .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(187, 58, 43, 0.2);
+  }
+  
+  .auth-links {
+    text-align: center;
+    margin-top: 1.8rem;
+    font-size: 0.95rem;
+  }
+  
+  .auth-links a {
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  
+  .alert {
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1.8rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  
+  .alert.error {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border-left: 4px solid #dc3545;
+  }
+  
+  .alert.success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    border-left: 4px solid #28a745;
+  }
+  
+  .alert.info {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+    border-left: 4px solid #0d6efd;
   }
   
   /* Footer */
@@ -133,7 +272,8 @@
     background-color: var(--beige-fonce);
     color: var(--blanc-casse);
     text-align: center;
-    padding: 1rem 0;
-    margin-top: 2rem;
+    padding: 1.5rem 0;
+    margin-top: 3rem;
     position: relative;
+    font-size: 0.9rem;
   }
