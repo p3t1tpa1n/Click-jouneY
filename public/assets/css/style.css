@@ -1,0 +1,734 @@
+/* style.css */
+
+/* 
+   Définition des variables de couleur pour la charte graphique
+   Nouvelle palette plus professionnelle tout en conservant l'esprit Route 66
+*/
+:root {
+  /* Couleurs principales */
+  --primary: #BB3A2B;         /* Rouge vintage - marque principale */
+  --primary-light: #E85A4F;   /* Rouge plus clair pour les accents et survols */
+  --primary-dark: #9A2920;    /* Rouge plus foncé pour les ombres et focus */
+  
+  /* Couleurs neutres */
+  --dark: #333F48;            /* Gris foncé - texte principal */
+  --gray-dark: #555652;       /* Gris moyen - texte secondaire */
+  --gray-medium: #7D8491;     /* Gris clair - bordures et séparateurs */
+  --gray-light: #D8D8D8;      /* Gris très clair - bordures légères */
+  
+  /* Couleurs de fond */
+  --background: #F8F6F0;      /* Fond principal - blanc cassé */
+  --background-alt: #F5E8D2;  /* Fond alternatif - beige sable */
+  --background-accent: #E6D0B1; /* Fond accent - beige plus foncé */
+  
+  /* Couleurs d'état */
+  --success: #4CAF50;         /* Vert - succès */
+  --error: #F44336;           /* Rouge - erreur */
+  --warning: #FF9800;         /* Orange - avertissement */
+  --info: #2196F3;            /* Bleu - information */
+  
+  /* Espacement et dimensions */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+  
+  /* Bordures et ombres */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --box-shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --box-shadow-md: 0 4px 8px rgba(0,0,0,0.12);
+  --box-shadow-lg: 0 8px 16px rgba(0,0,0,0.14);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Réinitialisation basique */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corps global du site */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background);
+  color: var(--dark);
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+/* Typographie */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--dark);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  position: relative;
+  margin-bottom: var(--spacing-xl);
+}
+
+h2:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary);
+  border-radius: 3px;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Liens */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+a:hover {
+  color: var(--primary-light);
+}
+
+/* Conteneur principal */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md) 0;
+}
+
+/* Header */
+header {
+  background-color: var(--background);
+  padding: var(--spacing-md) 0;
+  box-shadow: var(--box-shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+}
+
+header h1 {
+  margin-bottom: 0;
+  font-size: 1.8rem;
+  color: var(--primary);
+}
+
+/* Navigation */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+nav ul li a {
+  color: var(--dark);
+  font-weight: 500;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+nav ul li a:after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: all var(--transition-normal);
+  transform: translateX(-50%);
+}
+
+nav ul li a:hover {
+  color: var(--primary);
+}
+
+nav ul li a:hover:after,
+nav ul li a.active:after {
+  width: 70%;
+}
+
+nav ul li a.active {
+  color: var(--primary);
+}
+
+/* Hero section */
+.hero {
+  background-color: var(--background-alt);
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.hero h2:after {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+}
+
+.hero p {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-lg);
+  font-size: 1.1rem;
+}
+
+.hero .btn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: 1.1rem;
+}
+
+/* Section with background */
+.section-bg {
+  background-color: var(--background-alt);
+  padding: var(--spacing-xl) 0;
+  margin: var(--spacing-xl) 0;
+}
+
+/* Trip cards */
+.trip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.trip-card {
+  background-color: var(--background);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--box-shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.trip-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-md);
+}
+
+.trip-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.trip-info {
+  padding: var(--spacing-md);
+}
+
+.trip-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.trip-description {
+  color: var(--gray-dark);
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.4;
+}
+
+.trip-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.trip-duration, .trip-price {
+  font-size: 0.9rem;
+  color: var(--gray-dark);
+  display: flex;
+  align-items: center;
+}
+
+.trip-price {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Boutons */
+.btn {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all var(--transition-normal);
+  box-shadow: 0 2px 4px rgba(187, 58, 43, 0.2);
+}
+
+.btn:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(187, 58, 43, 0.3);
+  color: white;
+}
+
+.btn:active {
+  transform: translateY(0);
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--dark);
+  box-shadow: 0 2px 4px rgba(51, 63, 72, 0.2);
+}
+
+.btn-secondary:hover {
+  background-color: #414d57;
+  box-shadow: 0 4px 8px rgba(51, 63, 72, 0.3);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-large {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: 1.1rem;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+/* CTA container */
+.cta-container {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+}
+
+/* Formulaires */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-sm);
+}
+
+label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+  color: var(--dark);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--border-radius-md);
+  background-color: var(--background);
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  color: var(--dark);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(187, 58, 43, 0.2);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--gray-medium);
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+small {
+  font-size: 0.85rem;
+  color: var(--gray-dark);
+}
+
+/* Pages d'authentification */
+.auth-form {
+  max-width: 500px;
+  margin: var(--spacing-xl) auto;
+  padding: var(--spacing-xl);
+  background-color: var(--background);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-md);
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.auth-form h2:after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.auth-form .form-actions {
+  margin-top: var(--spacing-lg);
+}
+
+.auth-links {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+  font-size: 0.95rem;
+}
+
+/* Alertes */
+.alert {
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-left: 4px solid;
+  background-color: var(--background);
+}
+
+.alert.error {
+  border-color: var(--error);
+  background-color: rgba(244, 67, 54, 0.1);
+  color: var(--error);
+}
+
+.alert.success {
+  border-color: var(--success);
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--success);
+}
+
+.alert.info {
+  border-color: var(--info);
+  background-color: rgba(33, 150, 243, 0.1);
+  color: var(--info);
+}
+
+.alert.warning {
+  border-color: var(--warning);
+  background-color: rgba(255, 152, 0, 0.1);
+  color: var(--warning);
+}
+
+/* Voyage détails */
+.voyage-details {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+.voyage-main {
+  background-color: var(--background);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-sm);
+}
+
+.voyage-sidebar {
+  background-color: var(--background);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-sm);
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+
+.voyage-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.step-list {
+  margin-top: var(--spacing-lg);
+}
+
+.step {
+  border: 1px solid var(--gray-light);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  background-color: var(--background);
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.step-title {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.step-location {
+  color: var(--gray-dark);
+  font-size: 0.9rem;
+}
+
+.step-dates {
+  display: flex;
+  gap: var(--spacing-md);
+  color: var(--gray-dark);
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.option-group {
+  margin-top: var(--spacing-md);
+  border-top: 1px solid var(--gray-light);
+  padding-top: var(--spacing-md);
+}
+
+.option-group h4 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.options-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.option-card {
+  border: 1px solid var(--gray-light);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-sm);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.option-card:hover {
+  border-color: var(--primary-light);
+  background-color: rgba(232, 90, 79, 0.05);
+}
+
+.option-card.selected {
+  border-color: var(--primary);
+  background-color: rgba(232, 90, 79, 0.1);
+}
+
+.option-name {
+  font-weight: 500;
+  margin-bottom: var(--spacing-xs);
+}
+
+.option-description {
+  font-size: 0.85rem;
+  color: var(--gray-dark);
+}
+
+.option-price {
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: var(--spacing-xs);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin: var(--spacing-lg) 0;
+}
+
+.pagination a,
+.pagination span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: var(--background);
+  border: 1px solid var(--gray-light);
+  border-radius: var(--border-radius-sm);
+  color: var(--dark);
+  text-decoration: none;
+  transition: all var(--transition-normal);
+}
+
+.pagination a:hover {
+  background-color: var(--primary-light);
+  color: white;
+  border-color: var(--primary-light);
+}
+
+.pagination span.current {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Footer */
+footer {
+  background-color: var(--dark);
+  color: white;
+  padding: var(--spacing-xl) 0;
+  margin-top: var(--spacing-xxl);
+}
+
+footer .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+footer h3 {
+  color: white;
+  margin-bottom: var(--spacing-md);
+  font-size: 1.2rem;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer ul li {
+  margin-bottom: var(--spacing-sm);
+}
+
+footer a {
+  color: rgba(255,255,255,0.8);
+  transition: color var(--transition-normal);
+}
+
+footer a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+  
+  header .container {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  nav ul {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .voyage-details {
+    grid-template-columns: 1fr;
+  }
+  
+  .voyage-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .trip-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .options-list {
+    grid-template-columns: 1fr;
+  }
+}

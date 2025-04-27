@@ -1,14 +1,18 @@
-{
-  "trips": [
+[
     {
       "id": 1,
       "title": "Route 66 - Chicago à Los Angeles",
       "description": "Découvrez la légendaire Route 66, de Chicago à Los Angeles, à travers les paysages mythiques de l'Amérique.",
+      "short_description": "La Route 66 originale, traversant 8 états et 3 fuseaux horaires",
+      "region": "Midwest / Ouest",
+      "duration": 15,
+      "price": 2999.99,
+      "base_price": 2999.99,
+      "participants": 2,
+      "main_image": "route66_main.jpg",
+      "images": ["route66_main.jpg", "route66_2.jpg", "route66_3.jpg"],
       "start_date": "2024-06-15",
       "end_date": "2024-06-30",
-      "price": 2999.99,
-      "participants": 2,
-      "image": "images/route66.jpg",
       "steps": [
         {
           "id": 1,
@@ -78,11 +82,16 @@
       "id": 2,
       "title": "Floride - Miami à Key West",
       "description": "Explorez la côte est de la Floride, de Miami à Key West, à travers les plages paradisiaques et les récifs coralliens.",
-      "start_date": "2024-07-01",
-      "end_date": "2024-07-15",
+      "short_description": "Une aventure ensoleillée le long des Keys de Floride",
+      "region": "Sud-Est",
+      "duration": 10,
       "price": 2499.99,
+      "base_price": 2499.99,
       "participants": 2,
-      "image": "images/florida.jpg",
+      "main_image": "florida_main.jpg",
+      "images": ["florida_main.jpg", "florida_2.jpg", "florida_3.jpg"],
+      "start_date": "2024-07-01",
+      "end_date": "2024-07-10",
       "steps": [
         {
           "id": 1,
@@ -147,6 +156,616 @@
           "price": 299.99
         }
       ]
+    },
+    {
+      "id": 3,
+      "title": "Parcs Nationaux de l'Ouest Américain",
+      "description": "Un circuit exceptionnel à travers les plus beaux parcs nationaux de l'Ouest américain, incluant Yellowstone, Yosemite et le Grand Canyon.",
+      "short_description": "Les merveilles naturelles de l'Ouest américain",
+      "region": "Ouest",
+      "duration": 12,
+      "price": 3299.99,
+      "base_price": 3299.99,
+      "participants": 2,
+      "main_image": "parks_main.jpg",
+      "images": ["parks_main.jpg", "parks_2.jpg", "parks_3.jpg"],
+      "start_date": "2024-08-05",
+      "end_date": "2024-08-17",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Las Vegas",
+          "description": "Point de départ de notre aventure",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Grand Canyon",
+          "description": "L'une des sept merveilles naturelles du monde",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Monument Valley",
+          "description": "Paysages emblématiques du Far West",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Bryce Canyon",
+          "description": "Formations rocheuses uniques",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Yellowstone",
+          "description": "Le plus ancien parc national du monde",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 6,
+          "title": "Yosemite",
+          "description": "Vallées, chutes d'eau et séquoias géants",
+          "duration": 2,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Location de 4x4",
+          "description": "Véhicule tout-terrain pour accéder aux zones reculées",
+          "price": 1299.99
+        },
+        {
+          "id": 2,
+          "title": "Randonnées guidées",
+          "description": "Excursions avec guide expert en nature",
+          "price": 599.99
+        },
+        {
+          "id": 3,
+          "title": "Survol en hélicoptère",
+          "description": "Vue aérienne du Grand Canyon",
+          "price": 399.99
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "New York City Experience",
+      "description": "Découvrez l'incroyable ville de New York, ses gratte-ciels emblématiques, ses quartiers diversifiés et sa culture unique.",
+      "short_description": "La Big Apple dans toute sa splendeur",
+      "region": "Nord-Est",
+      "duration": 7,
+      "price": 1999.99,
+      "base_price": 1999.99,
+      "participants": 2,
+      "main_image": "nyc_main.jpg",
+      "images": ["nyc_main.jpg", "nyc_2.jpg", "nyc_3.jpg"],
+      "start_date": "2024-09-10",
+      "end_date": "2024-09-17",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Manhattan",
+          "description": "L'âme de New York City",
+          "duration": 3,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Brooklyn",
+          "description": "Le quartier hipster et culturel",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Queens",
+          "description": "Le borough le plus diversifié",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Bronx",
+          "description": "Berceau du hip-hop et du yankee stadium",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Staten Island",
+          "description": "L'île paisible avec vue sur la Statue de la Liberté",
+          "duration": 1,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "New York City Pass",
+          "description": "Accès aux principales attractions de la ville",
+          "price": 199.99
+        },
+        {
+          "id": 2,
+          "title": "Broadway Show",
+          "description": "Places pour un spectacle à Broadway",
+          "price": 299.99
+        },
+        {
+          "id": 3,
+          "title": "Tour gastronomique",
+          "description": "Découverte de la cuisine des différents quartiers",
+          "price": 149.99
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Côte Ouest - San Francisco à Seattle",
+      "description": "Un voyage le long de la côte pacifique, des collines de San Francisco jusqu'à la verdoyante Seattle, en passant par Portland.",
+      "short_description": "Le meilleur de la côte pacifique",
+      "region": "Ouest",
+      "duration": 10,
+      "price": 2799.99,
+      "base_price": 2799.99,
+      "participants": 2,
+      "main_image": "westcoast_main.jpg",
+      "images": ["westcoast_main.jpg", "westcoast_2.jpg", "westcoast_3.jpg"],
+      "start_date": "2024-10-05",
+      "end_date": "2024-10-15",
+      "steps": [
+        {
+          "id": 1,
+          "title": "San Francisco",
+          "description": "La ville aux collines et au Golden Gate",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Napa Valley",
+          "description": "La région viticole par excellence",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Redwood National Park",
+          "description": "Les séquoias géants de Californie",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Portland",
+          "description": "La capitale hipster de l'Oregon",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Olympic National Park",
+          "description": "Forêts tempérées et côtes sauvages",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 6,
+          "title": "Seattle",
+          "description": "La ville émeraude",
+          "duration": 2,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Location de voiture hybride",
+          "description": "Véhicule écologique pour votre parcours",
+          "price": 899.99
+        },
+        {
+          "id": 2,
+          "title": "Dégustation de vins",
+          "description": "Tour des vignobles de Napa Valley",
+          "price": 249.99
+        },
+        {
+          "id": 3,
+          "title": "Tour en bateau",
+          "description": "Excursion dans la baie de San Francisco",
+          "price": 129.99
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "La Musique du Sud - Nashville à New Orleans",
+      "description": "Une immersion musicale et culturelle dans le Sud des États-Unis, du country au jazz, en passant par le blues et le rock'n'roll.",
+      "short_description": "Un voyage au cœur des racines musicales américaines",
+      "region": "Sud",
+      "duration": 9,
+      "price": 2199.99,
+      "base_price": 2199.99,
+      "participants": 2,
+      "main_image": "music_south_main.jpg",
+      "images": ["music_south_main.jpg", "music_south_2.jpg", "music_south_3.jpg"],
+      "start_date": "2024-11-01",
+      "end_date": "2024-11-10",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Nashville",
+          "description": "La capitale mondiale du country",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Memphis",
+          "description": "Berceau du blues et du rock'n'roll",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Clarksdale",
+          "description": "Le cœur du Delta Blues",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Natchez",
+          "description": "La ville aux 500 demeures antebellum",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "New Orleans",
+          "description": "Le berceau du jazz",
+          "duration": 3,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Pass concerts",
+          "description": "Accès à des représentations musicales exclusives",
+          "price": 399.99
+        },
+        {
+          "id": 2,
+          "title": "Visite studios d'enregistrement",
+          "description": "Tour des studios légendaires (Sun Studio, RCA Studio B...)",
+          "price": 199.99
+        },
+        {
+          "id": 3,
+          "title": "Croisière jazz sur le Mississippi",
+          "description": "Soirée jazz sur un bateau à vapeur authentique",
+          "price": 149.99
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Alaska - Dernière Frontière Sauvage",
+      "description": "Une aventure extraordinaire à travers les paysages immaculés d'Alaska, entre glaciers majestueux, forêts profondes et faune exceptionnelle.",
+      "short_description": "Découverte de la nature sauvage la plus préservée d'Amérique",
+      "region": "Nord-Ouest",
+      "duration": 14,
+      "price": 4299.99,
+      "base_price": 4299.99,
+      "participants": 2,
+      "main_image": "alaska_main.jpg",
+      "images": ["alaska_main.jpg", "alaska_2.jpg", "alaska_3.jpg"],
+      "start_date": "2024-07-15",
+      "end_date": "2024-07-29",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Anchorage",
+          "description": "Porte d'entrée vers la nature sauvage",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Denali National Park",
+          "description": "Le plus haut sommet d'Amérique du Nord",
+          "duration": 3,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Fairbanks",
+          "description": "La ville des aurores boréales",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Glacier Bay",
+          "description": "Paysages glaciaires à couper le souffle",
+          "duration": 3,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Juneau",
+          "description": "La capitale accessible uniquement par air ou mer",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 6,
+          "title": "Seward",
+          "description": "Porte du Kenai Fjords National Park",
+          "duration": 2,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Safari photo",
+          "description": "Excursion guidée pour photographier la faune",
+          "price": 699.99
+        },
+        {
+          "id": 2,
+          "title": "Survol en hydravion",
+          "description": "Vue aérienne des glaciers et fjords",
+          "price": 599.99
+        },
+        {
+          "id": 3,
+          "title": "Croisière observation baleines",
+          "description": "Excursion en bateau pour observer les cétacés",
+          "price": 249.99
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Hawaii - Paradis Polynésien",
+      "description": "Un séjour idyllique dans l'archipel d'Hawaii, entre plages de sable blanc, volcans actifs, jungle luxuriante et culture polynésienne.",
+      "short_description": "L'exotisme américain au cœur du Pacifique",
+      "region": "Pacifique",
+      "duration": 12,
+      "price": 3699.99,
+      "base_price": 3699.99,
+      "participants": 2,
+      "main_image": "hawaii_main.jpg",
+      "images": ["hawaii_main.jpg", "hawaii_2.jpg", "hawaii_3.jpg"],
+      "start_date": "2024-05-10",
+      "end_date": "2024-05-22",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Oahu - Honolulu",
+          "description": "La capitale animée et Pearl Harbor",
+          "duration": 3,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Big Island",
+          "description": "Volcans actifs et plages de sable noir",
+          "duration": 3,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Maui",
+          "description": "L'île Valley avec ses cascades et forêts tropicales",
+          "duration": 3,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Kauai",
+          "description": "L'île jardin aux falaises vertigineuses",
+          "duration": 3,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Cours de surf",
+          "description": "Initiation au surf avec un champion local",
+          "price": 199.99
+        },
+        {
+          "id": 2,
+          "title": "Luau traditionnel",
+          "description": "Soirée festive avec danses et cuisine polynésiennes",
+          "price": 149.99
+        },
+        {
+          "id": 3,
+          "title": "Plongée avec masque et tuba",
+          "description": "Exploration des récifs coralliens",
+          "price": 129.99
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Route Historique de la Nouvelle-Angleterre",
+      "description": "Un voyage dans le temps à travers les six États de la Nouvelle-Angleterre, découvrant l'histoire fondatrice des États-Unis et ses paysages pittoresques.",
+      "short_description": "Sur les traces des Pères Fondateurs",
+      "region": "Nord-Est",
+      "duration": 11,
+      "price": 2599.99,
+      "base_price": 2599.99,
+      "participants": 2,
+      "main_image": "newengland_main.jpg",
+      "images": ["newengland_main.jpg", "newengland_2.jpg", "newengland_3.jpg"],
+      "start_date": "2024-10-01",
+      "end_date": "2024-10-12",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Boston",
+          "description": "Berceau de la Révolution américaine",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Salem",
+          "description": "La ville des sorcières",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Portland",
+          "description": "Le joyau côtier du Maine",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "White Mountains",
+          "description": "Les montagnes pittoresques du New Hampshire",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Vermont",
+          "description": "Paysages bucoliques et érablières",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 6,
+          "title": "Newport",
+          "description": "Les demeures somptueuses du Rhode Island",
+          "duration": 2,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Tour historique guidé",
+          "description": "Visite détaillée des sites historiques",
+          "price": 349.99
+        },
+        {
+          "id": 2,
+          "title": "Dégustation fruits de mer",
+          "description": "Expérience culinaire des spécialités régionales",
+          "price": 199.99
+        },
+        {
+          "id": 3,
+          "title": "Croisière observation baleines",
+          "description": "Excursion maritime au large du Maine",
+          "price": 159.99
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Les Grands Lacs et Chicago",
+      "description": "Un circuit autour des majestueux Grands Lacs, mêlant nature impressionnante, villes dynamiques et sites historiques.",
+      "short_description": "Découverte des plus grands lacs d'eau douce du monde",
+      "region": "Midwest",
+      "duration": 13,
+      "price": 2899.99,
+      "base_price": 2899.99,
+      "participants": 2,
+      "main_image": "greatlakes_main.jpg",
+      "images": ["greatlakes_main.jpg", "greatlakes_2.jpg", "greatlakes_3.jpg"],
+      "start_date": "2024-08-20",
+      "end_date": "2024-09-02",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Chicago",
+          "description": "La ville des vents sur le lac Michigan",
+          "duration": 3,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Milwaukee",
+          "description": "La ville brassicole du Wisconsin",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Mackinac Island",
+          "description": "Île historique sans voitures",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Chutes du Niagara",
+          "description": "Merveille naturelle à la frontière canadienne",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Toronto",
+          "description": "La métropole multiculturelle canadienne",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 6,
+          "title": "Cleveland",
+          "description": "La ville du Rock & Roll Hall of Fame",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 7,
+          "title": "Detroit",
+          "description": "La capitale historique de l'automobile",
+          "duration": 2,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Croisière sur les Grands Lacs",
+          "description": "Navigation sur le lac Michigan",
+          "price": 299.99
+        },
+        {
+          "id": 2,
+          "title": "Tour architecture Chicago",
+          "description": "Visite des gratte-ciels emblématiques",
+          "price": 149.99
+        },
+        {
+          "id": 3,
+          "title": "Excursion sous les chutes",
+          "description": "Expérience 'Maid of the Mist' aux chutes du Niagara",
+          "price": 89.99
+        }
+      ]
     }
-  ]
-} 
+] 
