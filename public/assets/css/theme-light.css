@@ -1,0 +1,448 @@
+/* Thème clair - nouvelle approche avec :root */
+:root.theme-light {
+    --primary-color: #4169e1;
+    --secondary-color: #6c757d;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --header-bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
+    --input-bg: #f8f9fa;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+    --white-section-bg: #ffffff; /* Couleur pour les sections blanches */
+    --testimonial-box-bg: #f8f9fa; /* Couleur pour les témoignages */
+    --trips-card-bg: #ffffff; /* Couleur pour les cartes de voyage */
+    --search-form-bg: #f8f9fa; /* Couleur pour les formulaires de recherche */
+    --pagination-bg: #f8f9fa; /* Couleur pour la pagination */
+    --no-results-bg: #f8f9fa; /* Couleur pour la section pas de résultats */
+}
+
+/* Styles globaux - Force l'application avec !important */
+:root.theme-light body {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root.theme-light header,
+:root.theme-light nav,
+:root.theme-light .main-header,
+:root.theme-light .navbar {
+    background-color: var(--header-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-light main,
+:root.theme-light section,
+:root.theme-light .testimonial-section {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .card,
+:root.theme-light .container,
+:root.theme-light .trips-grid {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Typographie */
+:root.theme-light h1, 
+:root.theme-light h2, 
+:root.theme-light h3, 
+:root.theme-light h4, 
+:root.theme-light h5, 
+:root.theme-light h6,
+:root.theme-light p,
+:root.theme-light span,
+:root.theme-light div,
+:root.theme-light figcaption {
+    color: var(--text-color) !important;
+}
+
+:root.theme-light a {
+    color: var(--primary-color) !important;
+}
+
+/* Boutons et formulaires */
+:root.theme-light .btn {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+:root.theme-light .btn-primary {
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+}
+
+:root.theme-light .btn-outline {
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    background-color: transparent !important;
+}
+
+:root.theme-light input, 
+:root.theme-light select, 
+:root.theme-light textarea {
+    background-color: var(--input-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Éléments spécifiques */
+:root.theme-light footer {
+    background-color: var(--header-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .testimonial {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Force également sur body en cas de problème */
+body.theme-light {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* En-tête et Navigation */
+.theme-light header,
+.theme-light .main-header {
+    background-color: var(--header-bg);
+    color: var(--text-color);
+}
+
+.theme-light nav,
+.theme-light .nav-menu {
+    background-color: var(--header-bg);
+}
+
+.theme-light .nav-menu a {
+    color: var(--text-color);
+}
+
+.theme-light .nav-menu a:hover, 
+.theme-light .nav-menu a.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* Boutons et contrôles */
+.theme-light .btn {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.theme-light .btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.theme-light .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.theme-light .btn-outline {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background: transparent;
+}
+
+/* Conteneurs et éléments */
+.theme-light main,
+.theme-light .main-content,
+.theme-light .card,
+.theme-light .container,
+.theme-light .trips-grid,
+.theme-light section {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.theme-light .alert {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Textes et paragraphes */
+.theme-light h1, 
+.theme-light h2, 
+.theme-light h3, 
+.theme-light h4, 
+.theme-light h5, 
+.theme-light h6,
+.theme-light p,
+.theme-light span,
+.theme-light div {
+    color: var(--text-color);
+}
+
+.theme-light a {
+    color: var(--primary-color);
+}
+
+/* Formulaires */
+.theme-light input, 
+.theme-light select, 
+.theme-light textarea {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+/* Footer */
+.theme-light footer {
+    background-color: var(--header-bg);
+    color: var(--text-color);
+}
+
+.theme-light .navbar {
+    background: #f8f9fa;
+    color: #222;
+}
+
+.theme-light .btn {
+    background: #fff;
+    color: #222;
+    border: 1px solid #ccc;
+}
+
+/* Sections spécifiques */
+:root.theme-light section, 
+:root.theme-light .testimonial-section,
+:root.theme-light .white-section {
+    background-color: var(--white-section-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .testimonial-item,
+:root.theme-light .testimonial-box {
+    background-color: var(--testimonial-box-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .rating .fa-star {
+    color: #ffc107 !important; /* Étoiles jaunes en mode clair */
+}
+
+:root.theme-light .testimonial-quote,
+:root.theme-light blockquote {
+    color: var(--text-color) !important;
+    border-left-color: var(--primary-color) !important;
+}
+
+:root.theme-light .section-title,
+:root.theme-light .section-subtitle {
+    color: var(--text-color) !important;
+}
+
+/* Styles pour la section des voyages populaires */
+:root.theme-light .popular-trips-section,
+:root.theme-light [id="popular-trips"] {
+    background-color: var(--white-section-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .theme-card,
+:root.theme-light .trip-card {
+    background-color: var(--trips-card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+:root.theme-light .trip-content,
+:root.theme-light .trip-card .trip-content {
+    background-color: var(--trips-card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .trip-title,
+:root.theme-light .trip-description,
+:root.theme-light .trip-card h3,
+:root.theme-light .trip-card p {
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .trip-price {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+}
+
+:root.theme-light .themed-container {
+    background-color: transparent !important;
+}
+
+:root.theme-light .popular-trips-section .btn {
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+    border-color: var(--primary-color) !important;
+}
+
+:root.theme-light .popular-trips-section .btn:hover {
+    background-color: #3658c5 !important;
+    border-color: #3658c5 !important;
+}
+
+/* Styles pour la page de recherche de voyages en mode clair */
+:root.theme-light .search-section,
+:root.theme-light .search-results {
+    background-color: var(--white-section-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .search-box {
+    background-color: var(--search-form-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+}
+
+:root.theme-light .search-form-content label {
+    color: var(--text-color) !important;
+    font-weight: 500 !important;
+}
+
+:root.theme-light .search-form-content input,
+:root.theme-light .search-form-content select {
+    background-color: var(--input-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .search-form-content .input-with-icon i {
+    color: var(--primary-color) !important;
+}
+
+:root.theme-light .search-actions button {
+    margin-top: 10px !important;
+}
+
+:root.theme-light .search-hero {
+    background-color: var(--header-bg) !important;
+    color: var(--text-color) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+:root.theme-light .search-hero h1 {
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .no-results {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+    padding: 20px !important;
+}
+
+:root.theme-light .no-results .theme-icon {
+    color: var(--primary-color) !important;
+}
+
+:root.theme-light .no-results h2,
+:root.theme-light .no-results p {
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .no-results .btn {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+:root.theme-light .no-results .btn:hover {
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+    border-color: var(--primary-color) !important;
+}
+
+:root.theme-light .results-count h2 {
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .results-sort select {
+    background-color: var(--input-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .pagination {
+    margin-top: 20px !important;
+}
+
+:root.theme-light .pagination .page-link {
+    background-color: var(--pagination-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+:root.theme-light .pagination .page-item.active .page-link {
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+    border-color: var(--primary-color) !important;
+}
+
+:root.theme-light .pagination .page-link:hover {
+    background-color: #e9ecef !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .badge {
+    font-weight: 500 !important;
+}
+
+:root.theme-light .trip-features li {
+    color: var(--text-color) !important;
+    margin-bottom: 5px !important;
+}
+
+:root.theme-light .trip-features li i {
+    color: var(--primary-color) !important;
+    margin-right: 8px !important;
+}
+
+/* Classes génériques pour les éléments de thème */
+:root.theme-light .theme-element {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+    padding: 20px !important;
+}
+
+:root.theme-light .theme-text {
+    color: var(--text-color) !important;
+}
+
+:root.theme-light .theme-icon {
+    color: var(--primary-color) !important;
+    font-size: 2.5em !important;
+}
+
+:root.theme-light .theme-button {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+:root.theme-light .theme-button:hover {
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+} 

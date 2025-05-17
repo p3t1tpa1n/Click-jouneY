@@ -1,0 +1,72 @@
+/**
+ * Styles globaux et variables CSS pour tous les thèmes
+ */
+
+:root {
+    /* Variables par défaut - thème clair */
+    --primary-color: #4169e1;
+    --secondary-color: #6c757d;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --header-bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
+    --input-bg: #f8f9fa;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+    
+    /* Transitions globales */
+    --transition-speed: 0.3s;
+}
+
+/* Transitions globales */
+body, 
+header, 
+nav, 
+main,
+section, 
+footer,
+.card,
+.container,
+.btn {
+    transition: background-color var(--transition-speed) ease, 
+                color var(--transition-speed) ease, 
+                border-color var(--transition-speed) ease;
+}
+
+/* Style du bouton de changement de thème */
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s ease;
+}
+
+.theme-icon {
+    display: inline-block;
+    line-height: 1;
+}
+
+/* Styles pour les thèmes */
+.btn-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation pour le changement de thème */
+.theme-transition {
+    animation: theme-fade 0.5s ease;
+}
+
+@keyframes theme-fade {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+} 

@@ -1,0 +1,563 @@
+/* Thème sombre - nouvelle approche avec :root */
+:root.theme-dark {
+    --primary-color: #6c94ff;
+    --secondary-color: #d1a171;
+    --background-color: #1a1d21;
+    --text-color: #e1e1e1;
+    --header-bg: #282c31;
+    --card-bg: #2a2e33;
+    --border-color: #444;
+    --input-bg: #32363c;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+    --white-section-bg: #2a2e33; /* Couleur pour les sections blanches */
+    --testimonial-box-bg: #32363c; /* Couleur pour les témoignages */
+    --trips-card-bg: #32363c; /* Couleur pour les cartes de voyage */
+    --search-form-bg: #32363c; /* Couleur pour les formulaires de recherche */
+    --pagination-bg: #32363c; /* Couleur pour la pagination */
+    --no-results-bg: #2a2e33; /* Couleur pour la section pas de résultats */
+}
+
+/* Styles globaux - Force l'application avec !important */
+:root.theme-dark body {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root.theme-dark header,
+:root.theme-dark nav,
+:root.theme-dark .main-header,
+:root.theme-dark .navbar {
+    background-color: var(--header-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark main,
+:root.theme-dark section,
+:root.theme-dark .testimonial-section {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .card,
+:root.theme-dark .container,
+:root.theme-dark .trips-grid {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Typographie */
+:root.theme-dark h1, 
+:root.theme-dark h2, 
+:root.theme-dark h3, 
+:root.theme-dark h4, 
+:root.theme-dark h5, 
+:root.theme-dark h6,
+:root.theme-dark p,
+:root.theme-dark span,
+:root.theme-dark div,
+:root.theme-dark figcaption {
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark a {
+    color: var(--primary-color) !important;
+}
+
+/* Boutons et formulaires */
+:root.theme-dark .btn {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+:root.theme-dark .btn-primary {
+    background-color: var(--primary-color) !important;
+    color: #111 !important;
+}
+
+:root.theme-dark .btn-outline {
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    background-color: transparent !important;
+}
+
+:root.theme-dark input, 
+:root.theme-dark select, 
+:root.theme-dark textarea {
+    background-color: var(--input-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Éléments spécifiques */
+:root.theme-dark footer {
+    background-color: var(--header-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .testimonial {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Force également sur body en cas de problème */
+body.theme-dark {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* En-tête et Navigation */
+.theme-dark header,
+.theme-dark .main-header {
+    background-color: var(--header-bg);
+    color: var(--text-color);
+}
+
+.theme-dark nav,
+.theme-dark .nav-menu {
+    background-color: var(--header-bg);
+}
+
+.theme-dark .nav-menu a {
+    color: var(--text-color);
+}
+
+.theme-dark .nav-menu a:hover, 
+.theme-dark .nav-menu a.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* Boutons et contrôles */
+.theme-dark .btn {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.theme-dark .btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.theme-dark .btn-primary {
+    background-color: var(--primary-color);
+    color: #111;
+}
+
+.theme-dark .btn-outline {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background: transparent;
+}
+
+/* Conteneurs et éléments */
+.theme-dark main,
+.theme-dark .main-content,
+.theme-dark .card,
+.theme-dark .container,
+.theme-dark .trips-grid,
+.theme-dark section,
+.theme-dark .testimonial-section {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.theme-dark .alert {
+    background-color: var(--header-bg);
+    border: 1px solid var(--border-color);
+}
+
+/* Textes et paragraphes */
+.theme-dark h1, 
+.theme-dark h2, 
+.theme-dark h3, 
+.theme-dark h4, 
+.theme-dark h5, 
+.theme-dark h6,
+.theme-dark p,
+.theme-dark span,
+.theme-dark div {
+    color: var(--text-color);
+}
+
+.theme-dark a {
+    color: var(--primary-color);
+}
+
+/* Formulaires */
+.theme-dark input, 
+.theme-dark select, 
+.theme-dark textarea {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+/* Éléments spécifiques */
+.theme-dark .trip-card,
+.theme-dark .testimonial {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+/* Footer */
+.theme-dark footer {
+    background-color: var(--header-bg);
+    color: var(--text-color);
+}
+
+/* Sections spécifiques */
+:root.theme-dark section, 
+:root.theme-dark .testimonial-section,
+:root.theme-dark .white-section {
+    background-color: var(--white-section-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .testimonial-item,
+:root.theme-dark .testimonial-box {
+    background-color: var(--testimonial-box-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .rating .fa-star {
+    color: var(--primary-color) !important;
+}
+
+:root.theme-dark .testimonial-quote,
+:root.theme-dark blockquote {
+    color: var(--text-color) !important;
+    border-left-color: var(--primary-color) !important;
+}
+
+:root.theme-dark .section-title,
+:root.theme-dark .section-subtitle {
+    color: var(--text-color) !important;
+}
+
+/* Styles pour la section des témoignages */
+:root.theme-dark .testimonials-section,
+:root.theme-dark .white-section,
+:root.theme-dark [id="temoignages"],
+:root.theme-dark section:has(h2:contains("Ce que disent nos voyageurs")) {
+    background-color: var(--white-section-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .testimonial-card,
+:root.theme-dark .testimonial-item,
+:root.theme-dark .testimonial-box {
+    background-color: var(--testimonial-box-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .testimonial-content p,
+:root.theme-dark .testimonial-quote p {
+    color: var(--text-color) !important;
+    opacity: 0.9;
+}
+
+:root.theme-dark .testimonial-rating .fa-star,
+:root.theme-dark .rating .fa-star {
+    color: var(--primary-color) !important;
+}
+
+:root.theme-dark .section-title,
+:root.theme-dark .section-subtitle,
+:root.theme-dark .section-header h2,
+:root.theme-dark .section-header p {
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .section-title::after {
+    background-color: var(--primary-color) !important;
+}
+
+:root.theme-dark .author-info h4,
+:root.theme-dark .author-info p {
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .testimonial-content::before {
+    color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Styles pour la section des voyages populaires */
+:root.theme-dark .popular-trips-section,
+:root.theme-dark [id="popular-trips"] {
+    background-color: var(--white-section-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .theme-card,
+:root.theme-dark .trip-card {
+    background-color: var(--trips-card-bg) !important;
+    border-color: var(--border-color) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+:root.theme-dark .trip-content,
+:root.theme-dark .trip-card .trip-content {
+    background-color: var(--trips-card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .trip-title,
+:root.theme-dark .trip-description,
+:root.theme-dark .trip-card h3,
+:root.theme-dark .trip-card p {
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .trip-price {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+}
+
+:root.theme-dark .themed-container {
+    background-color: transparent !important;
+}
+
+:root.theme-dark .popular-trips-section .btn {
+    background-color: var(--primary-color) !important;
+    color: #111 !important;
+    border-color: var(--primary-color) !important;
+}
+
+:root.theme-dark .popular-trips-section .btn:hover {
+    background-color: #5a7ad9 !important;
+    border-color: #5a7ad9 !important;
+}
+
+/* Styles pour la page de recherche de voyages */
+:root.theme-dark .search-section,
+:root.theme-dark .search-results {
+    background-color: var(--white-section-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .search-box {
+    background-color: var(--search-form-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+}
+
+:root.theme-dark .search-form-content label {
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .search-form-content input,
+:root.theme-dark .search-form-content select {
+    background-color: var(--input-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .search-form-content .input-with-icon i {
+    color: var(--primary-color) !important;
+}
+
+:root.theme-dark .search-hero {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .no-results {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+:root.theme-dark .no-results .theme-icon {
+    color: var(--primary-color) !important;
+}
+
+:root.theme-dark .no-results h2,
+:root.theme-dark .no-results p {
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .no-results .btn {
+    background-color: var(--primary-color) !important;
+    color: #111 !important;
+    border-color: var(--primary-color) !important;
+}
+
+:root.theme-dark .no-results .btn:hover {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+:root.theme-dark .results-count h2 {
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .results-sort select {
+    background-color: var(--input-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .pagination {
+    background-color: transparent !important;
+}
+
+:root.theme-dark .pagination .page-link {
+    background-color: var(--pagination-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+:root.theme-dark .pagination .page-item.active .page-link {
+    background-color: var(--primary-color) !important;
+    color: #111 !important;
+    border-color: var(--primary-color) !important;
+}
+
+:root.theme-dark .pagination .page-link:hover {
+    background-color: var(--primary-color) !important;
+    color: #111 !important;
+}
+
+:root.theme-dark .badge {
+    background-color: var(--primary-color) !important;
+    color: #111 !important;
+}
+
+:root.theme-dark .badge.bg-secondary {
+    background-color: #5d6269 !important;
+    color: #fff !important;
+}
+
+:root.theme-dark .badge.bg-info {
+    background-color: var(--info-color) !important;
+    color: #111 !important;
+}
+
+:root.theme-dark .trip-features li {
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .trip-features li i {
+    color: var(--primary-color) !important;
+}
+
+/* ÉLÉMENTS THÉMATIQUES GÉNÉRIQUES */
+:root.theme-dark .theme-element {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+    padding: 25px !important;
+}
+
+:root.theme-dark .theme-text {
+    color: var(--text-color) !important;
+}
+
+:root.theme-dark .theme-icon {
+    color: var(--primary-color) !important;
+    font-size: 3em !important;
+}
+
+:root.theme-dark .theme-button {
+    background-color: var(--primary-color) !important;
+    color: #111 !important;
+    border-color: var(--primary-color) !important;
+}
+
+:root.theme-dark .theme-button:hover {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* STYLES HARDCODÉS POUR LA SECTION "AUCUN VOYAGE TROUVÉ" - PRIORITÉ MAXIMALE */
+.no-results,
+#no-results-section,
+div[style*="aucun voyage"],
+.search-section div[style*="background-color: #32363c"] {
+    background-color: #32363c !important;
+    color: #e1e1e1 !important;
+    border: 1px solid #444 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+    padding: 25px !important;
+    min-height: 300px !important;
+}
+
+.no-results i,
+#no-results-section i,
+div[style*="aucun voyage"] i,
+.search-section div[style*="background-color: #32363c"] i {
+    color: #6c94ff !important;
+    font-size: 3em !important;
+}
+
+.no-results h2,
+#no-results-section h2,
+div[style*="aucun voyage"] h2,
+.search-section div[style*="background-color: #32363c"] h2 {
+    color: #e1e1e1 !important;
+}
+
+.no-results p,
+#no-results-section p,
+div[style*="aucun voyage"] p,
+.search-section div[style*="background-color: #32363c"] p {
+    color: #e1e1e1 !important;
+}
+
+.no-results a,
+#no-results-section a,
+div[style*="aucun voyage"] a,
+.search-section div[style*="background-color: #32363c"] a {
+    background-color: #6c94ff !important;
+    color: #111 !important;
+    border: 1px solid #6c94ff !important;
+}
+
+/* Styles pour les éléments à thème en mode sombre */
+.theme-dark .theme-element {
+    background-color: #32363c;
+    color: #e1e1e1;
+    border: 1px solid #444;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 25px;
+}
+
+.theme-dark .theme-icon {
+    color: #6c94ff;
+    font-size: 3em;
+}
+
+.theme-dark .theme-text {
+    color: #e1e1e1;
+}
+
+.theme-dark .theme-button {
+    background-color: #6c94ff;
+    color: #111;
+    border: 1px solid #6c94ff;
+}
+
+.theme-dark .theme-button:hover {
+    background-color: transparent;
+    color: #6c94ff;
+} 

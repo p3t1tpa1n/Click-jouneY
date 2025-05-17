@@ -1,0 +1,644 @@
+/* Thème accessible - nouvelle approche avec :root */
+:root.theme-accessible {
+    --primary-color: #ffd700;
+    --secondary-color: #ffffff;
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --header-bg: #000000;
+    --card-bg: #000000;
+    --border-color: #ffd700;
+    --input-bg: #000000;
+    --success-color: #00ff00;
+    --warning-color: #ffff00;
+    --danger-color: #ff0000;
+    --info-color: #00ffff;
+    --white-section-bg: #000000; /* Couleur pour les sections blanches */
+    --testimonial-box-bg: #222222; /* Couleur pour les témoignages */
+    --trips-card-bg: #222222; /* Couleur pour les cartes de voyage */
+    --search-form-bg: #222222; /* Couleur pour les formulaires de recherche */
+    --pagination-bg: #222222; /* Couleur pour la pagination */
+    --no-results-bg: #222222; /* Couleur pour la section pas de résultats */
+}
+
+/* Styles globaux - Force l'application avec !important */
+:root.theme-accessible body {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    font-size: 1.2em !important;
+    line-height: 1.6 !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root.theme-accessible header,
+:root.theme-accessible nav,
+:root.theme-accessible .main-header,
+:root.theme-accessible .navbar {
+    background-color: var(--header-bg) !important;
+    color: var(--text-color) !important;
+    border-bottom: 3px solid var(--primary-color) !important;
+}
+
+:root.theme-accessible main,
+:root.theme-accessible section,
+:root.theme-accessible .testimonial-section {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root.theme-accessible .card,
+:root.theme-accessible .container,
+:root.theme-accessible .trips-grid {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 3px solid var(--border-color) !important;
+    padding: 20px !important;
+}
+
+/* Typographie */
+:root.theme-accessible h1, 
+:root.theme-accessible h2, 
+:root.theme-accessible h3, 
+:root.theme-accessible h4, 
+:root.theme-accessible h5, 
+:root.theme-accessible h6,
+:root.theme-accessible p,
+:root.theme-accessible span,
+:root.theme-accessible div,
+:root.theme-accessible figcaption {
+    color: var(--text-color) !important;
+    font-weight: bold !important;
+}
+
+:root.theme-accessible a {
+    color: var(--primary-color) !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+}
+
+/* Boutons et formulaires */
+:root.theme-accessible .btn {
+    background-color: var(--primary-color) !important;
+    color: #000000 !important;
+    border: 3px solid #ffffff !important;
+    font-weight: bold !important;
+    font-size: 1.1em !important;
+    padding: 10px 15px !important;
+}
+
+:root.theme-accessible .btn-icon {
+    background: none !important;
+    border: 2px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    border-radius: 50% !important;
+    padding: 5px !important;
+}
+
+:root.theme-accessible input, 
+:root.theme-accessible select, 
+:root.theme-accessible textarea {
+    background-color: var(--input-bg) !important;
+    border: 3px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+    font-size: 1.1em !important;
+    padding: 10px !important;
+}
+
+/* Éléments spécifiques */
+:root.theme-accessible footer {
+    background-color: var(--header-bg) !important;
+    color: var(--text-color) !important;
+    border-top: 3px solid var(--primary-color) !important;
+}
+
+:root.theme-accessible .testimonial {
+    background-color: var(--card-bg) !important;
+    border: 3px solid var(--border-color) !important;
+    padding: 20px !important;
+}
+
+/* Force également sur body en cas de problème */
+body.theme-accessible {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    font-size: 1.2em !important;
+    line-height: 1.6 !important;
+}
+
+/* En-tête et Navigation */
+.theme-accessible header,
+.theme-accessible .main-header {
+    background-color: var(--header-bg);
+    border-bottom: 3px solid var(--primary-color);
+    color: var(--text-color);
+}
+
+.theme-accessible .nav-menu a {
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 8px 12px;
+}
+
+.theme-accessible .nav-menu a:hover, 
+.theme-accessible .nav-menu a.active {
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    border-bottom: 3px solid var(--text-color);
+}
+
+/* Boutons et contrôles */
+.theme-accessible .btn {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    font-weight: bold;
+    border: 3px solid var(--text-color);
+    padding: 10px 15px;
+    font-size: 1.1em;
+}
+
+.theme-accessible .btn-primary {
+    background-color: var(--primary-color);
+    color: #000000;
+    font-weight: bold;
+    border: 3px solid #ffffff;
+}
+
+.theme-accessible .btn-outline {
+    border: 3px solid var(--primary-color);
+    color: var(--primary-color);
+    background: transparent;
+    font-weight: bold;
+}
+
+/* Conteneurs et éléments */
+.theme-accessible .card,
+.theme-accessible .container,
+.theme-accessible .trips-grid,
+.theme-accessible section,
+.theme-accessible main {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.theme-accessible .alert {
+    background-color: var(--header-bg);
+    border: 3px solid var(--border-color);
+    font-weight: bold;
+    padding: 15px;
+}
+
+/* Formulaires */
+.theme-accessible input, 
+.theme-accessible select, 
+.theme-accessible textarea {
+    background-color: var(--input-bg);
+    border: 3px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1.1em;
+    padding: 10px;
+}
+
+/* Éléments spécifiques */
+.theme-accessible .trip-card,
+.theme-accessible .testimonial {
+    background-color: var(--card-bg);
+    border: 3px solid var(--border-color);
+    padding: 20px;
+}
+
+/* Liens */
+.theme-accessible a {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Footer */
+.theme-accessible footer {
+    background-color: var(--header-bg);
+    color: var(--text-color);
+    border-top: 3px solid var(--primary-color);
+}
+
+/* Sections spécifiques */
+:root.theme-accessible section, 
+:root.theme-accessible .testimonial-section,
+:root.theme-accessible .white-section {
+    background-color: var(--white-section-bg) !important;
+    color: var(--text-color) !important;
+    border-top: 3px solid var(--primary-color) !important;
+    border-bottom: 3px solid var(--primary-color) !important;
+}
+
+:root.theme-accessible .testimonial-item,
+:root.theme-accessible .testimonial-box {
+    background-color: var(--testimonial-box-bg) !important;
+    border: 3px solid var(--primary-color) !important;
+    color: var(--text-color) !important;
+    font-weight: bold !important;
+    padding: 20px !important;
+    margin: 10px !important;
+}
+
+:root.theme-accessible .rating .fa-star {
+    color: var(--primary-color) !important; /* Étoiles jaunes en mode accessible */
+    font-size: 1.3em !important;
+}
+
+:root.theme-accessible .testimonial-quote,
+:root.theme-accessible blockquote {
+    color: var(--text-color) !important;
+    border-left: 5px solid var(--primary-color) !important;
+    padding-left: 15px !important;
+}
+
+:root.theme-accessible .section-title,
+:root.theme-accessible .section-subtitle {
+    color: var(--primary-color) !important;
+    font-size: 1.5em !important;
+    font-weight: bold !important;
+    margin-bottom: 20px !important;
+}
+
+/* Styles pour la section des voyages populaires en mode accessible */
+:root.theme-accessible .popular-trips-section,
+:root.theme-accessible [id="popular-trips"] {
+    background-color: var(--white-section-bg) !important;
+    color: var(--text-color) !important;
+    border-top: 3px solid var(--primary-color) !important;
+    border-bottom: 3px solid var(--primary-color) !important;
+    padding: 30px 0 !important;
+}
+
+:root.theme-accessible .theme-card,
+:root.theme-accessible .trip-card {
+    background-color: var(--trips-card-bg) !important;
+    border: 3px solid var(--primary-color) !important;
+    color: var(--text-color) !important;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3) !important;
+    margin: 10px !important;
+    padding-bottom: 15px !important;
+}
+
+:root.theme-accessible .trip-content,
+:root.theme-accessible .trip-card .trip-content {
+    background-color: var(--trips-card-bg) !important;
+    color: var(--text-color) !important;
+    padding: 15px !important;
+}
+
+:root.theme-accessible .trip-title,
+:root.theme-accessible .trip-description,
+:root.theme-accessible .trip-card h3,
+:root.theme-accessible .trip-card p {
+    color: var(--text-color) !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+}
+
+:root.theme-accessible .trip-price {
+    color: var(--primary-color) !important;
+    font-weight: bold !important;
+    font-size: 1.3em !important;
+    margin: 10px 0 !important;
+}
+
+:root.theme-accessible .trip-duration {
+    background-color: var(--primary-color) !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+    padding: 8px 12px !important;
+    border-radius: 4px !important;
+}
+
+:root.theme-accessible .themed-container {
+    background-color: transparent !important;
+}
+
+:root.theme-accessible .popular-trips-section .btn {
+    background-color: var(--primary-color) !important;
+    color: #000000 !important;
+    border: 3px solid var(--primary-color) !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+    padding: 10px 20px !important;
+    margin-top: 15px !important;
+}
+
+:root.theme-accessible .popular-trips-section .btn:hover {
+    background-color: #000000 !important;
+    color: var(--primary-color) !important;
+    border: 3px solid var(--primary-color) !important;
+}
+
+/* Styles pour la page de recherche de voyages en mode accessible */
+:root.theme-accessible .search-section,
+:root.theme-accessible .search-results {
+    background-color: var(--white-section-bg) !important;
+    color: var(--text-color) !important;
+    border-top: 3px solid var(--primary-color) !important;
+    border-bottom: 3px solid var(--primary-color) !important;
+    padding: 30px 0 !important;
+}
+
+:root.theme-accessible .search-box {
+    background-color: var(--search-form-bg) !important;
+    border: 3px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 25px !important;
+    margin-bottom: 30px !important;
+}
+
+:root.theme-accessible .search-form-content label {
+    color: var(--text-color) !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+    margin-bottom: 10px !important;
+    display: block !important;
+}
+
+:root.theme-accessible .search-form-content input,
+:root.theme-accessible .search-form-content select {
+    background-color: var(--input-bg) !important;
+    border: 3px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+    font-size: 1.1em !important;
+    font-weight: bold !important;
+    padding: 12px !important;
+    border-radius: 6px !important;
+    height: auto !important;
+}
+
+:root.theme-accessible .search-form-content .input-with-icon i {
+    color: var(--primary-color) !important;
+    font-size: 1.2em !important;
+}
+
+:root.theme-accessible .search-hero {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    border-bottom: 3px solid var(--primary-color) !important;
+    padding: 40px 0 !important;
+}
+
+:root.theme-accessible .search-hero h1 {
+    color: var(--primary-color) !important;
+    font-size: 2.5em !important;
+    font-weight: bold !important;
+    margin-bottom: 20px !important;
+}
+
+:root.theme-accessible .search-hero p {
+    color: var(--text-color) !important;
+    font-size: 1.3em !important;
+    font-weight: bold !important;
+}
+
+:root.theme-accessible .no-results {
+    background-color: var(--no-results-bg) !important;
+    color: var(--text-color) !important;
+    border: 3px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 30px !important;
+}
+
+:root.theme-accessible .no-results-icon i {
+    color: var(--primary-color) !important;
+    font-size: 3em !important;
+    margin-bottom: 20px !important;
+}
+
+:root.theme-accessible .no-results h2 {
+    color: var(--primary-color) !important;
+    font-size: 1.5em !important;
+    font-weight: bold !important;
+    margin-bottom: 15px !important;
+}
+
+:root.theme-accessible .no-results p {
+    color: var(--text-color) !important;
+    font-size: 1.2em !important;
+    margin-bottom: 20px !important;
+}
+
+:root.theme-accessible .results-count h2 {
+    color: var(--primary-color) !important;
+    font-size: 1.5em !important;
+    font-weight: bold !important;
+}
+
+:root.theme-accessible .results-sort select {
+    background-color: var(--input-bg) !important;
+    border: 3px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+    font-size: 1.1em !important;
+    font-weight: bold !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+}
+
+:root.theme-accessible .pagination {
+    margin-top: 30px !important;
+    background-color: transparent !important;
+}
+
+:root.theme-accessible .pagination .page-item {
+    margin: 0 5px !important;
+}
+
+:root.theme-accessible .pagination .page-link {
+    background-color: var(--background-color) !important;
+    color: var(--primary-color) !important;
+    border: 3px solid var(--primary-color) !important;
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    padding: 10px 15px !important;
+    border-radius: 6px !important;
+}
+
+:root.theme-accessible .pagination .page-item.active .page-link {
+    background-color: var(--primary-color) !important;
+    color: #000000 !important;
+    border-color: var(--primary-color) !important;
+    font-weight: bold !important;
+}
+
+:root.theme-accessible .pagination .page-link:hover {
+    background-color: var(--primary-color) !important;
+    color: #000000 !important;
+}
+
+:root.theme-accessible .badge {
+    background-color: var(--primary-color) !important;
+    color: #000000 !important;
+    font-size: 1.1em !important;
+    font-weight: bold !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+    margin: 5px !important;
+}
+
+:root.theme-accessible .trip-features {
+    margin-top: 15px !important;
+    padding-left: 20px !important;
+}
+
+:root.theme-accessible .trip-features li {
+    color: var(--text-color) !important;
+    font-size: 1.1em !important;
+    margin-bottom: 10px !important;
+    list-style-type: none !important;
+    position: relative !important;
+    padding-left: 30px !important;
+}
+
+:root.theme-accessible .trip-features li i {
+    color: var(--primary-color) !important;
+    font-size: 1.2em !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 3px !important;
+}
+
+:root.theme-accessible .search-actions {
+    margin-top: 25px !important;
+    text-align: center !important;
+}
+
+:root.theme-accessible .search-actions button {
+    margin: 0 10px !important;
+    padding: 12px 20px !important;
+    font-size: 1.2em !important;
+}
+
+:root.theme-accessible .form-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin: 0 -15px !important;
+}
+
+:root.theme-accessible .form-group {
+    margin-bottom: 20px !important;
+}
+
+/* Classes génériques pour les éléments de thème */
+:root.theme-accessible .theme-element {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    border: 3px solid var(--primary-color) !important;
+    border-radius: 8px !important;
+    padding: 30px !important;
+    margin: 15px 0 !important;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3) !important;
+}
+
+:root.theme-accessible .theme-text {
+    color: var(--text-color) !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+}
+
+:root.theme-accessible .theme-icon {
+    color: var(--primary-color) !important;
+    font-size: 4em !important;
+    margin-bottom: 20px !important;
+}
+
+:root.theme-accessible .theme-button {
+    background-color: var(--primary-color) !important;
+    color: #000000 !important;
+    border: 3px solid var(--primary-color) !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+    padding: 12px 20px !important;
+    margin-top: 20px !important;
+}
+
+:root.theme-accessible .theme-button:hover {
+    background-color: var(--background-color) !important;
+    color: var(--primary-color) !important;
+    border: 3px solid var(--primary-color) !important;
+}
+
+/* SECTION PAS DE RÉSULTATS */
+.theme-accessible .no-results {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    border: 3px solid var(--primary-color) !important;
+    border-radius: 8px !important;
+    padding: 30px !important;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3) !important;
+    text-align: center !important;
+}
+
+.theme-accessible .no-results .theme-icon {
+    color: var(--primary-color) !important;
+    font-size: 4em !important;
+    margin-bottom: 20px !important;
+}
+
+.theme-accessible .no-results h2 {
+    color: var(--text-color) !important;
+    font-weight: bold !important;
+    font-size: 1.5em !important;
+    margin-bottom: 15px !important;
+}
+
+.theme-accessible .no-results p {
+    color: var(--text-color) !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+    margin-bottom: 20px !important;
+}
+
+.theme-accessible .no-results .btn {
+    background-color: var(--primary-color) !important;
+    color: #000000 !important;
+    border: 3px solid var(--primary-color) !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+    padding: 12px 20px !important;
+}
+
+.theme-accessible .no-results .btn:hover {
+    background-color: var(--background-color) !important;
+    color: var(--primary-color) !important;
+}
+
+/* Styles pour les éléments à thème en mode accessible */
+.theme-accessible .theme-element {
+    background-color: #222222;
+    color: #ffffff;
+    border: 3px solid #ffd700;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    padding: 30px;
+}
+
+.theme-accessible .theme-icon {
+    color: #ffd700;
+    font-size: 4em;
+}
+
+.theme-accessible .theme-text {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.theme-accessible h2.theme-text {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.theme-accessible .theme-button {
+    background-color: #ffd700;
+    color: #000000;
+    border: 3px solid #ffd700;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 12px 20px;
+}
+
+.theme-accessible .theme-button:hover {
+    background-color: #000000;
+    color: #ffd700;
+} 
