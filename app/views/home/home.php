@@ -104,7 +104,7 @@
                 </div>
                 <div class="testimonial-author">
                     <div class="author-avatar">
-                        <img src="public/assets/images/avatars/traveler1.jpg" alt="Jean Dupont" onerror="this.src='public/assets/images/avatars/default.jpg'">
+                        <img src="public/assets/images/about/member1.jpg" alt="Jean Dupont" onerror="this.src='public/assets/images/avatars/default.jpg'">
                     </div>
                     <div class="author-info">
                         <h4>Jean Dupont</h4>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="testimonial-author">
                     <div class="author-avatar">
-                        <img src="public/assets/images/avatars/traveler2.jpg" alt="Marie Durand" onerror="this.src='public/assets/images/avatars/default.jpg'">
+                        <img src="public/assets/images/about/member3.jpg" alt="Marie Durand" onerror="this.src='public/assets/images/avatars/default.jpg'">
                     </div>
                     <div class="author-info">
                         <h4>Marie Durand</h4>
@@ -148,7 +148,7 @@
                 </div>
                 <div class="testimonial-author">
                     <div class="author-avatar">
-                        <img src="public/assets/images/avatars/traveler3.jpg" alt="Pierre Martin" onerror="this.src='public/assets/images/avatars/default.jpg'">
+                        <img src="public/assets/images/about/member2.jpg" alt="Pierre Martin" onerror="this.src='public/assets/images/avatars/default.jpg'">
                     </div>
                     <div class="author-info">
                         <h4>Pierre Martin</h4>
