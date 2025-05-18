@@ -57,10 +57,10 @@
                             <img src="<?= BASE_URL ?>/ClickJourney/2.Floride/aurora-kreativ-UN4cs4zNCYo-unsplash.jpg" class="d-block w-100" alt="Floride">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/2.Floride/braden-egli-GEdb8i6FwZ0-unsplash.jpg" class="d-block w-100" alt="Floride">
+                            <img src="<?= BASE_URL ?>/ClickJourney/2.Floride/braden-egli-z5ficbI0QV0-unsplash.jpg" class="d-block w-100" alt="Floride">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/2.Floride/lara-logan-XVySJvgm_mY-unsplash.jpg" class="d-block w-100" alt="Floride">
+                            <img src="<?= BASE_URL ?>/ClickJourney/2.Floride/lera-kogan-zWySJtWigmY-unsplash.jpg" class="d-block w-100" alt="Floride">
                         </div>
                         <div class="carousel-item">
                             <img src="<?= BASE_URL ?>/ClickJourney/2.Floride/MathesonHamock_Kayak_Family_1920x1280.webp" class="d-block w-100" alt="Floride">
@@ -73,13 +73,13 @@
                             <img src="<?= BASE_URL ?>/ClickJourney/3.Parcs Nationaux/bailey-zindel-NRQV-hBF1OM-unsplash.jpg" class="d-block w-100" alt="Parcs Nationaux">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/3.Parcs Nationaux/ken-cheung-lxZd-F6Hro-unsplash.jpg" class="d-block w-100" alt="Parcs Nationaux">
+                            <img src="<?= BASE_URL ?>/ClickJourney/3.Parcs Nationaux/ken-cheung-Lxz4-F6HfUo-unsplash.jpg" class="d-block w-100" alt="Parcs Nationaux">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/3.Parcs Nationaux/omer-nezih-gerek-ZZnt4GzQ2Dg-unsplash.jpg" class="d-block w-100" alt="Parcs Nationaux">
+                            <img src="<?= BASE_URL ?>/ClickJourney/3.Parcs Nationaux/omer-nezih-gerek-ZZnH4GOzDgc-unsplash.jpg" class="d-block w-100" alt="Parcs Nationaux">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/3.Parcs Nationaux/pexels-pris-travel-2910126.jpg" class="d-block w-100" alt="Parcs Nationaux">
+                            <img src="<?= BASE_URL ?>/ClickJourney/3.Parcs Nationaux/pexels-gsn-travel-29101266.jpg" class="d-block w-100" alt="Parcs Nationaux">
                         </div>
                         <div class="carousel-item">
                             <img src="<?= BASE_URL ?>/ClickJourney/3.Parcs Nationaux/pexels-joseph-simms-932851-32086290.jpg" class="d-block w-100" alt="Parcs Nationaux">
@@ -92,29 +92,29 @@
                             <img src="<?= BASE_URL ?>/ClickJourney/4.New York/ferdinand-stohr-PeFk7fzxTdk-unsplash.jpg" class="d-block w-100" alt="New York">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/4.New York/look-again-digital-qN-uwYfIY-unsplash.jpg" class="d-block w-100" alt="New York">
+                            <img src="<?= BASE_URL ?>/ClickJourney/4.New York/look-again-digital-qjN-uw6YibY-unsplash.jpg" class="d-block w-100" alt="New York">
                         </div>
                         <div class="carousel-item">
                             <img src="<?= BASE_URL ?>/ClickJourney/4.New York/pexels-florian-grewe-2757640-5932075.jpg" class="d-block w-100" alt="New York">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/4.New York/pexels-leofallart-17379757.jpg" class="d-block w-100" alt="New York">
+                            <img src="<?= BASE_URL ?>/ClickJourney/4.New York/pexels-leofallflat-1737957.jpg" class="d-block w-100" alt="New York">
                         </div>
                     <?php elseif ($folderId == 5): ?>
                         <div class="carousel-item active">
                             <img src="<?= BASE_URL ?>/ClickJourney/5.Côte Ouest/andrea-leopardi-QfhbZfIf0nA-unsplash.jpg" class="d-block w-100" alt="Côte Ouest">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/5.Côte Ouest/atanas-malamov-tonA6r3dE-unsplash.jpg" class="d-block w-100" alt="Côte Ouest">
+                            <img src="<?= BASE_URL ?>/ClickJourney/5.Côte Ouest/atanas-malamov-tpmAv6c33dE-unsplash.jpg" class="d-block w-100" alt="Côte Ouest">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/5.Côte Ouest/cristofer-maximilian-uCI_U3rVXCI-unsplash.jpg" class="d-block w-100" alt="Côte Ouest">
+                            <img src="<?= BASE_URL ?>/ClickJourney/5.Côte Ouest/cristofer-maximilian-fkL_jC8rUGI-unsplash.jpg" class="d-block w-100" alt="Côte Ouest">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/5.Côte Ouest/frank-thlemose-DStrvPH8_kY-unsplash.jpg" class="d-block w-100" alt="Côte Ouest">
+                            <img src="<?= BASE_URL ?>/ClickJourney/5.Côte Ouest/frank-thiemonge-D5RnePhh_kY-unsplash.jpg" class="d-block w-100" alt="Côte Ouest">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/5.Côte Ouest/maarten-van-den-heuvel-gZXx8lMy-unsplash.jpg" class="d-block w-100" alt="Côte Ouest">
+                            <img src="<?= BASE_URL ?>/ClickJourney/5.Côte Ouest/maarten-van-den-heuvel-gZXx8lKAb7Y-unsplash.jpg" class="d-block w-100" alt="Côte Ouest">
                         </div>
                     <?php elseif ($folderId == 6): ?>
                         <div class="carousel-item active">
@@ -172,29 +172,29 @@
                             <img src="<?= BASE_URL ?>/ClickJourney/9.Route Historique/fab-lentz-C4wsBpLC5XQ-unsplash.jpg" class="d-block w-100" alt="Route Historique">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/9.Route Historique/mark-raptapolus-qT3x4jQBELc-unsplash.jpg" class="d-block w-100" alt="Route Historique">
+                            <img src="<?= BASE_URL ?>/ClickJourney/9.Route Historique/mark-raptapolus-q13x4jQ8ELc-unsplash.jpg" class="d-block w-100" alt="Route Historique">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/9.Route Historique/michael-diane-weidner-8LTT5K1bXU-unsplash.jpg" class="d-block w-100" alt="Route Historique">
+                            <img src="<?= BASE_URL ?>/ClickJourney/9.Route Historique/michael-diane-weidner-8LTT5KxtsXU-unsplash.jpg" class="d-block w-100" alt="Route Historique">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/9.Route Historique/pexels-bryan-dickerson-4170463-29994082.jpg" class="d-block w-100" alt="Route Historique">
+                            <img src="<?= BASE_URL ?>/ClickJourney/9.Route Historique/pexels-bryan-dickerson-41704633-29994082.jpg" class="d-block w-100" alt="Route Historique">
                         </div>
                     <?php elseif ($folderId == 10): ?>
                         <div class="carousel-item active">
                             <img src="<?= BASE_URL ?>/ClickJourney/10.Grands Lacs et Chicago/edward-koorey-Gcc3c6MfSM0-unsplash.jpg" class="d-block w-100" alt="Grands Lacs et Chicago">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/10.Grands Lacs et Chicago/george-bakos-9aolVnoKwWk-unsplash.jpg" class="d-block w-100" alt="Grands Lacs et Chicago">
+                            <img src="<?= BASE_URL ?>/ClickJourney/10.Grands Lacs et Chicago/george-bakos-9aoiVnoKoWk-unsplash.jpg" class="d-block w-100" alt="Grands Lacs et Chicago">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/10.Grands Lacs et Chicago/rif-winterpacht-gAIEJGgMjgs-unsplash.jpg" class="d-block w-100" alt="Grands Lacs et Chicago">
+                            <img src="<?= BASE_URL ?>/ClickJourney/10.Grands Lacs et Chicago/raf-winterpacht-gAHEJGg1Mgs-unsplash.jpg" class="d-block w-100" alt="Grands Lacs et Chicago">
                         </div>
                         <div class="carousel-item">
                             <img src="<?= BASE_URL ?>/ClickJourney/10.Grands Lacs et Chicago/stephan-cassara-EETTCFHtzMg-unsplash.jpg" class="d-block w-100" alt="Grands Lacs et Chicago">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/10.Grands Lacs et Chicago/stephan-cassara-VgUaNz_4yLQ-unsplash.jpg" class="d-block w-100" alt="Grands Lacs et Chicago">
+                            <img src="<?= BASE_URL ?>/ClickJourney/10.Grands Lacs et Chicago/stephan-cassara-VguAb_4yJ_Q-unsplash.jpg" class="d-block w-100" alt="Grands Lacs et Chicago">
                         </div>
                     <?php else: ?>
                         <div class="carousel-item active">
