@@ -52,13 +52,12 @@ class JsonDataManager {
      */
     public static function getUserByLogin($login) {
         $users = self::getUsers();
-        
+        $login = trim(strtolower($login));
         foreach ($users as $user) {
-            if ($user['login'] === $login) {
+            if (isset($user['login']) && strtolower(trim($user['login'])) === $login) {
                 return $user;
             }
         }
-        
         return null;
     }
     
