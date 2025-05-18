@@ -196,27 +196,21 @@ class User {
     }
     
     /**
-     * Vérifie si un mot de passe correspond à celui de l'utilisateur
+     * Vérifie un mot de passe
      * 
      * @param string $login Login de l'utilisateur
      * @param string $password Mot de passe à vérifier
-     * @return bool Vrai si le mot de passe est correct, faux sinon
+     * @return bool True si le mot de passe est correct
      */
-    public static function verifyPassword($login, $password)
-    {
+    public static function verifyPassword($login, $password) {
         $user = self::getByLogin($login);
         
-        if (!$user || !isset($user['password'])) {
+        if (!$user) {
             return false;
         }
         
-        // Si le mot de passe est hashé (commence par $2y$)
-        if (strpos($user['password'], '$2y$') === 0) {
-            return password_verify($password, $user['password']);
-        } else {
-            // Sinon, comparaison directe (password en clair)
-            return ($password === $user['password']);
-        }
+        // Vérification simple sans hachage
+        return $user['password'] === $password;
     }
 }
 ?> 

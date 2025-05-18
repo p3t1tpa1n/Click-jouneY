@@ -54,7 +54,7 @@
                                         } elseif ($folderId == 10) {
                                             $imagePath = BASE_URL . '/ClickJourney/10.Grands Lacs et Chicago/edward-koorey-Gcc3c6MfSM0-unsplash.jpg';
                                         } else {
-                                            $imagePath = BASE_URL . '/assets/images/backgrounds/route66-hero.jpg';
+                                            $imagePath = BASE_URL . '/public/assets/images/destinations/default-trip.jpg';
                                         }
                                         ?>
                                         <img src="<?= $imagePath ?>" class="card-img-top" alt="<?= htmlspecialchars($trip['title']) ?>"

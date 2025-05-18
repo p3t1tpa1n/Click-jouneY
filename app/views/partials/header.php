@@ -60,8 +60,8 @@ if (!isset($route)) {
 <body class="theme-light">
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container">
-      <a class="navbar-brand" href="<?= BASE_URL ?>/">
-        <img src="<?= BASE_URL ?>/public/assets/images/logo.png" alt="Click-Journey" height="40">
+      <a class="navbar-brand" href="<?= BASE_URL ?>">
+        <img src="<?= BASE_URL ?>/public/assets/images/logo/route66-odyssey-logo.png" alt="Click-Journey" height="40">
       </a>
       <!-- Bouton pour navigation Bootstrap (desktop) -->
       <button class="navbar-toggler d-none d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,7 +116,7 @@ if (!isset($route)) {
   <div class="mobile-nav">
     <div class="mobile-nav-header">
       <a href="<?= BASE_URL ?>/" class="mobile-logo">
-        <img src="<?= BASE_URL ?>/public/assets/images/logo.png" alt="Click-Journey" height="40">
+        <img src="<?= BASE_URL ?>/public/assets/images/logo/route66-odyssey-logo.png" alt="Click-Journey" height="40">
       </a>
       <button class="mobile-nav-close" aria-label="Fermer le menu"></button>
     </div>

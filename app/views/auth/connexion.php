@@ -5,7 +5,9 @@
   <div class="auth-container">
     <div class="auth-form-container">
       <div class="auth-header">
-        <img src="<?= BASE_URL ?>/public/assets/images/logo.png" alt="Click-JourneY" class="auth-logo">
+        <div class="auth-logo-container">
+          <img src="<?= BASE_URL ?>/public/assets/images/logo/route66-odyssey-logo.png" alt="Click-JourneY" class="auth-logo">
+        </div>
         <h2>Bienvenue sur Click-JourneY</h2>
         <p class="auth-subtitle">Connectez-vous pour accéder à vos voyages sur la Route 66</p>
       </div>

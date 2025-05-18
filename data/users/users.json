@@ -49,7 +49,7 @@
     {
         "id": 3,
         "login": "user1",
-        "password": "$2y$10$6.5c5u1sFPvfZO669yW5EOMWtCy\/Kpp\/u9qQ.bLVyg4XA1uuSpwSW",
+        "password": "user1",
         "name": "Pierre Durand",
         "email": "pierre.durand@example.com",
         "birth_date": "1990-07-12",
@@ -57,7 +57,7 @@
         "role": "user",
         "newsletter": 1,
         "registration_date": "2023-11-18 15:38:41",
-        "last_login": "2025-05-18 19:14:38",
+        "last_login": "2025-05-18 20:44:24",
         "status": "active",
         "viewed_trips": [
             1,
@@ -66,7 +66,8 @@
             "9",
             "5",
             "4",
-            "6"
+            "6",
+            "7"
         ],
         "purchased_trips": [
             5
@@ -167,7 +168,7 @@
     },
     {
         "login": "user6",
-        "password": "$2y$10$d5qsf1myctM0bUJO7S655.rHXmaHVB\/uITxM7CT3u\/TiFw5dB11eC",
+        "password": "user6",
         "name": " ",
         "email": "hector@gmail.com",
         "birth_date": "2000-01-01",

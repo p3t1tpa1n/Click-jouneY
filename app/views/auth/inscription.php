@@ -5,9 +5,9 @@
   <div class="auth-container">
     <div class="auth-form-container">
       <div class="auth-header">
-        <img src="<?= BASE_URL ?>/public/assets/images/logo.png" alt="Click-JourneY" class="auth-logo">
-        <h2>Créez votre compte voyageur</h2>
-        <p class="auth-subtitle">Rejoignez notre communauté et préparez-vous pour des aventures inoubliables sur la Route 66</p>
+        <img src="<?= BASE_URL ?>/public/assets/images/logo/route66-odyssey-logo.png" alt="Click-JourneY" class="auth-logo">
+        <h2>Bienvenue sur Click-JourneY</h2>
+        <p class="auth-subtitle">Créez votre compte pour commencer votre voyage sur la Route 66</p>
       </div>
       
       <?php if (isset($alertMessage) && isset($alertType)): ?>

@@ -112,9 +112,9 @@
                 <div class="trip-card theme-card" data-price="<?= $trip['price'] ?? 0 ?>" data-duration="<?= isset($trip['duration']) ? $trip['duration'] : 0 ?>">
                     <div class="trip-image">
                         <?php
-                        // ID du voyage
+                        // Déterminer le chemin de l'image
                         $folderId = $trip['id'] ?? 1;
-
+                        
                         // Chemin et nom exacts des images pour chaque voyage
                         if ($folderId == 1) {
                             $imagePath = BASE_URL . '/ClickJourney/1.Chicago Los Angeles/arnaud-steckle-MtYedjwRgAA-unsplash.jpg';
@@ -138,11 +138,11 @@
                             $imagePath = BASE_URL . '/ClickJourney/10.Grands Lacs et Chicago/edward-koorey-Gcc3c6MfSM0-unsplash.jpg';
                         } else {
                             // Image par défaut si l'ID n'est pas reconnu
-                            $imagePath = BASE_URL . '/assets/images/backgrounds/route66-hero.jpg';
+                            $imagePath = BASE_URL . '/public/assets/images/destinations/default-trip.jpg';
                         }
-
+                        
                         // Image de fallback
-                        $fallbackImage = BASE_URL . '/assets/images/backgrounds/route66-hero.jpg';
+                        $fallbackImage = BASE_URL . '/public/assets/images/destinations/default-trip.jpg';
                         ?>
                         <img src="<?= $imagePath ?>" class="card-img-top" alt="<?= htmlspecialchars($trip['title'] ?? 'Voyage Route 66') ?>" 
                              onerror="this.onerror=null; this.src='<?= $fallbackImage ?>'" 

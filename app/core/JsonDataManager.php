@@ -97,10 +97,8 @@ class JsonDataManager {
             $userData['viewed_trips'] = $userData['viewed_trips'] ?? [];
             $userData['purchased_trips'] = $userData['purchased_trips'] ?? [];
             
-            // Hacher le mot de passe
-            if (isset($userData['password'])) {
-                $userData['password'] = password_hash($userData['password'], PASSWORD_DEFAULT);
-            }
+            // Ne plus hasher le mot de passe
+            // Le mot de passe est conservé tel quel
             
             // Ajouter l'utilisateur
             $users[] = $userData;
@@ -126,13 +124,11 @@ class JsonDataManager {
             
             foreach ($users as $key => $user) {
                 if ($user['login'] === $userData['login'] || $user['id'] === $userData['id']) {
-                    // Préserver le mot de passe hashé s'il n'est pas fourni
+                    // Préserver le mot de passe existant s'il n'est pas fourni
                     if (!isset($userData['password']) || empty($userData['password'])) {
                         $userData['password'] = $user['password'];
-                    } else {
-                        // Hacher le nouveau mot de passe
-                        $userData['password'] = password_hash($userData['password'], PASSWORD_DEFAULT);
                     }
+                    // Le mot de passe est conservé tel quel sans hachage
                     
                     // Fusionner les données
                     $users[$key] = array_merge($user, $userData);
