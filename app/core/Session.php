@@ -8,13 +8,13 @@ namespace core;
 class Session
 {
     /**
-     * Initialise la session
+     * Initialise la session si elle n'est pas déjà démarrée
      * 
      * @return void
      */
     public static function init()
     {
-        if (session_status() == PHP_SESSION_NONE) {
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
     }
@@ -28,6 +28,7 @@ class Session
      */
     public static function get($key, $default = null)
     {
+        self::init();
         return $_SESSION[$key] ?? $default;
     }
     
@@ -40,6 +41,7 @@ class Session
      */
     public static function set($key, $value)
     {
+        self::init();
         $_SESSION[$key] = $value;
     }
     
@@ -51,6 +53,7 @@ class Session
      */
     public static function has($key)
     {
+        self::init();
         return isset($_SESSION[$key]);
     }
     
@@ -62,7 +65,10 @@ class Session
      */
     public static function remove($key)
     {
-        unset($_SESSION[$key]);
+        self::init();
+        if (isset($_SESSION[$key])) {
+            unset($_SESSION[$key]);
+        }
     }
     
     /**
@@ -78,21 +84,17 @@ class Session
     }
     
     /**
-     * Récupère un message flash et le supprime
+     * Récupère et supprime une valeur de la session
      * 
-     * @param string $type Type de message (success, error, info, warning)
-     * @param mixed $default Valeur par défaut si le message n'existe pas
-     * @return mixed
+     * @param string $key Clé à récupérer et supprimer
+     * @param mixed $default Valeur par défaut si la clé n'existe pas
+     * @return mixed Valeur stockée ou valeur par défaut
      */
-    public static function flash($type, $default = null)
+    public static function flash($key, $default = null)
     {
-        if (!isset($_SESSION['flash'][$type])) {
-            return $default;
-        }
-        
-        $message = $_SESSION['flash'][$type];
-        unset($_SESSION['flash'][$type]);
-        return $message;
+        $value = self::get($key, $default);
+        self::remove($key);
+        return $value;
     }
     
     /**
@@ -159,6 +161,7 @@ class Session
      */
     public static function destroy()
     {
+        self::init();
         session_unset();
         session_destroy();
     }

@@ -75,6 +75,12 @@ switch ($route) {
         include 'app/views/partials/footer.php';
         break;
     
+    case 'contact/send':
+        // Traitement du formulaire de contact
+        $controller = new controllers\page\PageController();
+        $controller->contact();
+        break;
+    
     // Routes des voyages
     case 'trips':
         $controller = new controllers\trip\TripController();

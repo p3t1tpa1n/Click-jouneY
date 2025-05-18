@@ -1,4 +1,9 @@
-<?php $this->layout('layouts/default', ['title' => 'Contactez-nous', 'meta_description' => 'Besoin d\'aide pour planifier votre voyage ? Contactez notre équipe de spécialistes en voyages qui vous aidera à organiser votre séjour parfait.']) ?>
+<?php 
+/**
+ * Vue de la page de contact
+ * Besoin d'aide pour planifier votre voyage ? Contactez notre équipe de spécialistes en voyages qui vous aidera à organiser votre séjour parfait.
+ */
+?>
 
 <section class="contact-hero bg-primary text-white py-5">
     <div class="container">
@@ -31,7 +36,7 @@
                             </div>
                         <?php endif; ?>
                         
-                        <form action="/contact/send" method="POST" class="needs-validation" novalidate>
+                        <form action="index.php?route=contact/send" method="POST" class="needs-validation" novalidate>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="name" class="form-label">Nom complet *</label>
