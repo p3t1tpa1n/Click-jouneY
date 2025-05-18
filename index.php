@@ -68,6 +68,13 @@ switch ($route) {
         include 'app/views/partials/footer.php';
         break;
     
+    case 'contact':
+        $pageTitle = 'Contactez-nous - ' . APP_NAME;
+        include 'app/views/partials/header.php';
+        include 'app/views/home/contact.php';
+        include 'app/views/partials/footer.php';
+        break;
+    
     // Routes des voyages
     case 'trips':
         $controller = new controllers\trip\TripController();

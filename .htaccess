@@ -11,6 +11,9 @@ RewriteBase /Click-jouneY/
 # Redirection spécifique pour about vers presentation
 RewriteRule ^about/?$ index.php?route=presentation [QSA,L]
 
+# Redirection spécifique pour contact
+RewriteRule ^contact/?$ index.php?route=contact [QSA,L]
+
 # Ne pas rediriger si c'est un fichier ou répertoire existant
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
