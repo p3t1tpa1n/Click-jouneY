@@ -83,7 +83,8 @@ if (!isset($route)) {
                 <?= htmlspecialchars($_SESSION['user']['firstname'] ?? $_SESSION['user']['login']) ?>
               </button>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
-                <li><a class="dropdown-item" href="<?= BASE_URL ?>/profile">Mon profil</a></li>
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>/cart">Mon panier</a></li>
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>/my-trips">Mes voyages</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="<?= BASE_URL ?>/logout">Déconnexion</a></li>
               </ul>
@@ -126,4 +127,8 @@ if (!isset($route)) {
 
       <!-- LE CONTENU DE LA PAGE SERA INSÉRÉ ICI -->
     </div>
-  </main> 
+  </main>
+  <!-- Bootstrap JS (nécessaire pour les dropdowns) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html> 

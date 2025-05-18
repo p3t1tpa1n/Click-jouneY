@@ -156,6 +156,14 @@
                         </li>
                         <?php endif; ?>
                     </ul>
+                    <?php if (isset($_SESSION['user'])): ?>
+                    <form method="post" action="<?= BASE_URL ?>/cart/add" class="mt-3 d-grid gap-2">
+                        <input type="hidden" name="trip_id" value="<?= $trip['id'] ?>">
+                        <button type="submit" class="btn btn-outline-success btn-lg w-100">
+                            <i class="fas fa-cart-plus me-2"></i> Ajouter au panier
+                        </button>
+                    </form>
+                    <?php endif; ?>
                 </div>
             </div>
             

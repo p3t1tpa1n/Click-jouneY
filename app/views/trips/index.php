@@ -112,13 +112,41 @@
                 <div class="trip-card theme-card" data-price="<?= $trip['price'] ?? 0 ?>" data-duration="<?= isset($trip['duration']) ? $trip['duration'] : 0 ?>">
                     <div class="trip-image">
                         <?php
-                        // Vérifier si l'image existe réellement sur le serveur
-                        $imageExists = isset($trip['main_image']) && file_exists('public/assets/images/trips/' . $trip['main_image']);
-                        $imagePath = $imageExists 
-                                    ? 'public/assets/images/trips/' . htmlspecialchars($trip['main_image'])
-                                    : 'public/assets/images/backgrounds/route66-hero.jpg';
+                        // ID du voyage
+                        $folderId = $trip['id'] ?? 1;
+
+                        // Chemin et nom exacts des images pour chaque voyage
+                        if ($folderId == 1) {
+                            $imagePath = BASE_URL . '/ClickJourney/1.Chicago Los Angeles/arnaud-steckle-MtYedjwRgAA-unsplash.jpg';
+                        } elseif ($folderId == 2) {
+                            $imagePath = BASE_URL . '/ClickJourney/2.Floride/aurora-kreativ-UN4cs4zNCYo-unsplash.jpg';
+                        } elseif ($folderId == 3) {
+                            $imagePath = BASE_URL . '/ClickJourney/3.Parcs Nationaux/bailey-zindel-NRQV-hBF1OM-unsplash.jpg';
+                        } elseif ($folderId == 4) {
+                            $imagePath = BASE_URL . '/ClickJourney/4.New York/alexander-rotker--aQ4FsonXEs-unsplash.jpg';
+                        } elseif ($folderId == 5) {
+                            $imagePath = BASE_URL . '/ClickJourney/5.Côte Ouest/andrea-leopardi-QfhbZfIf0nA-unsplash.jpg';
+                        } elseif ($folderId == 6) {
+                            $imagePath = BASE_URL . '/ClickJourney/6.La Musique du Sud/eric-tompkins-CfknQWR2jj8-unsplash.jpg';
+                        } elseif ($folderId == 7) {
+                            $imagePath = BASE_URL . '/ClickJourney/7.Alaska/christian-bowen-ukxrl_4Umfqc-unsplash.jpg';
+                        } elseif ($folderId == 8) {
+                            $imagePath = BASE_URL . '/ClickJourney/8.Hawaii/pexels-lastly-412681.jpg';
+                        } elseif ($folderId == 9) {
+                            $imagePath = BASE_URL . '/ClickJourney/9.Route Historique/bella-kozak-lVx4TsJRZao-unsplash.jpg';
+                        } elseif ($folderId == 10) {
+                            $imagePath = BASE_URL . '/ClickJourney/10.Grands Lacs et Chicago/edward-koorey-Gcc3c6MFSM0-unsplash.jpg';
+                        } else {
+                            // Image par défaut si l'ID n'est pas reconnu
+                            $imagePath = BASE_URL . '/assets/images/backgrounds/route66-hero.jpg';
+                        }
+
+                        // Image de fallback
+                        $fallbackImage = BASE_URL . '/assets/images/backgrounds/route66-hero.jpg';
                         ?>
-                        <img src="<?= $imagePath ?>" class="card-img-top" alt="<?= htmlspecialchars($trip['title'] ?? 'Voyage Route 66') ?>">
+                        <img src="<?= $imagePath ?>" class="card-img-top" alt="<?= htmlspecialchars($trip['title'] ?? 'Voyage Route 66') ?>" 
+                             onerror="this.onerror=null; this.src='<?= $fallbackImage ?>'" 
+                             style="height: 200px; object-fit: cover;">
                         
                         <div class="trip-badges">
                             <?php if (isset($trip['region'])): ?>
