@@ -17,9 +17,9 @@ RewriteRule ^(.*)$ index.php?route=$1 [QSA,L]
 
 # Empêcher l'accès aux dossiers sensibles
 <FilesMatch "^\.htaccess">
-    Order allow,deny
-    Deny from all
+    Require all denied
 </FilesMatch>
+
 
 # Protection des répertoires
 <IfModule mod_autoindex.c>
