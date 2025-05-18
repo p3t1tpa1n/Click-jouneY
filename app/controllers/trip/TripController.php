@@ -107,7 +107,7 @@ class TripController extends Controller
         
         // Rendre la vue
         $this->render('trips/show', [
-            'title' => $trip->title,
+            $trip['title'],
             'trip' => $trip,
             'similarTrips' => $similarTrips
         ]);

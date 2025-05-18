@@ -73,7 +73,7 @@
                                 <div class="bg-primary rounded-circle text-white d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
                                     <?= $index + 1 ?>
                                 </div>
-                                <h6 class="ms-3 mb-0"><?= htmlspecialchars($step['location']) ?></h6>
+                                <h6 class="ms-3 mb-0"> <?= isset($step['location']) && $step['location'] !== null ? htmlspecialchars($step['location']) : '<i>Lieu non défini</i>' ?></h6>
                             </div>
                             <p class="mb-0"><?= nl2br(htmlspecialchars($step['description'])) ?></p>
                         </div>
