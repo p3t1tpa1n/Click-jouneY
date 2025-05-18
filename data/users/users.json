@@ -10,7 +10,7 @@
         "role": "admin",
         "newsletter": 1,
         "registration_date": "2023-09-15 08:32:54",
-        "last_login": "2025-05-18 17:55:49",
+        "last_login": "2025-05-18 22:12:01",
         "status": "active",
         "viewed_trips": [
             1,
@@ -67,7 +67,8 @@
             "5",
             "4",
             "6",
-            "7"
+            "7",
+            "2"
         ],
         "purchased_trips": [
             5
