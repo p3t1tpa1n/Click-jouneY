@@ -383,106 +383,11 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialiser le carousel
-    const carousel = document.getElementById('tripCarousel');
-    if (carousel) {
-        // Gestion des boutons d'indicateurs
-        carousel.querySelectorAll('.carousel-indicators button').forEach(button => {
-            button.addEventListener('click', function() {
-                const slideIndex = parseInt(this.getAttribute('data-bs-slide-to'));
-                const slides = carousel.querySelectorAll('.carousel-item');
-                
-                // Désactiver tous les slides
-                slides.forEach(slide => slide.classList.remove('active'));
-                
-                // Activer le slide cible
-                if (slides[slideIndex]) {
-                    slides[slideIndex].classList.add('active');
-                }
-                
-                // Mettre à jour les indicateurs
-                carousel.querySelectorAll('.carousel-indicators button').forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === slideIndex);
-                    indicator.setAttribute('aria-current', index === slideIndex ? 'true' : 'false');
-                });
-            });
-        });
-        
-        // Gestion des contrôles précédent/suivant
-        const prevButton = carousel.querySelector('.carousel-control-prev');
-        const nextButton = carousel.querySelector('.carousel-control-next');
-        
-        if (prevButton) {
-            prevButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                const slides = carousel.querySelectorAll('.carousel-item');
-                let activeIndex = -1;
-                
-                slides.forEach((slide, index) => {
-                    if (slide.classList.contains('active')) {
-                        activeIndex = index;
-                    }
-                });
-                
-                if (activeIndex > 0) {
-                    // Aller au slide précédent
-                    slides.forEach(slide => slide.classList.remove('active'));
-                    slides[activeIndex - 1].classList.add('active');
-                    
-                    // Mettre à jour les indicateurs
-                    carousel.querySelectorAll('.carousel-indicators button').forEach((indicator, index) => {
-                        indicator.classList.toggle('active', index === activeIndex - 1);
-                        indicator.setAttribute('aria-current', index === activeIndex - 1 ? 'true' : 'false');
-                    });
-                } else if (activeIndex === 0) {
-                    // Boucler vers le dernier slide
-                    slides.forEach(slide => slide.classList.remove('active'));
-                    slides[slides.length - 1].classList.add('active');
-                    
-                    // Mettre à jour les indicateurs
-                    carousel.querySelectorAll('.carousel-indicators button').forEach((indicator, index) => {
-                        indicator.classList.toggle('active', index === slides.length - 1);
-                        indicator.setAttribute('aria-current', index === slides.length - 1 ? 'true' : 'false');
-                    });
-                }
-            });
-        }
-        
-        if (nextButton) {
-            nextButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                const slides = carousel.querySelectorAll('.carousel-item');
-                let activeIndex = -1;
-                
-                slides.forEach((slide, index) => {
-                    if (slide.classList.contains('active')) {
-                        activeIndex = index;
-                    }
-                });
-                
-                if (activeIndex < slides.length - 1) {
-                    // Aller au slide suivant
-                    slides.forEach(slide => slide.classList.remove('active'));
-                    slides[activeIndex + 1].classList.add('active');
-                    
-                    // Mettre à jour les indicateurs
-                    carousel.querySelectorAll('.carousel-indicators button').forEach((indicator, index) => {
-                        indicator.classList.toggle('active', index === activeIndex + 1);
-                        indicator.setAttribute('aria-current', index === activeIndex + 1 ? 'true' : 'false');
-                    });
-                } else if (activeIndex === slides.length - 1) {
-                    // Boucler vers le premier slide
-                    slides.forEach(slide => slide.classList.remove('active'));
-                    slides[0].classList.add('active');
-                    
-                    // Mettre à jour les indicateurs
-                    carousel.querySelectorAll('.carousel-indicators button').forEach((indicator, index) => {
-                        indicator.classList.toggle('active', index === 0);
-                        indicator.setAttribute('aria-current', index === 0 ? 'true' : 'false');
-                    });
-                }
-            });
-        }
-    }
+    // Créer un nouvel objet Carousel de Bootstrap pour initialiser le carrousel
+    const carousel = new bootstrap.Carousel(document.getElementById('tripCarousel'), {
+        interval: 5000,  // Vitesse du défilement automatique (en millisecondes)
+        wrap: true,      // Pour boucler à l'infini
+        keyboard: true   // Permettre la navigation avec le clavier
+    });
 });
 </script> 
