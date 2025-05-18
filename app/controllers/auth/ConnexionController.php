@@ -31,12 +31,20 @@ class ConnexionController extends Controller {
             $password = $_POST['password'] ?? '';
             $remember = isset($_POST['remember_me']);
             
+            error_log('DEBUG LOGIN: login reçu = ' . $login);
+            error_log('DEBUG LOGIN: password reçu = ' . $password);
+            
             // Validation de base
             if (empty($login) || empty($password)) {
                 $alertType = 'error';
                 $alertMessage = 'Veuillez remplir tous les champs.';
             } else {
                 // Tentative d'authentification
+                $user = User::getByLogin($login);
+                error_log('DEBUG LOGIN: utilisateur trouvé = ' . print_r($user, true));
+                if ($user && isset($user['password'])) {
+                    error_log('DEBUG LOGIN: mot de passe stocké = ' . $user['password']);
+                }
                 $user = User::authenticate($login, $password);
                 
                 if ($user) {

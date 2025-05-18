@@ -6,7 +6,7 @@
  * qui stockent les données de l'application (utilisateurs, voyages, paiements)
  */
 class JsonDataManager {
-    private static $dataPath = __DIR__ . '/../data/';
+    private static $dataPath = __DIR__ . '/../../data/';
     
     /**
      * Lire un fichier JSON
