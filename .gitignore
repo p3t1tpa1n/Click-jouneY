@@ -1,0 +1,55 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE/Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# PHP specific
+vendor/
+composer.phar
+composer.lock
+phpunit.xml
+.phpunit.result.cache
+.php_cs.cache
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# User uploads (keep the directory structure)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Cache and session files
+*/cache/*
+*/sessions/*
+*.cache
+
+# JSON data files may contain sensitive info, but keep the structure
+# Uncomment following lines if needed
+# data/payments.json
+# data/users/users.json 

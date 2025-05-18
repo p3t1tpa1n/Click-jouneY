@@ -1,0 +1,34 @@
+# Normaliser les fins de ligne pour tous les fichiers texte
+* text=auto eol=lf
+
+# Explicitement déclarer les fichiers texte que vous voulez toujours normaliser et convertir
+*.php text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.xml text eol=lf
+*.svg text eol=lf
+*.txt text eol=lf
+*.htaccess text eol=lf
+
+# Déclarer les fichiers binaires qui ne doivent jamais être modifiés
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.mp3 binary
+*.mp4 binary
+*.webm binary
+*.ttf binary
+*.eot binary
+*.woff binary
+*.woff2 binary 
