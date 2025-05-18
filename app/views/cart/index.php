@@ -37,12 +37,12 @@
                                     </a>
                                     <div class="small text-muted"><?= htmlspecialchars($item['trip']['region'] ?? 'Région inconnue') ?></div>
                                     
-                                    <form action="<?= BASE_URL ?>/index.php?route=cart/update" method="post" class="mt-2">
+                                    <form action="<?= BASE_URL ?>/index.php?route=cart/update" method="post" class="mt-2" id="form_<?= $item['trip']['id'] ?>">
                                         <input type="hidden" name="trip_id" value="<?= $item['trip']['id'] ?? 0 ?>">
                                         
                                         <div class="form-group mb-2">
                                             <label class="small mb-1"><i class="fas fa-users me-1"></i> Voyageurs</label>
-                                            <select name="nb_travelers" class="form-select form-select-sm">
+                                            <select name="nb_travelers" class="form-select form-select-sm" onchange="this.form.submit()">
                                                 <?php for ($i = 1; $i <= 10; $i++): ?>
                                                 <option value="<?= $i ?>" <?= $item['nb_travelers'] == $i ? 'selected' : '' ?>>
                                                     <?= $i ?> voyageur<?= $i > 1 ? 's' : '' ?>
@@ -54,11 +54,22 @@
                                         <?php if (!empty($item['trip']['options'])): ?>
                                         <div class="form-group mb-2">
                                             <label class="small mb-1"><i class="fas fa-plus-circle me-1"></i> Options</label>
-                                            <?php foreach ($item['trip']['options'] as $optId => $option): ?>
+                                            <?php 
+                                            // Transformer le tableau selectedOptions en tableau simple d'IDs
+                                            $selectedOptionIds = [];
+                                            if (!empty($item['selectedOptions'])) {
+                                                foreach ($item['selectedOptions'] as $opt) {
+                                                    $selectedOptionIds[] = $opt['id'];
+                                                }
+                                            }
+                                            
+                                            foreach ($item['trip']['options'] as $optId => $option): 
+                                            ?>
                                             <div class="form-check">
                                                 <input type="checkbox" name="options[]" value="<?= $optId ?>" 
                                                        id="opt_<?= $item['trip']['id'] ?>_<?= $optId ?>" class="form-check-input"
-                                                       <?= in_array($optId, array_column($item['selectedOptions'], 'id')) ? 'checked' : '' ?>>
+                                                       <?= in_array($optId, $selectedOptionIds) ? 'checked' : ''; ?>
+                                                       onchange="document.getElementById('form_<?= $item['trip']['id'] ?>').submit()">
                                                 <label for="opt_<?= $item['trip']['id'] ?>_<?= $optId ?>" class="form-check-label small">
                                                     <?= htmlspecialchars($option['title']) ?> (+<?= number_format($option['price'], 0, ',', ' ') ?> €)
                                                 </label>

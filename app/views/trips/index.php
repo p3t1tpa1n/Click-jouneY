@@ -136,9 +136,15 @@
                             $imagePath = BASE_URL . '/ClickJourney/9.Route Historique/belia-koziak-lXv4TsJRZao-unsplash.jpg';
                         } elseif ($folderId == 10) {
                             $imagePath = BASE_URL . '/ClickJourney/10.Grands Lacs et Chicago/edward-koorey-Gcc3c6MfSM0-unsplash.jpg';
+                        } elseif ($folderId == 11) {
+                            $imagePath = BASE_URL . '/ClickJourney/11. Texas/pexels-chase-mcbride-2105250-3731950.jpg';
+                        } elseif ($folderId == 12) {
+                            $imagePath = BASE_URL . '/ClickJourney/13.Colorado/taylor-brandon-LQek-wh0BCA-unsplash.jpg';
+                        } elseif ($folderId == 13) {
+                            $imagePath = BASE_URL . '/ClickJourney/14.Washington D.C/andrea-garcia-ckUB5JRAtz0-unsplash.jpg';
                         } else {
                             // Image par défaut si l'ID n'est pas reconnu
-                            $imagePath = BASE_URL . '/public/assets/images/destinations/default-trip.jpg';
+                            $imagePath = BASE_URL . '/public/assets/images/logo/default.jpg';
                         }
                         
                         // Image de fallback

@@ -767,5 +767,341 @@
           "price": 89.99
         }
       ]
+    },
+    {
+      "id": 11,
+      "title": "Texas - Grandeur et Diversité",
+      "description": "Découvrez l'immensité et la diversité du Texas, de ses villes modernes à ses vastes espaces ruraux, en passant par ses sites historiques et sa culture unique.",
+      "short_description": "Un voyage au cœur de l'État le plus emblématique d'Amérique",
+      "region": "Sud / Sud-Ouest",
+      "duration": 10,
+      "price": 2599.99,
+      "base_price": 2599.99,
+      "participants": 2,
+      "main_image": "public/uploads/trips/ClickJourney/11. Texas/pexels-chase-mcbride-2105250-3731950.jpg",
+      "images": [
+        "public/uploads/trips/ClickJourney/11. Texas/pexels-chase-mcbride-2105250-3731950.jpg",
+        "public/uploads/trips/ClickJourney/11. Texas/pexels-angel-mccoy-3761690958-3769969692.jpg",
+        "public/uploads/trips/ClickJourney/11. Texas/pexels-mae-yet-3763590958-15150468.jpg",
+        "public/uploads/trips/ClickJourney/11. Texas/pexels-james-wilson-56094141481-20362930.jpg",
+        "public/uploads/trips/ClickJourney/11. Texas/pexels-juan-fino-3824481-9556474.jpg"
+      ],
+      "start_date": "2024-09-20",
+      "end_date": "2024-09-30",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Dallas",
+          "description": "La métropole moderne du nord du Texas",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Austin",
+          "description": "La capitale musicale et culturelle",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "San Antonio",
+          "description": "L'Alamo et le passé colonial",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Houston",
+          "description": "La plus grande ville du Texas",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Parc National de Big Bend",
+          "description": "Déserts, montagnes et le Rio Grande",
+          "duration": 2,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Location de voiture américaine",
+          "description": "Voyagez dans un véhicule emblématique américain",
+          "price": 599.99
+        },
+        {
+          "id": 2,
+          "title": "Experience rodéo",
+          "description": "Assistez à un authentique rodéo texan",
+          "price": 149.99
+        },
+        {
+          "id": 3,
+          "title": "Tour gastronomique BBQ",
+          "description": "Découverte des meilleurs barbecues texans",
+          "price": 199.99
+        },
+        {
+          "id": 4,
+          "title": "Visite guidée historique",
+          "description": "Tour des sites historiques avec un expert local",
+          "price": 249.99
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Montagnes Rocheuses du Colorado",
+      "description": "Explorez les majestueuses Montagnes Rocheuses du Colorado, avec ses paysages à couper le souffle, ses stations de ski renommées et ses villes historiques.",
+      "short_description": "Une aventure en altitude dans les majestueuses Rocheuses",
+      "region": "Ouest / Montagnes",
+      "duration": 8,
+      "price": 2799.99,
+      "base_price": 2799.99,
+      "participants": 2,
+      "main_image": "public/uploads/trips/ClickJourney/13.Colorado/taylor-brandon-LQek-wh0BCA-unsplash.jpg",
+      "images": [
+        "public/uploads/trips/ClickJourney/13.Colorado/taylor-brandon-LQek-wh0BCA-unsplash.jpg", 
+        "public/uploads/trips/ClickJourney/13.Colorado/adam-rinehart-F4PqvokPgy8-unsplash.jpg", 
+        "public/uploads/trips/ClickJourney/13.Colorado/bailey-anselme-jGBZ_cz7t4Q-unsplash.jpg", 
+        "public/uploads/trips/ClickJourney/13.Colorado/kait-herzog-6vWD_xnzPuU-unsplash.jpg", 
+        "public/uploads/trips/ClickJourney/13.Colorado/mike-scheid-xoYPV4oVQJI-unsplash.jpg"
+      ],
+      "start_date": "2024-07-15",
+      "end_date": "2024-07-23",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Denver",
+          "description": "La porte d'entrée des Rocheuses",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Boulder",
+          "description": "Ville universitaire au pied des montagnes",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Parc National des Montagnes Rocheuses",
+          "description": "Randonnée dans l'un des plus beaux parcs nationaux",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Aspen",
+          "description": "Station de ski luxueuse et ville culturelle",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Colorado Springs",
+          "description": "Garden of the Gods et Pikes Peak",
+          "duration": 2,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Location de SUV 4x4",
+          "description": "Véhicule adapté aux routes de montagne",
+          "price": 699.99
+        },
+        {
+          "id": 2,
+          "title": "Guide de randonnée",
+          "description": "Guide expert pour les randonnées en montagne",
+          "price": 399.99
+        },
+        {
+          "id": 3,
+          "title": "Excursion en téléphérique",
+          "description": "Vue panoramique des montagnes depuis les airs",
+          "price": 199.99
+        },
+        {
+          "id": 4,
+          "title": "Rafting sur les rapides",
+          "description": "Expérience d'adrénaline sur les rivières tumultueuses",
+          "price": 249.99
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Appalaches en Feuilles d'Automne",
+      "description": "Parcourez la chaîne des Appalaches pendant la spectaculaire saison automnale, lorsque les forêts se parent de rouge, d'orange et de jaune.",
+      "short_description": "Un festival de couleurs dans les montagnes de l'Est",
+      "region": "Est / Montagnes",
+      "duration": 9,
+      "price": 2399.99,
+      "base_price": 2399.99,
+      "participants": 2,
+      "main_image": "ClickJourney/15.Appalaches en Feuilles d'Automne/sean-foster-NbR2bonXkIY-unsplash.jpg",
+      "images": [
+        "ClickJourney/15.Appalaches en Feuilles d'Automne/sean-foster-NbR2bonXkIY-unsplash.jpg", 
+        "ClickJourney/15.Appalaches en Feuilles d'Automne/abigail-ducote-QVrPJaL2wBs-unsplash.jpg", 
+        "ClickJourney/15.Appalaches en Feuilles d'Automne/carlos-del-cura-ypOcxFucJnU-unsplash.jpg", 
+        "ClickJourney/15.Appalaches en Feuilles d'Automne/dylan-taylor-MCcRKZlWxI4-unsplash.jpg", 
+        "ClickJourney/15.Appalaches en Feuilles d'Automne/note-thanun-Z_A7CbJJoRM-unsplash.jpg"
+      ],
+      "start_date": "2024-10-05",
+      "end_date": "2024-10-14",
+      "steps": [
+        {
+          "id": 1,
+          "title": "Blue Ridge Parkway",
+          "description": "L'une des routes panoramiques les plus célèbres d'Amérique",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Great Smoky Mountains",
+          "description": "Le parc national le plus visité des États-Unis",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Shenandoah Valley",
+          "description": "Vallée pittoresque entre les montagnes",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Asheville",
+          "description": "Ville artistique au cœur des montagnes",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Vermont",
+          "description": "L'État réputé pour ses érables et ses paysages d'automne",
+          "duration": 2,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Photographe professionnel",
+          "description": "Accompagnement par un photographe spécialiste des paysages",
+          "price": 599.99
+        },
+        {
+          "id": 2,
+          "title": "Randonnées guidées",
+          "description": "Excursions avec un expert de la flore locale",
+          "price": 299.99
+        },
+        {
+          "id": 3,
+          "title": "Tour des cabanes à sucre",
+          "description": "Découverte de la production de sirop d'érable",
+          "price": 149.99
+        },
+        {
+          "id": 4,
+          "title": "Survol en montgolfière",
+          "description": "Vue aérienne des forêts colorées",
+          "price": 349.99
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Washington D.C. - La capitale américaine",
+      "description": "Découvrez la capitale des États-Unis, son histoire riche et ses monuments emblématiques, du Capitole à la Maison Blanche en passant par les nombreux musées.",
+      "short_description": "Un voyage au cœur du pouvoir américain",
+      "region": "Est / Capitale",
+      "duration": 6,
+      "price": 1899.99,
+      "base_price": 1899.99,
+      "participants": 2,
+      "main_image": "public/uploads/trips/ClickJourney/14.Washington D.C/andrea-garcia-ckUB5JRAtz0-unsplash.jpg",
+      "images": [
+        "public/uploads/trips/ClickJourney/14.Washington D.C/andrea-garcia-ckUB5JRAtz0-unsplash.jpg", 
+        "public/uploads/trips/ClickJourney/14.Washington D.C/andy-feliciotti-6dlG3Te05kQ-unsplash.jpg", 
+        "public/uploads/trips/ClickJourney/14.Washington D.C/andy-feliciotti-VBU2sowf-nw-unsplash.jpg", 
+        "public/uploads/trips/ClickJourney/14.Washington D.C/caleb-perez-a6h5e59r15o-unsplash.jpg", 
+        "public/uploads/trips/ClickJourney/14.Washington D.C/vlad-gorshkov-u6-jWHgwd44-unsplash.jpg"
+      ],
+      "start_date": "2024-08-10",
+      "end_date": "2024-08-16",
+      "steps": [
+        {
+          "id": 1,
+          "title": "National Mall",
+          "description": "Le cœur monumental de la capitale",
+          "duration": 2,
+          "price": 0
+        },
+        {
+          "id": 2,
+          "title": "Musées Smithsonian",
+          "description": "Exploration des célèbres musées gratuits",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 3,
+          "title": "Capitole et Bibliothèque du Congrès",
+          "description": "Visite du pouvoir législatif américain",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 4,
+          "title": "Georgetown et Alexandria",
+          "description": "Quartiers historiques et charmants",
+          "duration": 1,
+          "price": 0
+        },
+        {
+          "id": 5,
+          "title": "Arlington",
+          "description": "Cimetière national et Pentagone",
+          "duration": 1,
+          "price": 0
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "title": "Visite guidée politique",
+          "description": "Tour avec un expert en politique américaine",
+          "price": 299.99
+        },
+        {
+          "id": 2,
+          "title": "Pass musées premium",
+          "description": "Accès prioritaire aux expositions spéciales",
+          "price": 149.99
+        },
+        {
+          "id": 3,
+          "title": "Croisière sur le Potomac",
+          "description": "Vue de la capitale depuis le fleuve",
+          "price": 99.99
+        },
+        {
+          "id": 4,
+          "title": "Visite nocturne des monuments",
+          "description": "Les monuments illuminés dans toute leur splendeur",
+          "price": 129.99
+        }
+      ]
     }
 ] 

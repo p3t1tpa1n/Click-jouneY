@@ -196,6 +196,54 @@
                         <div class="carousel-item">
                             <img src="<?= BASE_URL ?>/ClickJourney/10.Grands Lacs et Chicago/stephan-cassara-VguAb_4yJ_Q-unsplash.jpg" class="d-block w-100" alt="Grands Lacs et Chicago">
                         </div>
+                    <?php elseif ($folderId == 11): ?>
+                        <div class="carousel-item active">
+                            <img src="<?= BASE_URL ?>/ClickJourney/11. Texas/pexels-chase-mcbride-2105250-3731950.jpg" class="d-block w-100" alt="Texas">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/11. Texas/pexels-angel-mccoy-160126058-10792322.jpg" class="d-block w-100" alt="Texas">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/11. Texas/pexels-genevieve-ma-yet-376399692-15150468.jpg" class="d-block w-100" alt="Texas">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/11. Texas/pexels-james-wilson-560941481-20362930.jpg" class="d-block w-100" alt="Texas">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/11. Texas/pexels-juan-nino-3824481-9556474.jpg" class="d-block w-100" alt="Texas">
+                        </div>
+                    <?php elseif ($folderId == 12): ?>
+                        <div class="carousel-item active">
+                            <img src="<?= BASE_URL ?>/ClickJourney/13.Colorado/taylor-brandon-LQek-wh0BCA-unsplash.jpg" class="d-block w-100" alt="Colorado">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/13.Colorado/adam-rinehart-F4PqvokPgy8-unsplash.jpg" class="d-block w-100" alt="Colorado">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/13.Colorado/bailey-anselme-jGBZ_cz7t4Q-unsplash.jpg" class="d-block w-100" alt="Colorado">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/13.Colorado/kait-herzog-6vWD_xnzPuU-unsplash.jpg" class="d-block w-100" alt="Colorado">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/13.Colorado/mike-scheid-xoYPV4oVQJI-unsplash.jpg" class="d-block w-100" alt="Colorado">
+                        </div>
+                    <?php elseif ($folderId == 13): ?>
+                        <div class="carousel-item active">
+                            <img src="<?= BASE_URL ?>/ClickJourney/14.Washington D.C/andrea-garcia-ckUB5JRAtz0-unsplash.jpg" class="d-block w-100" alt="Washington D.C.">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/14.Washington D.C/andy-feliciotti-6dlG3Te05kQ-unsplash.jpg" class="d-block w-100" alt="Washington D.C.">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/14.Washington D.C/andy-feliciotti-VBU2sowf-nw-unsplash.jpg" class="d-block w-100" alt="Washington D.C.">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/14.Washington D.C/caleb-perez-a6h5e59r15o-unsplash.jpg" class="d-block w-100" alt="Washington D.C.">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL ?>/ClickJourney/14.Washington D.C/vlad-gorshkov-u6-jWHgwd44-unsplash.jpg" class="d-block w-100" alt="Washington D.C.">
+                        </div>
                     <?php else: ?>
                         <div class="carousel-item active">
                             <img src="<?= BASE_URL ?>/public/assets/images/destinations/default-trip.jpg" class="d-block w-100" alt="Image par défaut">
@@ -361,8 +409,14 @@
                                     $similarImagePath = BASE_URL . '/ClickJourney/9.Route Historique/belia-koziak-lXv4TsJRZao-unsplash.jpg';
                                 } elseif ($similarFolderId == 10) {
                                     $similarImagePath = BASE_URL . '/ClickJourney/10.Grands Lacs et Chicago/edward-koorey-Gcc3c6MfSM0-unsplash.jpg';
+                                } elseif ($similarFolderId == 11) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/11. Texas/pexels-chase-mcbride-2105250-3731950.jpg';
+                                } elseif ($similarFolderId == 12) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/13.Colorado/taylor-brandon-LQek-wh0BCA-unsplash.jpg';
+                                } elseif ($similarFolderId == 13) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/14.Washington D.C/andrea-garcia-ckUB5JRAtz0-unsplash.jpg';
                                 } else {
-                                    $similarImagePath = BASE_URL . '/public/assets/images/destinations/default-trip.jpg';
+                                    $similarImagePath = BASE_URL . '/public/assets/images/logo/default.jpg';
                                 }
                                 ?>
                                 <img src="<?= $similarImagePath ?>" class="img-thumbnail me-3" style="width: 70px; height: 50px; object-fit: cover;" alt="<?= htmlspecialchars($similarTrip['title']) ?>">
