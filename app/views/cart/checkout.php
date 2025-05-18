@@ -36,16 +36,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($cartItems as $trip): ?>
+                                    <?php foreach ($cartItems as $item): ?>
                                     <tr>
                                         <td>
-                                            <a href="<?= BASE_URL ?>/index.php?route=trip&id=<?= $trip['id'] ?>" class="text-decoration-none">
-                                                <strong><?= htmlspecialchars($trip['title']) ?></strong>
+                                            <a href="<?= BASE_URL ?>/index.php?route=trip&id=<?= $item['trip']['id'] ?? 0 ?>" class="text-decoration-none">
+                                                <strong><?= htmlspecialchars($item['trip']['title'] ?? 'Voyage inconnu') ?></strong>
                                             </a>
+                                            <div class="small">
+                                                <i class="fas fa-users"></i> <?= $item['nb_travelers'] ?> voyageur<?= $item['nb_travelers'] > 1 ? 's' : '' ?>
+                                            </div>
+                                            <?php if (!empty($item['selectedOptions'])): ?>
+                                            <div class="small mt-1">
+                                                <i class="fas fa-plus-circle"></i> Options : 
+                                                <?php 
+                                                    $optionNames = array_map(function($opt) { 
+                                                        return htmlspecialchars($opt['title']); 
+                                                    }, $item['selectedOptions']);
+                                                    echo implode(', ', $optionNames);
+                                                ?>
+                                            </div>
+                                            <?php endif; ?>
                                         </td>
-                                        <td><?= htmlspecialchars($trip['region'] ?? 'N/A') ?></td>
-                                        <td><?= isset($trip['duration']) ? $trip['duration'] . ' jours' : 'N/A' ?></td>
-                                        <td class="text-end"><?= number_format($trip['price'], 0, ',', ' ') ?> €</td>
+                                        <td><?= htmlspecialchars($item['trip']['region'] ?? 'N/A') ?></td>
+                                        <td><?= ($item['trip']['duration'] ?? 0) . ' jours' ?></td>
+                                        <td class="text-end"><?= number_format($item['total'] ?? 0, 0, ',', ' ') ?> €</td>
                                     </tr>
                                     <?php endforeach; ?>
                                     

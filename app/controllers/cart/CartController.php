@@ -18,221 +18,334 @@ class CartController extends Controller
     public function index()
     {
         // Initialiser le panier si nécessaire
-        if (!Session::has('cart')) {
-            Session::set('cart', []);
+        if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
         }
         
-        // Récupérer les voyages du panier
+        // Récupérer les détails des voyages dans le panier
         $cartItems = [];
-        $cartIds = Session::get('cart', []);
         $totalPrice = 0;
         
-        foreach ($cartIds as $tripId) {
-            $trip = Trip::findById($tripId);
-            if ($trip) {
-                $cartItems[] = $trip;
-                $totalPrice += $trip['price'];
+        // Vérifier que le panier est bien un tableau avant de l'utiliser
+        if (is_array($_SESSION['cart'])) {
+            foreach ($_SESSION['cart'] as $item) {
+                $tripId = $item['trip_id'];
+                $trip = Trip::getById($tripId);
+                
+                if ($trip) {
+                    $itemTotal = $trip['price'] * $item['nb_travelers'];
+                    
+                    // Ajouter le prix des options
+                    $selectedOptions = [];
+                    if (!empty($item['options']) && !empty($trip['options'])) {
+                        foreach ($item['options'] as $optionId) {
+                            if (isset($trip['options'][$optionId])) {
+                                $optionInfo = $trip['options'][$optionId];
+                                $selectedOptions[] = [
+                                    'id' => $optionId,
+                                    'title' => $optionInfo['title'],
+                                    'price' => $optionInfo['price']
+                                ];
+                                $itemTotal += $optionInfo['price'];
+                            }
+                        }
+                    }
+                    
+                    $cartItems[] = [
+                        'trip' => $trip,
+                        'nb_travelers' => $item['nb_travelers'],
+                        'selectedOptions' => $selectedOptions,
+                        'total' => $itemTotal
+                    ];
+                    
+                    $totalPrice += $itemTotal;
+                }
             }
         }
         
-        // Rendre la vue
-        $this->render('cart/index', [
-            'title' => 'Mon panier',
+        // Rendre la vue du panier
+        $data = [
+            'title' => 'Votre panier',
             'cartItems' => $cartItems,
             'totalPrice' => $totalPrice
-        ]);
+        ];
+        
+        $this->render('cart/index', $data);
     }
     
     /**
      * Ajoute un voyage au panier
-     * 
-     * @param int $id Identifiant du voyage
      */
-    public function add($id = null)
+    public function add() 
     {
-        // Récupérer l'ID du voyage depuis POST si non fourni en paramètre
-        if (!$id) {
-            $id = $_POST['trip_id'] ?? null;
+        $tripId = isset($_POST['trip_id']) ? (int)$_POST['trip_id'] : 0;
+        $nbTravelers = isset($_POST['nb_travelers']) ? (int)$_POST['nb_travelers'] : 1;
+        $options = isset($_POST['options']) && is_array($_POST['options']) ? $_POST['options'] : [];
+        
+        // Valider l'ID du voyage
+        if ($tripId <= 0) {
+            $_SESSION['flash'] = [
+                'type' => 'danger',
+                'message' => 'Identifiant de voyage invalide.'
+            ];
+            header('Location: index.php?route=trips');
+            exit;
         }
         
-        // Vérifier si l'ID est valide
-        if (!$id || !is_numeric($id)) {
-            Session::set('error', 'Voyage non trouvé');
-            $this->redirect('/trips');
-            return;
-        }
-        
-        // Vérifier si le voyage existe
-        $trip = Trip::findById($id);
+        // Récupérer le voyage pour vérifier qu'il existe
+        $trip = Trip::getById($tripId);
         if (!$trip) {
-            Session::set('error', 'Voyage non trouvé');
-            $this->redirect('/trips');
-            return;
+            $_SESSION['flash'] = [
+                'type' => 'danger',
+                'message' => 'Le voyage demandé n\'existe pas.'
+            ];
+            header('Location: index.php?route=trips');
+            exit;
+        }
+        
+        // Vérifier si nous avons des données sauvegardées dans la session
+        if (isset($_SESSION['recap_selections']['trip_' . $tripId])) {
+            $savedSelections = $_SESSION['recap_selections']['trip_' . $tripId];
+            $nbTravelers = $savedSelections['nb_travelers'] ?? $nbTravelers;
+            
+            // Si aucune option n'est spécifiée dans la requête mais existe en session
+            if (empty($options) && !empty($savedSelections['options'])) {
+                $options = $savedSelections['options'];
+            }
         }
         
         // Initialiser le panier si nécessaire
-        if (!Session::has('cart')) {
-            Session::set('cart', []);
+        if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
         }
         
-        // Ajouter le voyage au panier s'il n'y est pas déjà
-        $cart = Session::get('cart');
-        if (!in_array($id, $cart)) {
-            $cart[] = $id;
-            Session::set('cart', $cart);
-            Session::set('success', 'Le voyage a été ajouté à votre panier');
-        } else {
-            Session::set('info', 'Ce voyage est déjà dans votre panier');
-        }
+        // Ajouter le voyage au panier
+        $_SESSION['cart'][] = [
+            'trip_id' => $tripId,
+            'nb_travelers' => $nbTravelers,
+            'options' => $options,
+            'added_at' => time()
+        ];
         
-        // Rediriger vers la page du panier
-        $this->redirect('/cart');
+        // Message de confirmation
+        $_SESSION['flash'] = [
+            'type' => 'success',
+            'message' => 'Le voyage "' . htmlspecialchars($trip['title']) . '" a été ajouté à votre panier.'
+        ];
+        
+        // Rediriger vers le panier
+        header('Location: index.php?route=cart');
+        exit;
     }
     
     /**
-     * Supprime un voyage du panier
+     * Supprime un élément du panier
      */
-    public function remove()
+    public function remove() 
     {
-        // Récupérer l'ID du voyage
-        $id = $_POST['trip_id'] ?? null;
-        
-        // Vérifier si l'ID est valide
-        if (!$id || !is_numeric($id)) {
-            Session::set('error', 'Voyage non trouvé');
-            $this->redirect('/cart');
-            return;
-        }
-        
-        // Supprimer le voyage du panier
-        if (Session::has('cart')) {
-            $cart = Session::get('cart');
-            $cart = array_filter($cart, function($item) use ($id) {
-                return $item != $id;
-            });
-            Session::set('cart', $cart);
-            Session::set('success', 'Le voyage a été retiré de votre panier');
-        }
-        
-        // Rediriger vers la page du panier
-        $this->redirect('/cart');
-    }
-    
-    /**
-     * Vide le panier
-     */
-    public function clear()
-    {
-        // Vider le panier
-        Session::set('cart', []);
-        Session::set('success', 'Votre panier a été vidé');
-        
-        // Rediriger vers la page du panier
-        $this->redirect('/cart');
-    }
-    
-    /**
-     * Procéder à la caisse
-     */
-    public function checkout()
-    {
-        // Vérifier si l'utilisateur est connecté
-        if (!Auth::check()) {
-            Session::set('error', 'Vous devez être connecté pour procéder au paiement');
-            Session::set('redirect_after_login', 'index.php?route=cart/checkout');
-            $this->redirect('/login');
-            return;
-        }
-        
-        // Vérifier si le panier est vide
-        $cart = Session::get('cart', []);
-        if (empty($cart)) {
-            Session::set('error', 'Votre panier est vide');
-            $this->redirect('/cart');
-            return;
-        }
-        
-        // Récupérer tous les voyages du panier
-        $cartItems = [];
-        $totalPrice = 0;
-        
-        foreach ($cart as $tripId) {
-            $trip = Trip::findById($tripId);
-            if ($trip) {
-                $cartItems[] = $trip;
-                $totalPrice += $trip['price'];
+        // Vérifier si nous avons un index ou un trip_id
+        if (isset($_GET['index'])) {
+            $index = (int)$_GET['index'];
+            
+            if ($index >= 0 && isset($_SESSION['cart'][$index])) {
+                // Supprimer l'élément du panier par index
+                array_splice($_SESSION['cart'], $index, 1);
+                
+                $_SESSION['flash'] = [
+                    'type' => 'success',
+                    'message' => 'L\'élément a été supprimé de votre panier.'
+                ];
+            }
+        } elseif (isset($_POST['trip_id'])) {
+            $tripId = (int)$_POST['trip_id'];
+            
+            // Rechercher le voyage dans le panier par son ID
+            if (is_array($_SESSION['cart'])) {
+                foreach ($_SESSION['cart'] as $key => $item) {
+                    if ($item['trip_id'] == $tripId) {
+                        // Supprimer l'élément du panier
+                        array_splice($_SESSION['cart'], $key, 1);
+                        
+                        $_SESSION['flash'] = [
+                            'type' => 'success',
+                            'message' => 'Le voyage a été supprimé de votre panier.'
+                        ];
+                        break;
+                    }
+                }
             }
         }
         
-        // Préparer les données pour le récapitulatif
-        $userName = Auth::user()['name'] ?? Auth::user()['login'];
-        
-        // Rendre la vue récapitulative
-        $this->render('cart/checkout', [
-            'title' => 'Récapitulatif de commande',
-            'cartItems' => $cartItems,
-            'totalPrice' => $totalPrice,
-            'userName' => $userName
-        ]);
+        // Rediriger vers le panier
+        header('Location: index.php?route=cart');
+        exit;
     }
     
     /**
-     * Traite le paiement du panier complet
+     * Vide complètement le panier
      */
-    public function processPayment()
+    public function clear() 
     {
-        // Vérifier si l'utilisateur est connecté
-        if (!Auth::check()) {
-            Session::set('error', 'Vous devez être connecté pour procéder au paiement');
-            Session::set('redirect_after_login', 'index.php?route=cart/checkout');
-            $this->redirect('/login');
-            return;
-        }
+        $_SESSION['cart'] = [];
         
+        $_SESSION['flash'] = [
+            'type' => 'success',
+            'message' => 'Votre panier a été vidé.'
+        ];
+        
+        // Rediriger vers le panier
+        header('Location: index.php?route=cart');
+        exit;
+    }
+    
+    /**
+     * Procède au paiement du panier
+     */
+    public function checkout() 
+    {
         // Vérifier si le panier est vide
-        $cart = Session::get('cart', []);
-        if (empty($cart)) {
-            Session::set('error', 'Votre panier est vide');
-            $this->redirect('/cart');
-            return;
+        if (!isset($_SESSION['cart']) || empty($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
+            $_SESSION['flash'] = [
+                'type' => 'warning',
+                'message' => 'Votre panier est vide. Veuillez ajouter des voyages avant de procéder au paiement.'
+            ];
+            header('Location: index.php?route=cart');
+            exit;
         }
         
-        // Récupérer tous les voyages du panier
+        // Récupérer les détails des voyages dans le panier
         $cartItems = [];
         $totalPrice = 0;
         
-        foreach ($cart as $tripId) {
-            $trip = Trip::findById($tripId);
+        foreach ($_SESSION['cart'] as $item) {
+            $tripId = $item['trip_id'];
+            $trip = Trip::getById($tripId);
+            
             if ($trip) {
-                $cartItems[] = $trip;
-                $totalPrice += $trip['price'];
+                $itemTotal = $trip['price'] * $item['nb_travelers'];
+                
+                // Ajouter le prix des options
+                $selectedOptions = [];
+                if (!empty($item['options']) && !empty($trip['options'])) {
+                    foreach ($item['options'] as $optionId) {
+                        if (isset($trip['options'][$optionId])) {
+                            $optionInfo = $trip['options'][$optionId];
+                            $selectedOptions[] = [
+                                'id' => $optionId,
+                                'title' => $optionInfo['title'],
+                                'price' => $optionInfo['price']
+                            ];
+                            $itemTotal += $optionInfo['price'];
+                        }
+                    }
+                }
+                
+                $cartItems[] = [
+                    'trip' => $trip,
+                    'nb_travelers' => $item['nb_travelers'],
+                    'selectedOptions' => $selectedOptions,
+                    'total' => $itemTotal
+                ];
+                
+                $totalPrice += $itemTotal;
             }
         }
-        
-        // Générer un identifiant de transaction unique
-        $transactionId = uniqid('CART_', true);
-        $transactionId = substr(preg_replace('/[^0-9a-zA-Z]/', '', $transactionId), 0, 20);
-        
-        // Stocker les informations de paiement en session
-        Session::set('payment_info', [
-            'transaction_id' => $transactionId,
-            'cart_items' => $cartItems,
-            'user_id' => Auth::id(),
-            'amount' => $totalPrice,
-            'nb_travelers' => 1  // Par défaut pour le panier
-        ]);
-        
-        // Créer une instance du contrôleur de paiement
-        $paymentController = new \controllers\payment\PaymentController();
-        $cyBankForm = $paymentController->generateCyBankForm($transactionId, $totalPrice);
         
         // Rendre la vue de paiement
-        $this->render('cart/payment', [
-            'title' => 'Paiement de votre commande',
+        $data = [
+            'title' => 'Paiement',
             'cartItems' => $cartItems,
-            'totalPrice' => $totalPrice,
-            'transactionId' => $transactionId,
-            'cyBankForm' => $cyBankForm
-        ]);
+            'totalPrice' => $totalPrice
+        ];
+        
+        $this->render('cart/checkout', $data);
+    }
+    
+    /**
+     * Traite le paiement
+     */
+    public function processPayment() 
+    {
+        // Logique de traitement du paiement
+        // (simulée pour l'environnement de test)
+        
+        // Rediriger vers la page de confirmation
+        header('Location: index.php?route=payment-simulate');
+        exit;
+    }
+    
+    /**
+     * Met à jour les informations d'un voyage dans le panier
+     */
+    public function update() 
+    {
+        $tripId = isset($_POST['trip_id']) ? (int)$_POST['trip_id'] : 0;
+        $nbTravelers = isset($_POST['nb_travelers']) ? (int)$_POST['nb_travelers'] : 1;
+        $options = isset($_POST['options']) && is_array($_POST['options']) ? $_POST['options'] : [];
+        
+        // Valider l'ID du voyage
+        if ($tripId <= 0) {
+            $_SESSION['flash'] = [
+                'type' => 'danger',
+                'message' => 'Identifiant de voyage invalide.'
+            ];
+            header('Location: index.php?route=cart');
+            exit;
+        }
+        
+        // S'assurer que le panier est un tableau
+        if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+            
+            $_SESSION['flash'] = [
+                'type' => 'warning',
+                'message' => 'Votre panier était vide. Veuillez ajouter un voyage.'
+            ];
+            header('Location: index.php?route=trips');
+            exit;
+        }
+        
+        // Rechercher l'élément à mettre à jour dans le panier
+        $updated = false;
+        foreach ($_SESSION['cart'] as &$item) {
+            if ($item['trip_id'] == $tripId) {
+                $item['nb_travelers'] = $nbTravelers;
+                $item['options'] = $options;
+                $updated = true;
+                break;
+            }
+        }
+        
+        if ($updated) {
+            $_SESSION['flash'] = [
+                'type' => 'success',
+                'message' => 'Le voyage a été mis à jour dans votre panier.'
+            ];
+        } else {
+            $_SESSION['flash'] = [
+                'type' => 'warning',
+                'message' => 'Le voyage n\'a pas été trouvé dans votre panier.'
+            ];
+        }
+        
+        // Rediriger vers le panier
+        header('Location: index.php?route=cart');
+        exit;
+    }
+    
+    /**
+     * Méthode utilitaire pour rendre une vue
+     */
+    protected function render($view, $data = []) 
+    {
+        // Extraire les données pour les rendre disponibles dans la vue
+        extract($data);
+        
+        $pageTitle = $title ?? 'Panier';
+        
+        // Inclure les templates
+        require_once 'app/views/partials/header.php';
+        require_once 'app/views/' . $view . '.php';
+        require_once 'app/views/partials/footer.php';
     }
 } 

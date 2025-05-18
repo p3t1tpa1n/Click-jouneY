@@ -257,7 +257,7 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="nb-travelers" class="form-label">Nombre de voyageurs</label>
-                            <input type="number" class="form-control" id="nb-travelers" name="nb_travelers" min="1" max="10" value="1">
+                            <input type="number" class="form-control" id="nb-travelers" name="nb_travelers" min="1" max="10" value="<?= isset($nbTravelers) ? $nbTravelers : 1 ?>">
                         </div>
                         
                         <div class="row">
@@ -270,7 +270,7 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="text-primary fw-bold"><?= number_format($option['price'], 2, ',', ' ') ?> €</span>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="option-<?= $optId ?>" name="options[]" value="<?= $optId ?>">
+                                                <input class="form-check-input" type="checkbox" id="option-<?= $optId ?>" name="options[]" value="<?= $optId ?>" <?= isset($selectedOptions) && in_array($optId, $selectedOptions) ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="option-<?= $optId ?>">Ajouter</label>
                                             </div>
                                         </div>
@@ -318,7 +318,7 @@
                         <?php endif; ?>
                     </ul>
                     <?php if (isset($_SESSION['user'])): ?>
-                    <form method="post" action="<?= BASE_URL ?>/cart/add" class="mt-3 d-grid gap-2">
+                    <form method="post" action="<?= BASE_URL ?>/cart/add" class="mt-3 d-grid gap-2" id="addToCartForm">
                         <input type="hidden" name="trip_id" value="<?= $trip['id'] ?>">
                         <button type="submit" class="btn btn-outline-success btn-lg w-100">
                             <i class="fas fa-cart-plus me-2"></i> Ajouter au panier
@@ -389,5 +389,206 @@ document.addEventListener('DOMContentLoaded', function() {
         wrap: true,      // Pour boucler à l'infini
         keyboard: true   // Permettre la navigation avec le clavier
     });
+    
+    // Gestion de la mise à jour dynamique du prix
+    const basePrice = <?= floatval($trip['price']) ?>;
+    let currentTotal = basePrice;
+    
+    // Sélectionner tous les éléments nécessaires
+    const nbTravelersInput = document.getElementById('nb-travelers');
+    const optionCheckboxes = document.querySelectorAll('input[name="options[]"]');
+    const priceDisplay = document.querySelector('.list-group-item .text-primary.fw-bold');
+    const tripOptionsForm = document.getElementById('tripOptionsForm');
+    
+    // Fonction pour mettre à jour le prix total
+    function updateTotalPrice() {
+        let travelers = parseInt(nbTravelersInput.value) || 1;
+        let optionsTotal = 0;
+        
+        // Calculer le total des options sélectionnées
+        optionCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                const optionId = checkbox.value;
+                const optionPrice = <?= json_encode(array_map(function($opt) { return floatval($opt['price']); }, $trip['options'] ?? [])) ?>[optionId];
+                optionsTotal += optionPrice;
+            }
+        });
+        
+        // Calculer le prix total (prix de base * nombre de voyageurs + options)
+        currentTotal = (basePrice * travelers) + optionsTotal;
+        
+        // Formater le prix avec des séparateurs de milliers et afficher
+        const formattedPrice = new Intl.NumberFormat('fr-FR', { 
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(currentTotal);
+        
+        // Mettre à jour l'affichage du prix
+        if (priceDisplay) {
+            priceDisplay.textContent = formattedPrice + ' €';
+        }
+        
+        // Ajouter une animation pour mettre en évidence le changement de prix
+        priceDisplay.classList.add('price-updated');
+        setTimeout(() => {
+            priceDisplay.classList.remove('price-updated');
+        }, 500);
+        
+        // Mettre à jour le texte du bouton avec le prix total
+        const submitBtn = tripOptionsForm.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.textContent = `Continuer vers le récapitulatif (${formattedPrice} €)`;
+        }
+    }
+    
+    // Fonction pour sauvegarder les options dans la session via AJAX
+    function saveSelections() {
+        // Collecter les options sélectionnées
+        const selectedOptions = [];
+        optionCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selectedOptions.push(checkbox.value);
+            }
+        });
+        
+        const travelers = parseInt(nbTravelersInput.value) || 1;
+        
+        // Créer les données à envoyer
+        const data = new FormData();
+        data.append('action', 'save_recap_selections');
+        data.append('trip_id', <?= $trip['id'] ?>);
+        data.append('nb_travelers', travelers);
+        selectedOptions.forEach(optionId => {
+            data.append('options[]', optionId);
+        });
+        
+        // Envoyer la requête AJAX
+        fetch('<?= BASE_URL ?>/index.php?route=ajax-save-selections', {
+            method: 'POST',
+            body: data,
+            credentials: 'same-origin',
+            headers: {
+                'Cache-Control': 'no-cache'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Sélections sauvegardées', data);
+        })
+        .catch(error => {
+            console.error('Erreur lors de la sauvegarde des sélections:', error);
+        });
+    }
+    
+    // Écouter les changements sur le nombre de voyageurs
+    if (nbTravelersInput) {
+        nbTravelersInput.addEventListener('change', function() {
+            updateTotalPrice();
+            saveSelections();
+        });
+        nbTravelersInput.addEventListener('input', updateTotalPrice);
+    }
+    
+    // Écouter les changements sur les options
+    optionCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            updateTotalPrice();
+            saveSelections();
+        });
+    });
+    
+    // Écouter la soumission du formulaire pour ajouter les options à l'URL
+    if (tripOptionsForm) {
+        tripOptionsForm.addEventListener('submit', function(e) {
+            // Sauvegarder les sélections avant la soumission
+            saveSelections();
+            
+            // Vérifier si au moins une option est sélectionnée ou si le nombre de voyageurs > 1
+            const hasSelectedOptions = Array.from(optionCheckboxes).some(checkbox => checkbox.checked);
+            const travelers = parseInt(nbTravelersInput.value) || 1;
+            
+            // Mettre en évidence le bouton de soumission pour indiquer le chargement
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Chargement...';
+                submitBtn.disabled = true;
+            }
+        });
+    }
+    
+    // Style pour l'animation de mise à jour du prix
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes priceUpdate {
+            0% { color: var(--bs-primary); }
+            50% { color: var(--bs-success); }
+            100% { color: var(--bs-primary); }
+        }
+        .price-updated {
+            animation: priceUpdate 0.5s ease;
+        }
+        
+        .btn-icon-spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Initialiser le prix
+    updateTotalPrice();
+    
+    // Sauvegarder les options initiales dès le chargement de la page
+    saveSelections();
+    
+    // Restaurer les sélections à partir des paramètres d'URL s'ils existent
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('nb_travelers')) {
+        const urlTravelers = parseInt(urlParams.get('nb_travelers'));
+        if (urlTravelers > 0 && urlTravelers <= 10) {
+            nbTravelersInput.value = urlTravelers;
+        }
+    }
+    
+    const urlOptions = urlParams.getAll('options[]');
+    if (urlOptions.length > 0) {
+        optionCheckboxes.forEach(checkbox => {
+            if (urlOptions.includes(checkbox.value)) {
+                checkbox.checked = true;
+            }
+        });
+    }
+    
+    // Mettre à jour le prix une seconde fois pour refléter les valeurs restaurées
+    if (urlParams.has('nb_travelers') || urlOptions.length > 0) {
+        updateTotalPrice();
+    }
+    
+    // Ajouter un gestionnaire pour le formulaire d'ajout au panier
+    const addToCartForm = document.getElementById('addToCartForm');
+    if (addToCartForm) {
+        addToCartForm.addEventListener('submit', function(e) {
+            // Sauvegarder les sélections avant d'ajouter au panier
+            saveSelections();
+            
+            // Animation du bouton d'ajout au panier
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                const originalContent = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Ajout en cours...';
+                submitBtn.disabled = true;
+                
+                // Rétablir le bouton après un court délai
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalContent;
+                    submitBtn.disabled = false;
+                }, 3000);
+            }
+        });
+    }
 });
 </script> 

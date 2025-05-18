@@ -21,55 +21,50 @@ class TripController extends Controller
      */
     public function index()
     {
-        // Récupérer les paramètres de recherche
-        $query = $this->sanitize($_GET['query'] ?? '');
-        $region = $this->sanitize($_GET['region'] ?? '');
-        $minPrice = (int)($_GET['min_price'] ?? 0);
-        $maxPrice = (int)($_GET['max_price'] ?? 10000);
+        $query = isset($_GET['query']) ? $_GET['query'] : '';
+        $region = isset($_GET['region']) ? $_GET['region'] : '';
+        $minPrice = isset($_GET['min_price']) ? (int)$_GET['min_price'] : 0;
+        $maxPrice = isset($_GET['max_price']) ? (int)$_GET['max_price'] : 10000;
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $perPage = 9; // Nombre de voyages par page
         
-        // Valider les prix
-        if ($minPrice < 0) $minPrice = 0;
-        if ($maxPrice < $minPrice) $maxPrice = $minPrice + 1000;
-        
-        // Pagination
-        $page = (int)($_GET['page'] ?? 1);
-        if ($page < 1) $page = 1;
-        $perPage = 9;
-        
-        // Récupérer les voyages filtrés
-        $trips = Trip::search([
-            'query' => $query,
-            'region' => $region,
-            'min_price' => $minPrice,
-            'max_price' => $maxPrice,
-            'page' => $page,
-            'per_page' => $perPage
-        ]);
-        
-        // Calculer la pagination
-        $total = Trip::count([
-            'query' => $query,
-            'region' => $region,
-            'min_price' => $minPrice,
-            'max_price' => $maxPrice
-        ]);
-        
-        $pagination = $this->getPagination($page, $perPage, $total);
+        // Récupérer tous les voyages
+        $trips = Trip::getAll();
         
         // Obtenir les régions disponibles pour le filtre
         $regions = Trip::getAvailableRegions();
         
-        // Rendre la vue
-        $this->render('trips/index', [
-            'title' => 'Explorez nos voyages sur la Route 66',
-            'trips' => $trips,
-            'pagination' => $pagination,
+        // Filtrer selon les critères
+        if (!empty($query) || !empty($region) || $minPrice > 0 || $maxPrice < 10000) {
+            $trips = Trip::search($query, $region, $minPrice, $maxPrice);
+        }
+        
+        // Calculer la pagination
+        $total = count($trips);
+        $totalPages = ceil($total / $perPage);
+        $currentPage = max(1, min($currentPage, $totalPages));
+        $offset = ($currentPage - 1) * $perPage;
+        
+        // Sous-ensemble pour la page courante
+        $paginatedTrips = array_slice($trips, $offset, $perPage);
+        
+        // Préparation des données pour la vue
+        $data = [
+            'title' => 'Explorez nos voyages',
+            'trips' => $paginatedTrips,
+            'regions' => $regions,
             'query' => $query,
             'region' => $region,
             'minPrice' => $minPrice,
             'maxPrice' => $maxPrice,
-            'regions' => $regions
-        ]);
+            'pagination' => [
+                'current_page' => $currentPage,
+                'total_pages' => $totalPages,
+                'total_items' => $total
+            ]
+        ];
+        
+        $this->render('trips/index', $data);
     }
     
     /**
@@ -106,11 +101,42 @@ class TripController extends Controller
         // Récupérer les voyages similaires
         $similarTrips = Trip::getSimilar($id, 3);
         
+        // Récupérer les options et le nombre de voyageurs de la session si disponibles
+        $nbTravelers = 1;
+        $selectedOptions = [];
+        
+        // Vérifier si nous avons des données sauvegardées dans la session
+        if (isset($_SESSION['recap_selections']['trip_' . $id])) {
+            $savedSelections = $_SESSION['recap_selections']['trip_' . $id];
+            $nbTravelers = $savedSelections['nb_travelers'] ?? 1;
+            $selectedOptions = $savedSelections['options'] ?? [];
+        }
+        
+        // Priorité aux paramètres d'URL s'ils existent
+        if (isset($_GET['nb_travelers'])) {
+            $nbTravelers = (int)$_GET['nb_travelers'];
+        }
+        
+        if (isset($_GET['options']) && is_array($_GET['options'])) {
+            $selectedOptions = $_GET['options'];
+        }
+        
+        // Mise à jour des sélections dans la session
+        if (!isset($_SESSION['recap_selections'])) {
+            $_SESSION['recap_selections'] = [];
+        }
+        $_SESSION['recap_selections']['trip_' . $id] = [
+            'nb_travelers' => $nbTravelers,
+            'options' => $selectedOptions
+        ];
+        
         // Rendre la vue
         $this->render('trips/show', [
-            $trip['title'],
+            'title' => $trip['title'],
             'trip' => $trip,
-            'similarTrips' => $similarTrips
+            'similarTrips' => $similarTrips,
+            'nbTravelers' => $nbTravelers,
+            'selectedOptions' => $selectedOptions
         ]);
     }
     
@@ -162,6 +188,26 @@ class TripController extends Controller
         $totalPrice = $trip->price * $nbTravelers;
         foreach ($options as $option) {
             $totalPrice += $option['price'] * $nbTravelers;
+        }
+        
+        // Sauvegarder les sélections dans la session pour les récupérer en cas de rechargement
+        if (!isset($_SESSION['recap_selections'])) {
+            $_SESSION['recap_selections'] = [];
+        }
+        
+        $selectionKey = 'trip_' . $id;
+        
+        // Si c'est une nouvelle sélection via l'URL, sauvegarder dans la session
+        if (!empty($_GET['nb_travelers']) || (isset($_GET['options']) && is_array($_GET['options']))) {
+            $_SESSION['recap_selections'][$selectionKey] = [
+                'nb_travelers' => $nbTravelers,
+                'options' => $options
+            ];
+        } 
+        // Sinon, récupérer les données de la session si elles existent
+        elseif (isset($_SESSION['recap_selections'][$selectionKey])) {
+            $nbTravelers = $_SESSION['recap_selections'][$selectionKey]['nb_travelers'];
+            $options = $_SESSION['recap_selections'][$selectionKey]['options'];
         }
         
         // Rendre la vue

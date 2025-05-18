@@ -36,6 +36,8 @@ require_once __DIR__ . '/app/controllers/user/UserController.php';
 require_once __DIR__ . '/app/controllers/payment/PaymentController.php';
 require_once __DIR__ . '/app/controllers/cart/CartController.php';
 require_once __DIR__ . '/app/controllers/page/PageController.php';
+require_once __DIR__ . '/app/controllers/trips/TripsController.php';
+require_once __DIR__ . '/app/controllers/ajax/AjaxController.php';
 
 // Routage simple
 $route = $_GET['route'] ?? 'home';
@@ -218,6 +220,12 @@ switch ($route) {
     case 'user/remove-from-history':
         $controller = new controllers\user\UserController();
         $controller->removeFromHistory();
+        break;
+    
+    // Routes AJAX
+    case 'ajax-save-selections':
+        $controller = new controllers\ajax\AjaxController();
+        $controller->saveSelections();
         break;
     
     // Page d'erreur 404 ou page d'accueil par défaut

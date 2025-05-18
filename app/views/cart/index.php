@@ -29,19 +29,54 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($cartItems as $trip): ?>
+                        <?php foreach ($cartItems as $item): ?>
                             <tr>
                                 <td>
-                                    <a href="<?= BASE_URL ?>/index.php?route=trip&id=<?= $trip['id'] ?>" class="text-decoration-none">
-                                        <strong><?= htmlspecialchars($trip['title']) ?></strong>
+                                    <a href="<?= BASE_URL ?>/index.php?route=trip&id=<?= $item['trip']['id'] ?? 0 ?>" class="text-decoration-none">
+                                        <strong><?= htmlspecialchars($item['trip']['title'] ?? 'Voyage inconnu') ?></strong>
                                     </a>
-                                    <div class="small text-muted"><?= htmlspecialchars($trip['region']) ?></div>
+                                    <div class="small text-muted"><?= htmlspecialchars($item['trip']['region'] ?? 'Région inconnue') ?></div>
+                                    
+                                    <form action="<?= BASE_URL ?>/index.php?route=cart/update" method="post" class="mt-2">
+                                        <input type="hidden" name="trip_id" value="<?= $item['trip']['id'] ?? 0 ?>">
+                                        
+                                        <div class="form-group mb-2">
+                                            <label class="small mb-1"><i class="fas fa-users me-1"></i> Voyageurs</label>
+                                            <select name="nb_travelers" class="form-select form-select-sm">
+                                                <?php for ($i = 1; $i <= 10; $i++): ?>
+                                                <option value="<?= $i ?>" <?= $item['nb_travelers'] == $i ? 'selected' : '' ?>>
+                                                    <?= $i ?> voyageur<?= $i > 1 ? 's' : '' ?>
+                                                </option>
+                                                <?php endfor; ?>
+                                            </select>
+                                        </div>
+                                        
+                                        <?php if (!empty($item['trip']['options'])): ?>
+                                        <div class="form-group mb-2">
+                                            <label class="small mb-1"><i class="fas fa-plus-circle me-1"></i> Options</label>
+                                            <?php foreach ($item['trip']['options'] as $optId => $option): ?>
+                                            <div class="form-check">
+                                                <input type="checkbox" name="options[]" value="<?= $optId ?>" 
+                                                       id="opt_<?= $item['trip']['id'] ?>_<?= $optId ?>" class="form-check-input"
+                                                       <?= in_array($optId, array_column($item['selectedOptions'], 'id')) ? 'checked' : '' ?>>
+                                                <label for="opt_<?= $item['trip']['id'] ?>_<?= $optId ?>" class="form-check-label small">
+                                                    <?= htmlspecialchars($option['title']) ?> (+<?= number_format($option['price'], 0, ',', ' ') ?> €)
+                                                </label>
+                                            </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <?php endif; ?>
+                                        
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-sync-alt me-1"></i> Mettre à jour
+                                        </button>
+                                    </form>
                                 </td>
-                                <td><?= $trip['duration'] ?> jours</td>
-                                <td><?= number_format($trip['price'], 0, ',', ' ') ?> €</td>
+                                <td><?= $item['trip']['duration'] ?? 0 ?> jours</td>
+                                <td><?= number_format($item['total'] ?? 0, 0, ',', ' ') ?> €</td>
                                 <td>
                                     <form method="post" action="<?= BASE_URL ?>/index.php?route=cart/remove" class="d-inline">
-                                        <input type="hidden" name="trip_id" value="<?= $trip['id'] ?>">
+                                        <input type="hidden" name="trip_id" value="<?= $item['trip']['id'] ?? 0 ?>">
                                         <button type="submit" class="btn btn-sm btn-outline-danger" 
                                                 onclick="return confirm('Êtes-vous sûr de vouloir retirer ce voyage du panier?')">
                                             <i class="fas fa-trash-alt"></i>
