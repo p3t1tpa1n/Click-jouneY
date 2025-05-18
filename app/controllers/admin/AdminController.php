@@ -51,7 +51,7 @@ class AdminController {
         
         // Charger la vue
         include 'app/views/partials/header.php';
-        include 'app/views/admin/dashboard.php';
+        include 'app/views/admin-new/dashboard.php';
         include 'app/views/partials/footer.php';
     }
     

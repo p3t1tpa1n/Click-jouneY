@@ -114,7 +114,10 @@ class Payment {
         
         // Trier par date de paiement décroissante
         usort($payments, function($a, $b) {
-            return strtotime($b['date']) - strtotime($a['date']);
+            $dateA = isset($a['date']) && !empty($a['date']) ? $a['date'] : '1970-01-01';
+            $dateB = isset($b['date']) && !empty($b['date']) ? $b['date'] : '1970-01-01';
+            
+            return strtotime($dateB) - strtotime($dateA);
         });
         
         // Limiter le nombre de paiements
