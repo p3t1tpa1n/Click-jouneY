@@ -8,8 +8,8 @@ RewriteBase /Click-jouneY/
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Redirection spécifique pour contact vers presentation
-RewriteRule ^contact/?$ index.php?route=presentation [QSA,L]
+# Redirection spécifique pour about vers presentation
+RewriteRule ^about/?$ index.php?route=presentation [QSA,L]
 
 # Ne pas rediriger si c'est un fichier ou répertoire existant
 RewriteCond %{REQUEST_FILENAME} !-f
