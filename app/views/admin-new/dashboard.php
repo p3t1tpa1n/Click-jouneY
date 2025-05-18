@@ -65,8 +65,18 @@
                                 <div class="list-group-item">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <h6 class="mb-0"><?= htmlspecialchars($user['firstname'] . ' ' . $user['lastname']) ?></h6>
-                                            <small class="text-muted"><?= htmlspecialchars($user['email']) ?></small>
+                                            <h6 class="mb-0">
+                                                <?php 
+                                                if (isset($user['firstname']) && isset($user['lastname'])) {
+                                                    echo htmlspecialchars($user['firstname'] . ' ' . $user['lastname']);
+                                                } elseif (isset($user['name'])) {
+                                                    echo htmlspecialchars($user['name']);
+                                                } else {
+                                                    echo htmlspecialchars($user['login'] ?? $user['email'] ?? 'Utilisateur');
+                                                }
+                                                ?>
+                                            </h6>
+                                            <small class="text-muted"><?= htmlspecialchars($user['email'] ?? '') ?></small>
                                         </div>
                                         <a href="admin.php?action=view-user&login=<?= urlencode($user['login']) ?>" class="btn btn-sm btn-outline-secondary">Détails</a>
                                     </div>
