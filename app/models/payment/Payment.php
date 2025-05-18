@@ -30,6 +30,20 @@ class Payment {
     }
     
     /**
+     * Récupère les paiements d'un utilisateur par son ID
+     * 
+     * @param int $userId ID de l'utilisateur
+     * @return array Liste des paiements de l'utilisateur
+     */
+    public static function getByUserId($userId) {
+        $payments = self::getAll();
+        
+        return array_filter($payments, function($payment) use ($userId) {
+            return isset($payment['user_id']) && $payment['user_id'] == $userId;
+        });
+    }
+    
+    /**
      * Récupère un paiement par son ID
      * 
      * @param int $id ID du paiement

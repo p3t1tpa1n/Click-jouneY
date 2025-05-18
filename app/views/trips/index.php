@@ -123,19 +123,19 @@
                         } elseif ($folderId == 3) {
                             $imagePath = BASE_URL . '/ClickJourney/3.Parcs Nationaux/bailey-zindel-NRQV-hBF1OM-unsplash.jpg';
                         } elseif ($folderId == 4) {
-                            $imagePath = BASE_URL . '/ClickJourney/4.New York/alexander-rotker--aQ4FsonXEs-unsplash.jpg';
+                            $imagePath = BASE_URL . '/ClickJourney/4.New York/alexander-rotker--sQ4FsomXEs-unsplash.jpg';
                         } elseif ($folderId == 5) {
                             $imagePath = BASE_URL . '/ClickJourney/5.Côte Ouest/andrea-leopardi-QfhbZfIf0nA-unsplash.jpg';
                         } elseif ($folderId == 6) {
-                            $imagePath = BASE_URL . '/ClickJourney/6.La Musique du Sud/eric-tompkins-CfknQWR2jj8-unsplash.jpg';
+                            $imagePath = BASE_URL . '/ClickJourney/6.La Musique du Sud/eric-tompkins-Z8rKwWR2Ij8-unsplash.jpg';
                         } elseif ($folderId == 7) {
-                            $imagePath = BASE_URL . '/ClickJourney/7.Alaska/christian-bowen-ukxrl_4Umfqc-unsplash.jpg';
+                            $imagePath = BASE_URL . '/ClickJourney/7.Alaska/christian-bowen-uknf_4Umtqc-unsplash.jpg';
                         } elseif ($folderId == 8) {
                             $imagePath = BASE_URL . '/ClickJourney/8.Hawaii/pexels-lastly-412681.jpg';
                         } elseif ($folderId == 9) {
-                            $imagePath = BASE_URL . '/ClickJourney/9.Route Historique/bella-kozak-lVx4TsJRZao-unsplash.jpg';
+                            $imagePath = BASE_URL . '/ClickJourney/9.Route Historique/belia-koziak-lXv4TsJRZao-unsplash.jpg';
                         } elseif ($folderId == 10) {
-                            $imagePath = BASE_URL . '/ClickJourney/10.Grands Lacs et Chicago/edward-koorey-Gcc3c6MFSM0-unsplash.jpg';
+                            $imagePath = BASE_URL . '/ClickJourney/10.Grands Lacs et Chicago/edward-koorey-Gcc3c6MfSM0-unsplash.jpg';
                         } else {
                             // Image par défaut si l'ID n'est pas reconnu
                             $imagePath = BASE_URL . '/assets/images/backgrounds/route66-hero.jpg';

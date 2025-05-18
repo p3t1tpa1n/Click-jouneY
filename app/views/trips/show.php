@@ -176,11 +176,36 @@
                 <div class="card-body p-0">
                     <div class="list-group list-group-flush">
                         <?php foreach ($similarTrips as $similarTrip): ?>
-                        <a href="<?= BASE_URL ?>/index.php?route=trip&id=<?= $similarTrip['id'] ?>" class="list-group-item list-group-item-action">
+                        <a href="<?= BASE_URL ?>/trip?id=<?= $similarTrip['id'] ?>" class="list-group-item list-group-item-action">
                             <div class="d-flex align-items-center">
-                                <?php if (isset($similarTrip['main_image'])): ?>
-                                <img src="<?= BASE_URL ?>/assets/public/assets/images/trips/<?= htmlspecialchars($similarTrip['main_image']) ?>" class="img-thumbnail me-3" style="width: 70px; height: 50px; object-fit: cover;" alt="<?= htmlspecialchars($similarTrip['title']) ?>">
-                                <?php endif; ?>
+                                <?php 
+                                $similarFolderId = $similarTrip['id'];
+                                $similarImagePath = '';
+                                if ($similarFolderId == 1) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/1.Chicago Los Angeles/arnaud-steckle-MtYedjwRgAA-unsplash.jpg';
+                                } elseif ($similarFolderId == 2) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/2.Floride/aurora-kreativ-UN4cs4zNCYo-unsplash.jpg';
+                                } elseif ($similarFolderId == 3) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/3.Parcs Nationaux/bailey-zindel-NRQV-hBF1OM-unsplash.jpg';
+                                } elseif ($similarFolderId == 4) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/4.New York/alexander-rotker--sQ4FsomXEs-unsplash.jpg';
+                                } elseif ($similarFolderId == 5) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/5.Côte Ouest/andrea-leopardi-QfhbZfIf0nA-unsplash.jpg';
+                                } elseif ($similarFolderId == 6) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/6.La Musique du Sud/eric-tompkins-Z8rKwWR2Ij8-unsplash.jpg';
+                                } elseif ($similarFolderId == 7) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/7.Alaska/christian-bowen-uknf_4Umtqc-unsplash.jpg';
+                                } elseif ($similarFolderId == 8) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/8.Hawaii/pexels-lastly-412681.jpg';
+                                } elseif ($similarFolderId == 9) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/9.Route Historique/belia-koziak-lXv4TsJRZao-unsplash.jpg';
+                                } elseif ($similarFolderId == 10) {
+                                    $similarImagePath = BASE_URL . '/ClickJourney/10.Grands Lacs et Chicago/edward-koorey-Gcc3c6MfSM0-unsplash.jpg';
+                                } else {
+                                    $similarImagePath = BASE_URL . '/assets/images/backgrounds/route66-hero.jpg';
+                                }
+                                ?>
+                                <img src="<?= $similarImagePath ?>" class="img-thumbnail me-3" style="width: 70px; height: 50px; object-fit: cover;" alt="<?= htmlspecialchars($similarTrip['title']) ?>">
                                 <div>
                                     <h6 class="mb-0"><?= htmlspecialchars($similarTrip['title']) ?></h6>
                                     <span class="text-primary"><?= number_format($similarTrip['price'], 2, ',', ' ') ?> €</span>

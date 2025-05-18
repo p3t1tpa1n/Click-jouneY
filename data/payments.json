@@ -1,0 +1,29 @@
+[
+    {
+        "transaction_id": "CART682a21051f23b217",
+        "user_id": 3,
+        "amount": 1999.990000000000009094947017729282379150390625,
+        "status": "completed",
+        "payment_date": "2025-05-18 20:05:49",
+        "trip_id": 4,
+        "id": 1
+    },
+    {
+        "transaction_id": "CART682a21921d627701",
+        "user_id": 3,
+        "amount": 1999.990000000000009094947017729282379150390625,
+        "status": "completed",
+        "payment_date": "2025-05-18 20:06:19",
+        "trip_id": 4,
+        "id": 2
+    },
+    {
+        "transaction_id": "CART682a22166ac6b823",
+        "user_id": 3,
+        "amount": 2199.989999999999781721271574497222900390625,
+        "status": "completed",
+        "payment_date": "2025-05-18 20:08:26",
+        "trip_id": 6,
+        "id": 3
+    }
+]

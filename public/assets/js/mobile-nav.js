@@ -6,6 +6,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('Mobile Nav: DOM chargé, initialisation du menu mobile');
   initMobileNavigation();
 });
 
@@ -21,10 +22,20 @@ function initMobileNavigation() {
   const menuItems = document.querySelectorAll('.mobile-nav li');
   let isMenuOpen = false;
 
+  console.log('Mobile Nav: Éléments trouvés:', {
+    toggle: mobileMenuToggle ? 'OK' : 'NON TROUVÉ',
+    nav: mobileNav ? 'OK' : 'NON TROUVÉ',
+    close: mobileNavClose ? 'OK' : 'NON TROUVÉ',
+    overlay: mobileMenuOverlay ? 'OK' : 'NON TROUVÉ',
+    dropdowns: dropdownToggles.length + ' trouvés',
+    menuItems: menuItems.length + ' trouvés'
+  });
+
   // Gestion du bouton toggle du menu
   if (mobileMenuToggle) {
     mobileMenuToggle.addEventListener('click', function(e) {
       e.preventDefault();
+      console.log('Mobile Nav: Toggle cliqué, état actuel:', isMenuOpen ? 'Ouvert' : 'Fermé');
       if (!isMenuOpen) {
         openMobileMenu();
       } else {
@@ -37,6 +48,7 @@ function initMobileNavigation() {
   if (mobileNavClose) {
     mobileNavClose.addEventListener('click', function(e) {
       e.preventDefault();
+      console.log('Mobile Nav: Bouton fermer cliqué');
       closeMobileMenu();
     });
   }
@@ -44,6 +56,7 @@ function initMobileNavigation() {
   // Gestion du clic sur l'overlay
   if (mobileMenuOverlay) {
     mobileMenuOverlay.addEventListener('click', function() {
+      console.log('Mobile Nav: Overlay cliqué');
       closeMobileMenu();
     });
   }

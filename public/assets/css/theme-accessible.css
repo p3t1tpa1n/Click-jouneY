@@ -641,4 +641,38 @@ body.theme-accessible {
 .theme-accessible .theme-button:hover {
     background-color: #000000;
     color: #ffd700;
+}
+
+/* Variables pour le thème accessible */
+:root.theme-accessible, body.theme-accessible {
+  --menu-bg: var(--accessible-dark);
+  --mobile-nav-bg: var(--accessible-dark);
+  --mobile-nav-text: var(--accessible-light);
+  --mobile-nav-border: rgba(255, 255, 255, 0.2);
+}
+
+/* Styles spécifiques au menu mobile pour le thème accessible */
+body.theme-accessible .mobile-nav {
+  background-color: var(--mobile-nav-bg);
+  color: var(--mobile-nav-text);
+}
+
+body.theme-accessible .mobile-nav a {
+  color: var(--mobile-nav-text);
+  font-weight: bold;
+}
+
+body.theme-accessible .mobile-nav-header {
+  border-bottom: 2px solid var(--mobile-nav-border);
+}
+
+body.theme-accessible .mobile-nav-close:before,
+body.theme-accessible .mobile-nav-close:after {
+  background-color: var(--mobile-nav-text);
+  height: 3px;
+}
+
+body.theme-accessible .mobile-menu-toggle span {
+  background-color: var(--mobile-nav-text);
+  height: 4px;
 } 

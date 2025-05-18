@@ -7,6 +7,7 @@ use core\Auth;
 use core\Session;
 use models\trip\Trip;
 use models\payment\Payment;
+use models\user\User;
 
 /**
  * Contrôleur des pages de voyage
@@ -99,7 +100,7 @@ class TripController extends Controller
         // Si l'utilisateur est connecté, ajouter à l'historique des voyages vus
         if (Auth::check()) {
             $user = Auth::getUser();
-            $user->addViewedTrip($id);
+            User::addViewedTrip($user['login'], $id);
         }
         
         // Récupérer les voyages similaires

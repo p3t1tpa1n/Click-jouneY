@@ -74,28 +74,58 @@ function applyTheme(theme) {
 
 // Fonction pour mettre à jour l'icône du bouton
 function updateThemeIcon(theme) {
+  // Mettre à jour l'icône du bouton principal
   const themeButton = document.getElementById('theme-switcher');
-  if (!themeButton) {
-    console.warn('Theme Switcher: Bouton de changement de thème non trouvé');
-    return;
+  if (themeButton) {
+    const iconElement = themeButton.querySelector('i') || themeButton.querySelector('.theme-icon');
+    if (iconElement) {
+      // Supprimer toutes les classes d'icônes
+      iconElement.className = '';
+      
+      // Ajouter la classe d'icône correspondante au thème
+      if (theme === 'dark') {
+        iconElement.className = 'fas fa-moon';
+      } else if (theme === 'accessible') {
+        iconElement.className = 'fas fa-universal-access';
+      } else {
+        iconElement.className = 'fas fa-sun';
+      }
+    }
   }
   
-  const iconElement = themeButton.querySelector('i') || themeButton.querySelector('.theme-icon');
-  if (!iconElement) {
-    console.warn('Theme Switcher: Icône du bouton non trouvée');
-    return;
-  }
-  
-  // Supprimer toutes les classes d'icônes
-  iconElement.className = '';
-  
-  // Ajouter la classe d'icône correspondante au thème
-  if (theme === 'dark') {
-    iconElement.className = 'fas fa-moon';
-  } else if (theme === 'accessible') {
-    iconElement.className = 'fas fa-universal-access';
-  } else {
-    iconElement.className = 'fas fa-sun';
+  // Mettre à jour l'icône du bouton mobile
+  const mobileThemeButton = document.getElementById('mobile-theme-switcher');
+  if (mobileThemeButton) {
+    const mobileIconElement = mobileThemeButton.querySelector('i');
+    if (mobileIconElement) {
+      // Supprimer toutes les classes d'icônes sauf 'me-2'
+      mobileIconElement.className = 'me-2';
+      
+      // Ajouter la classe d'icône correspondante au thème
+      if (theme === 'dark') {
+        mobileIconElement.className += ' fas fa-moon';
+      } else if (theme === 'accessible') {
+        mobileIconElement.className += ' fas fa-universal-access';
+      } else {
+        mobileIconElement.className += ' fas fa-sun';
+      }
+    }
+    
+    // Mettre à jour le texte du bouton
+    let themeText = 'Changer de thème';
+    if (theme === 'light') {
+      themeText = 'Mode sombre';
+    } else if (theme === 'dark') {
+      themeText = 'Mode accessible';
+    } else {
+      themeText = 'Mode clair';
+    }
+    
+    // Mettre à jour le texte (en gardant l'icône)
+    const buttonText = mobileIconElement ? mobileIconElement.nextSibling : null;
+    if (buttonText && buttonText.nodeType === 3) { // nodeType 3 = nœud de texte
+      buttonText.textContent = ' ' + themeText;
+    }
   }
 }
 
@@ -139,22 +169,42 @@ function getCookie(name) {
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Theme Switcher: Initialisation...');
   
-  // Récupérer le thème enregistré, d'abord depuis le cookie, puis depuis localStorage
-  let savedTheme = getCookie('theme') || localStorage.getItem('theme') || 'light';
-  console.log(`Theme Switcher: Thème enregistré: ${savedTheme}`);
-  
-  // Appliquer le thème enregistré
-  applyTheme(savedTheme);
-  
-  // Configurer le bouton de changement de thème
+  // Trouver les boutons de changement de thème
   const themeButton = document.getElementById('theme-switcher');
+  const mobileThemeButton = document.getElementById('mobile-theme-switcher');
+  
+  // Récupérer le thème actuel depuis localStorage ou utiliser 'light' par défaut
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  
+  // Trouver toutes les feuilles de style des thèmes
+  const lightTheme = findStyleSheet('theme-light');
+  const darkTheme = findStyleSheet('theme-dark');
+  const accessibleTheme = findStyleSheet('theme-accessible');
+  
+  console.log('Theme Switcher: Feuilles de style trouvées:', {
+    light: lightTheme ? 'OK' : 'NON TROUVÉ',
+    dark: darkTheme ? 'OK' : 'NON TROUVÉ',
+    accessible: accessibleTheme ? 'OK' : 'NON TROUVÉ'
+  });
+  
+  // Appliquer le thème actuel
+  applyTheme(currentTheme);
+  
+  // Gérer le clic sur le bouton de thème principal
   if (themeButton) {
-    console.log('Theme Switcher: Bouton de changement de thème trouvé');
     themeButton.addEventListener('click', function(e) {
+      e.preventDefault();
       console.log('Theme Switcher: CLICK DÉTECTÉ - Bouton cliqué');
       switchToNextTheme();
     });
-  } else {
-    console.warn('Theme Switcher: Bouton de changement de thème non trouvé');
+  }
+  
+  // Gérer le clic sur le bouton de thème mobile
+  if (mobileThemeButton) {
+    mobileThemeButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('Theme Switcher: Bouton mobile cliqué');
+      switchToNextTheme();
+    });
   }
 });

@@ -43,13 +43,15 @@ class User {
             return false;
         }
         
-        // Vérifier si le mot de passe est hashé (commence par $2y$)
+        // Vérifier si le mot de passe correspond
         if (isset($user['password'])) {
+            $passwordValid = false;
+            
+            // Si le mot de passe est hashé (commence par $2y$)
             if (strpos($user['password'], '$2y$') === 0) {
-                // C'est un mot de passe hashé, utiliser password_verify
                 $passwordValid = password_verify($password, $user['password']);
             } else {
-                // C'est un mot de passe en clair, comparer directement
+                // Sinon, comparaison directe (password en clair)
                 $passwordValid = ($password === $user['password']);
             }
             
@@ -191,6 +193,30 @@ class User {
         }
         
         return true;
+    }
+    
+    /**
+     * Vérifie si un mot de passe correspond à celui de l'utilisateur
+     * 
+     * @param string $login Login de l'utilisateur
+     * @param string $password Mot de passe à vérifier
+     * @return bool Vrai si le mot de passe est correct, faux sinon
+     */
+    public static function verifyPassword($login, $password)
+    {
+        $user = self::getByLogin($login);
+        
+        if (!$user || !isset($user['password'])) {
+            return false;
+        }
+        
+        // Si le mot de passe est hashé (commence par $2y$)
+        if (strpos($user['password'], '$2y$') === 0) {
+            return password_verify($password, $user['password']);
+        } else {
+            // Sinon, comparaison directe (password en clair)
+            return ($password === $user['password']);
+        }
     }
 }
 ?> 

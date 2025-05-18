@@ -22,7 +22,7 @@
           <label for="login">Identifiant<span class="required">*</span></label>
           <div class="input-with-icon">
             <i class="fas fa-user"></i>
-            <input type="text" id="login" name="login" required placeholder="Votre identifiant">
+            <input type="text" id="login" name="login" required placeholder="Votre identifiant" value="<?= htmlspecialchars($login ?? '') ?>">
           </div>
         </div>
         

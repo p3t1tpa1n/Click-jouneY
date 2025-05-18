@@ -560,4 +560,35 @@ div[style*="aucun voyage"] a,
 .theme-dark .theme-button:hover {
     background-color: transparent;
     color: #6c94ff;
+}
+
+/* Variables pour le thème sombre */
+:root.theme-dark, body.theme-dark {
+  --menu-bg: var(--dark);
+  --mobile-nav-bg: var(--dark);
+  --mobile-nav-text: var(--light);
+  --mobile-nav-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Styles spécifiques au menu mobile pour le thème sombre */
+body.theme-dark .mobile-nav {
+  background-color: var(--mobile-nav-bg);
+  color: var(--mobile-nav-text);
+}
+
+body.theme-dark .mobile-nav a {
+  color: var(--mobile-nav-text);
+}
+
+body.theme-dark .mobile-nav-header {
+  border-bottom: 1px solid var(--mobile-nav-border);
+}
+
+body.theme-dark .mobile-nav-close:before,
+body.theme-dark .mobile-nav-close:after {
+  background-color: var(--mobile-nav-text);
+}
+
+body.theme-dark .mobile-menu-toggle span {
+  background-color: var(--mobile-nav-text);
 } 

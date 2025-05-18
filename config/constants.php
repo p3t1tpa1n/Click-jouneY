@@ -27,6 +27,6 @@ define('COOKIE_LIFETIME', 60 * 60 * 24 * 30); // 30 jours
 define('SALT_PREFIX', 'r66odyssey_'); // Préfixe pour les salt de hachage
 
 // Configuration CY Bank
-define('CYBANK_URL', 'https://esipe.nebula.ovh/CY-Bank');
+define('CYBANK_URL', 'http://esipe.nebula.ovh/CY-Bank');
 define('CYBANK_VENDOR_CODE', 'MI-1_A');
 ?> 

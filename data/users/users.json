@@ -10,7 +10,7 @@
         "role": "admin",
         "newsletter": 1,
         "registration_date": "2023-09-15 08:32:54",
-        "last_login": "2025-05-18 11:01:07",
+        "last_login": "2025-05-18 17:55:49",
         "status": "active",
         "viewed_trips": [
             1,
@@ -49,7 +49,7 @@
     {
         "id": 3,
         "login": "user1",
-        "password": "user1",
+        "password": "$2y$10$6.5c5u1sFPvfZO669yW5EOMWtCy\/Kpp\/u9qQ.bLVyg4XA1uuSpwSW",
         "name": "Pierre Durand",
         "email": "pierre.durand@example.com",
         "birth_date": "1990-07-12",
@@ -57,14 +57,16 @@
         "role": "user",
         "newsletter": 1,
         "registration_date": "2023-11-18 15:38:41",
-        "last_login": "2025-05-18 11:13:27",
+        "last_login": "2025-05-18 19:14:38",
         "status": "active",
         "viewed_trips": [
             1,
             3,
-            5,
-            8,
-            12
+            12,
+            "9",
+            "5",
+            "4",
+            "6"
         ],
         "purchased_trips": [
             5
@@ -161,6 +163,22 @@
             12,
             14
         ],
+        "purchased_trips": []
+    },
+    {
+        "login": "user6",
+        "password": "$2y$10$d5qsf1myctM0bUJO7S655.rHXmaHVB\/uITxM7CT3u\/TiFw5dB11eC",
+        "name": " ",
+        "email": "hector@gmail.com",
+        "birth_date": "2000-01-01",
+        "address": "5 rue pascal",
+        "role": "user",
+        "newsletter": 0,
+        "id": 8,
+        "registration_date": "2025-05-18 20:10:58",
+        "last_login": "2025-05-18 20:10:58",
+        "status": "active",
+        "viewed_trips": [],
         "purchased_trips": []
     }
 ]

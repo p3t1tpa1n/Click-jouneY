@@ -39,7 +39,9 @@ function isAdmin() {
  * Récupère la clé API CY Bank pour un vendeur
  */
 function getAPIKey($vendeur) {
-    return md5('secret_key_' . $vendeur);
+    // La clé API pour CY Bank doit être consistante avec ce que la plateforme attend
+    $secretKey = 'CY_BANK_SDK_' . $vendeur;
+    return hash('sha256', $secretKey);
 }
 
 /**

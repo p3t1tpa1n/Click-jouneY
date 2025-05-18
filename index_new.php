@@ -181,7 +181,6 @@ switch ($route) {
         break;
         
     case 'cart/payment':
-    case 'cart/process-payment':
         $controller = new controllers\cart\CartController();
         $controller->processPayment();
         break;

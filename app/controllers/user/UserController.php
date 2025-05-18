@@ -1,206 +1,265 @@
 <?php
+
+namespace controllers\user;
+
+use core\Controller;
+use core\Auth;
+use core\Session;
+use models\user\User;
+use models\trip\Trip;
+use models\payment\Payment;
+
 /**
- * Contrôleur pour la gestion du profil utilisateur
+ * Contrôleur pour la gestion des comptes utilisateurs
  */
-class UserController {
+class UserController extends Controller
+{
     /**
      * Affiche le profil de l'utilisateur connecté
      */
-    public function profile() {
+    public function profile()
+    {
         // Vérifier si l'utilisateur est connecté
-        requireLogin();
+        if (!Auth::check()) {
+            Session::set('error', 'Vous devez être connecté pour accéder à cette page');
+            Session::set('redirect_after_login', '/profile');
+            $this->redirect('/login');
+            return;
+        }
         
-        $pageTitle = 'Mon profil';
-        $user = $_SESSION['user'];
+        $user = Auth::getUser();
         
         // Récupérer les voyages consultés
         $viewedTrips = [];
         if (isset($user['viewed_trips']) && is_array($user['viewed_trips'])) {
-            foreach ($user['viewed_trips'] as $tripId) {
-                $trip = Trip::getById($tripId);
+            foreach (array_slice(array_reverse($user['viewed_trips']), 0, 5) as $tripId) {
+                $trip = Trip::findById($tripId);
                 if ($trip) {
                     $viewedTrips[] = $trip;
                 }
             }
         }
         
-        // Limiter aux 5 derniers voyages consultés
-        $viewedTrips = array_slice($viewedTrips, 0, 5);
-        
         // Récupérer les voyages achetés
         $purchasedTrips = [];
         if (isset($user['purchased_trips']) && is_array($user['purchased_trips'])) {
             foreach ($user['purchased_trips'] as $tripId) {
-                $trip = Trip::getById($tripId);
+                $trip = Trip::findById($tripId);
                 if ($trip) {
                     $purchasedTrips[] = $trip;
                 }
             }
         }
         
-        // Récupérer les paiements
-        $payments = Payment::getByUserLogin($user['login']);
+        // Récupérer les paiements effectués
+        $payments = Payment::getByUserId($user['id'] ?? 0);
         
-        // Charger la vue
-        include 'app/views/partials/header.php';
-        include 'app/views/user/profile.php';
-        include 'app/views/partials/footer.php';
+        // Rendre la vue
+        $this->render('user/profile', [
+            'title' => 'Mon profil',
+            'user' => $user,
+            'viewedTrips' => $viewedTrips,
+            'purchasedTrips' => $purchasedTrips,
+            'payments' => $payments
+        ]);
     }
     
     /**
-     * Affiche le formulaire de modification du profil
+     * Traite les modifications du profil
      */
-    public function editProfile() {
+    public function updateProfile()
+    {
         // Vérifier si l'utilisateur est connecté
-        requireLogin();
-        
-        $pageTitle = 'Modifier mon profil';
-        $user = $_SESSION['user'];
-        $alertMessage = null;
-        $alertType = null;
-        
-        // Traitement du formulaire
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Vérifier le jeton CSRF
-            if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
-                $alertType = 'error';
-                $alertMessage = 'Erreur de sécurité. Veuillez réessayer.';
-            } else {
-                // Préparer les données du formulaire
-                $userData = [
-                    'id' => $user['id'],
-                    'login' => $user['login'], // Le login ne peut pas être modifié
-                    'name' => $_POST['name'] ?? $user['name'],
-                    'email' => $_POST['email'] ?? $user['email'],
-                    'address' => $_POST['address'] ?? $user['address'],
-                    'newsletter' => isset($_POST['newsletter']) ? 1 : 0
-                ];
-                
-                // Gestion du changement de mot de passe
-                $newPassword = $_POST['new_password'] ?? '';
-                $confirmPassword = $_POST['confirm_password'] ?? '';
-                $currentPassword = $_POST['current_password'] ?? '';
-                
-                if (!empty($newPassword)) {
-                    // Valider le mot de passe actuel
-                    $userWithPassword = User::getByLogin($user['login']);
-                    
-                    if (!password_verify($currentPassword, $userWithPassword['password'])) {
-                        $alertType = 'error';
-                        $alertMessage = 'Le mot de passe actuel est incorrect.';
-                    } 
-                    // Valider le nouveau mot de passe
-                    elseif (strlen($newPassword) < 6) {
-                        $alertType = 'error';
-                        $alertMessage = 'Le nouveau mot de passe doit contenir au moins 6 caractères.';
-                    } 
-                    elseif (!preg_match('/[A-Z]/', $newPassword) || !preg_match('/[0-9]/', $newPassword)) {
-                        $alertType = 'error';
-                        $alertMessage = 'Le nouveau mot de passe doit contenir au moins une lettre majuscule et un chiffre.';
-                    } 
-                    elseif ($newPassword !== $confirmPassword) {
-                        $alertType = 'error';
-                        $alertMessage = 'Les nouveaux mots de passe ne correspondent pas.';
-                    } 
-                    else {
-                        // Tout est OK, ajouter le nouveau mot de passe aux données
-                        $userData['password'] = $newPassword;
-                    }
-                }
-                
-                // Mettre à jour le profil si pas d'erreur
-                if ($alertType !== 'error') {
-                    $result = User::update($userData);
-                    
-                    if ($result === true) {
-                        // Mettre à jour la session
-                        $updatedUser = User::getByLogin($user['login']);
-                        unset($updatedUser['password']);
-                        $_SESSION['user'] = $updatedUser;
-                        
-                        $alertType = 'success';
-                        $alertMessage = 'Votre profil a été mis à jour avec succès.';
-                    } else {
-                        $alertType = 'error';
-                        $alertMessage = $result; // Message d'erreur de User::update
-                    }
-                }
-            }
-        }
-        
-        // Générer un nouveau jeton CSRF
-        $csrfToken = generateCSRFToken();
-        
-        // Charger la vue
-        include 'app/views/partials/header.php';
-        include 'app/views/user/edit-profile.php';
-        include 'app/views/partials/footer.php';
-    }
-    
-    /**
-     * Supprime le compte de l'utilisateur connecté
-     */
-    public function deleteAccount() {
-        // Vérifier si l'utilisateur est connecté
-        requireLogin();
-        
-        $pageTitle = 'Supprimer mon compte';
-        $user = $_SESSION['user'];
-        $alertMessage = null;
-        $alertType = null;
-        
-        // Traitement de la confirmation
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Vérifier le jeton CSRF
-            if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
-                $alertType = 'error';
-                $alertMessage = 'Erreur de sécurité. Veuillez réessayer.';
-            } 
-            // Vérifier le mot de passe
-            else {
-                $password = $_POST['password'] ?? '';
-                $userWithPassword = User::getByLogin($user['login']);
-                
-                if (!password_verify($password, $userWithPassword['password'])) {
-                    $alertType = 'error';
-                    $alertMessage = 'Le mot de passe est incorrect.';
-                } else {
-                    // Supprimer le compte
-                    $result = User::delete($user['login']);
-                    
-                    if ($result === true) {
-                        // Déconnecter l'utilisateur
-                        session_unset();
-                        session_destroy();
-                        
-                        // Rediriger vers la page d'accueil avec un message
-                        $_SESSION['flash_message'] = 'Votre compte a été supprimé avec succès.';
-                        $_SESSION['flash_type'] = 'success';
-                        redirect('index.php');
-                    } else {
-                        $alertType = 'error';
-                        $alertMessage = $result; // Message d'erreur de User::delete
-                    }
-                }
-            }
-        }
-        
-        // Générer un nouveau jeton CSRF
-        $csrfToken = generateCSRFToken();
-        
-        // S'il s'agit d'une demande de confirmation initiale
-        if (!isset($_GET['confirm']) || $_GET['confirm'] !== 'yes') {
-            // Charger la vue de confirmation
-            include 'app/views/partials/header.php';
-            include 'app/views/user/delete-account-confirm.php';
-            include 'app/views/partials/footer.php';
+        if (!Auth::check()) {
+            Session::set('error', 'Vous devez être connecté pour accéder à cette page');
+            $this->redirect('/login');
             return;
         }
         
-        // Charger la vue du formulaire de suppression
-        include 'app/views/partials/header.php';
-        include 'app/views/user/delete-account.php';
-        include 'app/views/partials/footer.php';
+        $user = Auth::getUser();
+        
+        // Traiter le formulaire si soumis
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name = $this->sanitize($_POST['name'] ?? '');
+            $email = $this->sanitize($_POST['email'] ?? '');
+            $currentPassword = $_POST['current_password'] ?? '';
+            $newPassword = $_POST['new_password'] ?? '';
+            $confirmPassword = $_POST['confirm_password'] ?? '';
+            
+            // Validation de base
+            $errors = [];
+            
+            if (empty($name)) {
+                $errors[] = 'Le nom est obligatoire';
+            }
+            
+            if (empty($email)) {
+                $errors[] = 'L\'email est obligatoire';
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $errors[] = 'L\'email est invalide';
+            }
+            
+            // Gestion du changement de mot de passe
+            if (!empty($newPassword)) {
+                // Vérification du mot de passe actuel
+                $isPasswordValid = User::verifyPassword($user['login'], $currentPassword);
+                if (!$isPasswordValid) {
+                    $errors[] = 'Le mot de passe actuel est incorrect';
+                }
+                
+                // Validation du nouveau mot de passe
+                if (strlen($newPassword) < 8) {
+                    $errors[] = 'Le nouveau mot de passe doit contenir au moins 8 caractères';
+                }
+                
+                if ($newPassword !== $confirmPassword) {
+                    $errors[] = 'Les nouveaux mots de passe ne correspondent pas';
+                }
+            }
+            
+            // S'il n'y a pas d'erreurs, mettre à jour le profil
+            if (empty($errors)) {
+                $userData = [
+                    'id' => $user['id'],
+                    'login' => $user['login'],
+                    'name' => $name,
+                    'email' => $email
+                ];
+                
+                // Ajouter le nouveau mot de passe s'il a été modifié
+                if (!empty($newPassword)) {
+                    $userData['password'] = $newPassword;
+                }
+                
+                // Mettre à jour l'utilisateur
+                $result = User::update($userData);
+                
+                if ($result === true) {
+                    // Mise à jour de la session
+                    $updatedUser = User::getByLogin($user['login']);
+                    Auth::login($updatedUser);
+                    
+                    Session::set('success', 'Votre profil a été mis à jour avec succès');
+                    $this->redirect('/profile');
+                } else {
+                    Session::set('error', $result);
+                }
+            } else {
+                // Afficher les erreurs
+                Session::set('error', implode('<br>', $errors));
+            }
+        }
+        
+        // Rendre la vue
+        $this->render('user/edit-profile', [
+            'title' => 'Modifier mon profil',
+            'user' => $user
+        ]);
+    }
+    
+    /**
+     * Affiche la page de l'historique des voyages
+     */
+    public function history()
+    {
+        // Vérifier si l'utilisateur est connecté
+        if (!Auth::check()) {
+            Session::set('error', 'Vous devez être connecté pour accéder à cette page');
+            Session::set('redirect_after_login', '/history');
+            $this->redirect('/login');
+            return;
+        }
+        
+        $user = Auth::getUser();
+        
+        // Récupérer tous les voyages consultés
+        $viewedTrips = [];
+        if (isset($user['viewed_trips']) && is_array($user['viewed_trips'])) {
+            foreach (array_reverse($user['viewed_trips']) as $tripId) {
+                $trip = Trip::findById($tripId);
+                if ($trip) {
+                    $viewedTrips[] = $trip;
+                }
+            }
+        }
+        
+        // Récupérer tous les voyages achetés
+        $purchasedTrips = [];
+        if (isset($user['purchased_trips']) && is_array($user['purchased_trips'])) {
+            foreach ($user['purchased_trips'] as $tripId) {
+                $trip = Trip::findById($tripId);
+                if ($trip) {
+                    $purchasedTrips[] = $trip;
+                }
+            }
+        }
+        
+        // Rendre la vue
+        $this->render('user/history', [
+            'title' => 'Mon historique de voyages',
+            'user' => $user,
+            'viewedTrips' => $viewedTrips,
+            'purchasedTrips' => $purchasedTrips
+        ]);
+    }
+    
+    /**
+     * Supprime un élément de l'historique des voyages consultés
+     */
+    public function removeFromHistory($id = null)
+    {
+        // Vérifier si l'utilisateur est connecté
+        if (!Auth::check()) {
+            Session::set('error', 'Vous devez être connecté pour accéder à cette page');
+            $this->redirect('/login');
+            return;
+        }
+        
+        // Récupérer l'ID du voyage depuis POST si non fourni en paramètre
+        if (!$id) {
+            $id = $_POST['trip_id'] ?? null;
+        }
+        
+        // Vérifier si l'ID est valide
+        if (!$id || !is_numeric($id)) {
+            Session::set('error', 'Voyage non trouvé');
+            $this->redirect('/history');
+            return;
+        }
+        
+        $user = Auth::getUser();
+        
+        // Supprimer le voyage de l'historique
+        if (isset($user['viewed_trips']) && is_array($user['viewed_trips'])) {
+            $updatedViewedTrips = array_filter($user['viewed_trips'], function($tripId) use ($id) {
+                return $tripId != $id;
+            });
+            
+            // Mettre à jour l'utilisateur
+            $userData = $user;
+            $userData['viewed_trips'] = array_values($updatedViewedTrips);
+            User::update($userData);
+            
+            // Mettre à jour la session
+            $updatedUser = User::getByLogin($user['login']);
+            Auth::login($updatedUser);
+            
+            Session::set('success', 'Le voyage a été supprimé de votre historique');
+        }
+        
+        // Rediriger vers l'historique
+        $this->redirect('/history');
+    }
+    
+    /**
+     * Nettoie les données entrantes
+     * 
+     * @param string $data Données à nettoyer
+     * @return string Données nettoyées
+     */
+    protected function sanitize($data)
+    {
+        return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
     }
 }
 ?> 

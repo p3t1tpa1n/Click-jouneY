@@ -49,6 +49,7 @@ if (!isset($route)) {
   
   <!-- Scripts -->
   <script src="<?= BASE_URL ?>/public/assets/js/theme-switcher.js" defer></script>
+  <script src="<?= BASE_URL ?>/public/assets/js/mobile-nav.js" defer></script>
   <script src="<?= BASE_URL ?>/public/assets/js/main.js" defer></script>
   <script src="<?= BASE_URL ?>/public/assets/js/form-validation.js" defer></script>
   <script src="<?= BASE_URL ?>/public/assets/js/profile-editor.js" defer></script>
@@ -62,8 +63,15 @@ if (!isset($route)) {
       <a class="navbar-brand" href="<?= BASE_URL ?>/">
         <img src="<?= BASE_URL ?>/public/assets/images/logo.png" alt="Click-Journey" height="40">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- Bouton pour navigation Bootstrap (desktop) -->
+      <button class="navbar-toggler d-none d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Bouton pour menu mobile (personnalisé) -->
+      <button class="mobile-menu-toggle d-lg-none" aria-label="Menu mobile">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -83,9 +91,14 @@ if (!isset($route)) {
                 <?= htmlspecialchars($_SESSION['user']['firstname'] ?? $_SESSION['user']['login']) ?>
               </button>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>/profile">Mon profil</a></li>
                 <li><a class="dropdown-item" href="<?= BASE_URL ?>/cart">Mon panier</a></li>
-                <li><a class="dropdown-item" href="<?= BASE_URL ?>/my-trips">Mes voyages</a></li>
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>/history">Historique des voyages</a></li>
                 <li><hr class="dropdown-divider"></li>
+                <?php if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
+                <li><a class="dropdown-item" href="<?= BASE_URL ?>/admin">Administration</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <?php endif; ?>
                 <li><a class="dropdown-item" href="<?= BASE_URL ?>/logout">Déconnexion</a></li>
               </ul>
             </div>
@@ -97,6 +110,54 @@ if (!isset($route)) {
       </div>
     </div>
   </nav>
+
+  <!-- Menu Mobile -->
+  <div class="mobile-menu-overlay"></div>
+  <div class="mobile-nav">
+    <div class="mobile-nav-header">
+      <a href="<?= BASE_URL ?>/" class="mobile-logo">
+        <img src="<?= BASE_URL ?>/public/assets/images/logo.png" alt="Click-Journey" height="40">
+      </a>
+      <button class="mobile-nav-close" aria-label="Fermer le menu"></button>
+    </div>
+    <div class="mobile-nav-content">
+      <ul class="mobile-menu">
+        <li><a class="<?= $route==='home'?'active':'' ?>" href="<?= BASE_URL ?>/">Accueil</a></li>
+        <li><a class="<?= $route==='trips'?'active':'' ?>" href="<?= BASE_URL ?>/trips">Voyages</a></li>
+        <li><a class="<?= $route==='about'?'active':'' ?>" href="<?= BASE_URL ?>/about">À propos</a></li>
+        <li><a class="<?= $route==='contact'?'active':'' ?>" href="<?= BASE_URL ?>/contact">Contact</a></li>
+      </ul>
+      
+      <div class="mobile-auth">
+        <?php if (isset($_SESSION['user'])): ?>
+          <div class="user-info">
+            <img src="<?= BASE_URL ?>/public/assets/images/avatars/<?= $_SESSION['user']['profile_image'] ?? 'default.jpg' ?>" class="rounded-circle" height="30" alt="Avatar">
+            <?= htmlspecialchars($_SESSION['user']['firstname'] ?? $_SESSION['user']['login']) ?>
+          </div>
+          <div class="auth-buttons">
+            <a href="<?= BASE_URL ?>/profile" class="btn btn-outline-primary">Mon profil</a>
+            <a href="<?= BASE_URL ?>/cart" class="btn btn-outline-primary">Mon panier</a>
+            <a href="<?= BASE_URL ?>/history" class="btn btn-outline-primary">Historique des voyages</a>
+            <?php if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
+              <a href="<?= BASE_URL ?>/admin" class="btn btn-outline-primary">Administration</a>
+            <?php endif; ?>
+            <a href="<?= BASE_URL ?>/logout" class="btn btn-primary">Déconnexion</a>
+          </div>
+        <?php else: ?>
+          <div class="auth-buttons">
+            <a href="<?= BASE_URL ?>/login" class="btn btn-outline-primary">Connexion</a>
+            <a href="<?= BASE_URL ?>/register" class="btn btn-primary">Inscription</a>
+          </div>
+        <?php endif; ?>
+        
+        <div class="mobile-theme-switcher mt-4">
+          <button id="mobile-theme-switcher" class="btn btn-outline-secondary w-100" aria-label="Changer de thème">
+            <i class="fas fa-moon me-2"></i> Changer de thème
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <main>
     <div class="container">

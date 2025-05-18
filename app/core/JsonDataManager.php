@@ -280,8 +280,14 @@ class JsonDataManager {
     public static function getUserPayments($userLogin) {
         $payments = self::getPayments();
         
-        return array_filter($payments, function($payment) use ($userLogin) {
-            return $payment['user_login'] === $userLogin;
+        // Trouver l'utilisateur par son login pour obtenir son ID
+        $user = self::getUserByLogin($userLogin);
+        $userId = $user ? $user['id'] : null;
+        
+        return array_filter($payments, function($payment) use ($userLogin, $userId) {
+            // Vérifier si le paiement est lié à l'utilisateur via user_id ou user_login
+            return (isset($payment['user_id']) && $payment['user_id'] == $userId) || 
+                   (isset($payment['user_login']) && $payment['user_login'] === $userLogin);
         });
     }
     
