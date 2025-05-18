@@ -121,29 +121,29 @@
                             <img src="<?= BASE_URL ?>/ClickJourney/6.La Musique du Sud/eric-tompkins-Z8rKwWR2Ij8-unsplash.jpg" class="d-block w-100" alt="La Musique du Sud">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/6.La Musique du Sud/hashem-al-hetari-1JGPNZjpDM-unsplash.jpg" class="d-block w-100" alt="La Musique du Sud">
+                            <img src="<?= BASE_URL ?>/ClickJourney/6.La Musique du Sud/hashem-al-hebshi-U6oPNZ0jxDM-unsplash.jpg" class="d-block w-100" alt="La Musique du Sud">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/6.La Musique du Sud/joao-francisco-QwrV5FnpkxM-unsplash.jpg" class="d-block w-100" alt="La Musique du Sud">
+                            <img src="<?= BASE_URL ?>/ClickJourney/6.La Musique du Sud/joao-francisco-jQwv5FnpksM-unsplash.jpg" class="d-block w-100" alt="La Musique du Sud">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/6.La Musique du Sud/manueltheleneman-h2YrSTqEUQ-unsplash.jpg" class="d-block w-100" alt="La Musique du Sud">
+                            <img src="<?= BASE_URL ?>/ClickJourney/6.La Musique du Sud/manuelthelensman-h2Yr5TqsEtQ-unsplash.jpg" class="d-block w-100" alt="La Musique du Sud">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/6.La Musique du Sud/theo-eilertsen-photography-O4aMMb0liw0-unsplash.jpg" class="d-block w-100" alt="La Musique du Sud">
+                            <img src="<?= BASE_URL ?>/ClickJourney/6.La Musique du Sud/theo-eilertsen-photography-04aMmb0Ijw0-unsplash.jpg" class="d-block w-100" alt="La Musique du Sud">
                         </div>
                     <?php elseif ($folderId == 7): ?>
                         <div class="carousel-item active">
                             <img src="<?= BASE_URL ?>/ClickJourney/7.Alaska/christian-bowen-uknf_4Umtqc-unsplash.jpg" class="d-block w-100" alt="Alaska">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/7.Alaska/jacob-vizek-qH7OBp7myU-unsplash.jpg" class="d-block w-100" alt="Alaska">
+                            <img src="<?= BASE_URL ?>/ClickJourney/7.Alaska/jacob-vizek-qH70Bp7mjyU-unsplash.jpg" class="d-block w-100" alt="Alaska">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/7.Alaska/jacob-vizek-TPG8ePjPQqc-unsplash.jpg" class="d-block w-100" alt="Alaska">
+                            <img src="<?= BASE_URL ?>/ClickJourney/7.Alaska/jacob-vizek-TPGbEjP8QQc-unsplash.jpg" class="d-block w-100" alt="Alaska">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/7.Alaska/mckayla-crump-3OR-XfzK5Bo-unsplash.jpg" class="d-block w-100" alt="Alaska">
+                            <img src="<?= BASE_URL ?>/ClickJourney/7.Alaska/mckayla-crump-3OR-XFzKSBo-unsplash.jpg" class="d-block w-100" alt="Alaska">
                         </div>
                         <div class="carousel-item">
                             <img src="<?= BASE_URL ?>/ClickJourney/7.Alaska/pexels-pixabay-35637.jpg" class="d-block w-100" alt="Alaska">
@@ -162,7 +162,7 @@
                             <img src="<?= BASE_URL ?>/ClickJourney/8.Hawaii/pexels-vincent-gerbouin-445991-1174732.jpg" class="d-block w-100" alt="Hawaii">
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL ?>/ClickJourney/8.Hawaii/snapagae=AOQo-eVsU-unsplash.jpg" class="d-block w-100" alt="Hawaii">
+                            <img src="<?= BASE_URL ?>/ClickJourney/8.Hawaii/snapsaga-e03Ot-sYSjU-unsplash.jpg" class="d-block w-100" alt="Hawaii">
                         </div>
                     <?php elseif ($folderId == 9): ?>
                         <div class="carousel-item active">
