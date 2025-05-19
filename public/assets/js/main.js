@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initCardHoverEffects();
     initLazyLoading();
     initSearchTabs();
+    initTestimonialAnimations();
+    initSectionFadeIn();
     applyThemeToNoResults();
 });
 
@@ -619,6 +621,70 @@ function initSearchTabs() {
             tripCards.forEach(card => tripsGrid.appendChild(card));
         });
     }
+}
+
+/**
+ * Initialise les animations pour les témoignages sur la page d'accueil
+ */
+function initTestimonialAnimations() {
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    if (testimonials.length === 0) return;
+    
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+    
+    function animateTestimonials() {
+        testimonials.forEach((testimonial, index) => {
+            if (isInViewport(testimonial)) {
+                setTimeout(() => {
+                    testimonial.classList.add('animated');
+                    testimonial.style.opacity = '1';
+                    testimonial.style.transform = 'translateY(0)';
+                }, index * 100);
+            }
+        });
+    }
+    
+    // Initialiser les styles
+    testimonials.forEach(testimonial => {
+        testimonial.style.opacity = '0';
+        testimonial.style.transform = 'translateY(30px)';
+        testimonial.style.transition = 'all 0.5s ease';
+    });
+    
+    // Animer au chargement initial
+    setTimeout(animateTestimonials, 300);
+    
+    // Animer au défilement
+    window.addEventListener('scroll', animateTestimonials);
+}
+
+/**
+ * Initialise les animations de fade-in des sections au scroll
+ */
+function initSectionFadeIn() {
+    // Ajout de la classe fade-in aux sections au scroll
+    const sections = document.querySelectorAll('section');
+    if (sections.length === 0) return;
+    
+    const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    sections.forEach(section => {
+        fadeInObserver.observe(section);
+    });
 }
 
 /**

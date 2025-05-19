@@ -395,6 +395,7 @@ class CartController extends Controller
         <head>
             <title>Redirection vers la page de paiement...</title>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <script src="' . BASE_URL . '/public/assets/js/payment-form.js" defer></script>
         </head>
         <body>
             <div style="text-align: center; margin-top: 50px;">
@@ -405,9 +406,6 @@ class CartController extends Controller
                     <input type="hidden" name="montant" value="' . htmlspecialchars($formattedAmount) . '">
                     <input type="hidden" name="vendeur" value="' . htmlspecialchars($vendeur) . '">
                 </form>
-                <script>
-                    document.getElementById("cybank-form").submit();
-                </script>
             </div>
         </body>
         </html>';

@@ -75,7 +75,7 @@
                 12 => '12.Caroline du Sud',
                 13 => '13.Colorado',
                 14 => '14.Washington D.C',
-                15 => '15.Appalaches en Feuilles d’Automne'
+                15 => '15.Appalaches en Feuilles dAutomne'
             ];
             foreach ($popularTrips as $trip): ?>
                 <div class="trip-card theme-card">
@@ -372,45 +372,4 @@
     }
 </style>
 
-<!-- Animation script -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Animation simple pour les témoignages
-    const testimonials = document.querySelectorAll('.testimonial-card');
-    
-    function isInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-    
-    function animateTestimonials() {
-        testimonials.forEach((testimonial, index) => {
-            if (isInViewport(testimonial)) {
-                setTimeout(() => {
-                    testimonial.classList.add('animated');
-                    testimonial.style.opacity = '1';
-                    testimonial.style.transform = 'translateY(0)';
-                }, index * 100);
-            }
-        });
-    }
-    
-    // Initialiser les styles
-    testimonials.forEach(testimonial => {
-        testimonial.style.opacity = '0';
-        testimonial.style.transform = 'translateY(30px)';
-        testimonial.style.transition = 'all 0.5s ease';
-    });
-    
-    // Animer au chargement initial
-    setTimeout(animateTestimonials, 300);
-    
-    // Animer au défilement
-    window.addEventListener('scroll', animateTestimonials);
-});
-</script> 
+<!-- Le code d'animation a été déplacé dans main.js via la fonction initTestimonialAnimations() -->

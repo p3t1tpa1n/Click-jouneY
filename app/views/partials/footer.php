@@ -1,52 +1,6 @@
 </main>
 
-    <!-- Scripts JavaScript -->
-    <script>
-        // Animation pour les éléments au scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            // Ajout de la classe fade-in aux sections au scroll
-            const sections = document.querySelectorAll('section');
-            const fadeInObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            sections.forEach(section => {
-                fadeInObserver.observe(section);
-            });
-            
-            // Menu mobile
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            if (menuToggle && navMenu) {
-                menuToggle.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
-                    menuToggle.classList.toggle('active');
-                });
-            }
-            
-            // Menu utilisateur
-            const userMenuToggle = document.querySelector('.user-menu-toggle');
-            const userDropdown = document.querySelector('.user-dropdown');
-            
-            if (userMenuToggle && userDropdown) {
-                userMenuToggle.addEventListener('click', function() {
-                    userDropdown.classList.toggle('active');
-                });
-                
-                // Fermer le menu au clic en dehors
-                document.addEventListener('click', function(event) {
-                    if (!userMenuToggle.contains(event.target) && !userDropdown.contains(event.target)) {
-                        userDropdown.classList.remove('active');
-                    }
-                });
-            }
-        });
-    </script>
+    <!-- Les scripts d'animation ont été déplacés dans main.js et mobile-nav.js -->
 
     <!-- Footer Section -->
     <footer class="bg-light text-dark pt-5">
@@ -107,7 +61,9 @@
 
     <!-- Scripts -->
     <script src="<?= BASE_URL ?>/public/assets/js/theme-switcher.js" defer></script>
+    <script src="<?= BASE_URL ?>/public/assets/js/mobile-nav.js" defer></script>
     <script src="<?= BASE_URL ?>/public/assets/js/main.js" defer></script>
+    <script src="<?= BASE_URL ?>/public/assets/js/cookie-consent.js" defer></script>
     <script src="<?= BASE_URL ?>/public/assets/js/form-validation.js" defer></script>
     <script src="<?= BASE_URL ?>/public/assets/js/profile-editor.js" defer></script>
     <script src="<?= BASE_URL ?>/public/assets/js/admin-delay.js" defer></script>

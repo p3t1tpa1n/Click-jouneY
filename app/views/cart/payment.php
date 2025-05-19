@@ -94,16 +94,5 @@
     </div>
 </div>
 
-<!-- Script pour soumettre automatiquement le formulaire CY Bank -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Soumettre automatiquement le formulaire après un court délai
-        setTimeout(function() {
-            const cyBankForm = document.querySelector('.cybank-form form');
-            if (cyBankForm) {
-                // cyBankForm.submit();
-                // Commenté pour ne pas soumettre automatiquement pendant les tests
-            }
-        }, 5000);
-    });
-</script> 
+<!-- Le script a été déplacé dans le fichier payment-processor.js -->
+<script src="<?= BASE_URL ?>/public/assets/js/payment-processor.js" defer></script> 
