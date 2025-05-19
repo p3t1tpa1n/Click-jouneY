@@ -58,10 +58,54 @@
         </div>
         
         <div class="trips-grid">
-            <?php foreach ($popularTrips as $trip): ?>
+            <?php
+            // Correspondance ID => nom de dossier
+            $folders = [
+                1 => '1.Chicago Los Angeles',
+                2 => '2.Floride',
+                3 => '3.Parcs Nationaux',
+                4 => '4.New York',
+                5 => '5.Côte Ouest',
+                6 => '6.La Musique du Sud',
+                7 => '7.Alaska',
+                8 => '8.Hawaii',
+                9 => '9.Route Historique',
+                10 => '10.Grands Lacs et Chicago',
+                11 => '11. Texas',
+                12 => '12.Caroline du Sud',
+                13 => '13.Colorado',
+                14 => '14.Washington D.C',
+                15 => '15.Appalaches en Feuilles d’Automne'
+            ];
+            foreach ($popularTrips as $trip): ?>
                 <div class="trip-card theme-card">
                     <div class="trip-image">
-                        <img src="<?= $trip['main_image'] ?? 'public/assets/images/trips/default.jpg' ?>" alt="<?= htmlspecialchars($trip['title']) ?>">
+                        <?php
+                        $folderId = $trip['id'];
+                        $folderName = $folders[$folderId] ?? null;
+                        $imageFile = $trip['main_image'] ?? '';
+                        $imagePath = '';
+                        $fallbackImage = BASE_URL . "/public/assets/images/trips/default.jpg";
+
+                        if ($folderName) {
+                            $dir = __DIR__ . '/../../../ClickJourney/' . $folderName . '/';
+                            $webDir = BASE_URL . "/ClickJourney/{$folderName}/";
+                            if ($imageFile && file_exists($dir . $imageFile)) {
+                                $imagePath = $webDir . $imageFile;
+                            } else {
+                                // Cherche la première image jpg/jpeg/png/webp du dossier
+                                $files = glob($dir . '*.{jpg,jpeg,png,webp}', GLOB_BRACE);
+                                if ($files && count($files) > 0) {
+                                    $imagePath = $webDir . basename($files[0]);
+                                } else {
+                                    $imagePath = $fallbackImage;
+                                }
+                            }
+                        } else {
+                            $imagePath = $fallbackImage;
+                        }
+                        ?>
+                        <img src="<?= $imagePath ?>" alt="<?= htmlspecialchars($trip['title']) ?>" onerror="this.onerror=null;this.src='<?= $fallbackImage ?>';">
                         <div class="trip-duration">
                             <i class="far fa-clock"></i> <?= $trip['duration'] ?> jours
                         </div>

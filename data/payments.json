@@ -43,5 +43,14 @@
         "payment_date": "2025-05-18 21:13:45",
         "trip_id": 2,
         "id": 5
+    },
+    {
+        "transaction_id": "CART682b1fd4f09f5060",
+        "user_id": 3,
+        "amount": 1999.990000000000009094947017729282379150390625,
+        "status": "completed",
+        "payment_date": "2025-05-19 14:11:05",
+        "trip_id": 4,
+        "id": 6
     }
 ]

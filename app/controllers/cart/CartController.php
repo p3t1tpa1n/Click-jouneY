@@ -320,11 +320,97 @@ class CartController extends Controller
      */
     public function processPayment() 
     {
-        // Logique de traitement du paiement
-        // (simulée pour l'environnement de test)
+        // Vérifier si l'utilisateur est connecté
+        if (!Auth::check()) {
+            Session::set('error', 'Vous devez être connecté pour effectuer un paiement.');
+            header('Location: index.php?route=login');
+            exit;
+        }
         
-        // Rediriger vers la page de confirmation
-        header('Location: index.php?route=payment-simulate');
+        // Vérifier si le panier est vide
+        if (!isset($_SESSION['cart']) || empty($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
+            Session::set('error', 'Votre panier est vide.');
+            header('Location: index.php?route=cart');
+            exit;
+        }
+        
+        // Récupérer les détails des voyages dans le panier
+        $cartItems = [];
+        $totalPrice = 0;
+        
+        foreach ($_SESSION['cart'] as $key => $item) {
+            $tripId = $item['trip_id'];
+            $trip = Trip::getById($tripId);
+            
+            if ($trip) {
+                $itemTotal = $trip['price'] * $item['nb_travelers'];
+                
+                // Ajouter le prix des options
+                $selectedOptions = [];
+                if (!empty($item['options']) && !empty($trip['options'])) {
+                    foreach ($item['options'] as $optionId) {
+                        if (isset($trip['options'][$optionId])) {
+                            $optionInfo = $trip['options'][$optionId];
+                            $selectedOptions[] = [
+                                'id' => $optionId,
+                                'title' => $optionInfo['title'],
+                                'price' => $optionInfo['price']
+                            ];
+                            $itemTotal += $optionInfo['price'];
+                        }
+                    }
+                }
+                
+                $cartItems[] = [
+                    'id' => $tripId,
+                    'title' => $trip['title'],
+                    'nb_travelers' => $item['nb_travelers'],
+                    'options' => $selectedOptions,
+                    'total' => $itemTotal
+                ];
+                
+                $totalPrice += $itemTotal;
+            }
+        }
+        
+        // Générer un identifiant de transaction unique
+        $transactionId = uniqid('CART_', true);
+        $transactionId = substr(preg_replace('/[^0-9a-zA-Z]/', '', $transactionId), 0, 20);
+        
+        // Stocker les informations de paiement en session
+        Session::set('payment_info', [
+            'transaction_id' => $transactionId,
+            'user_id' => Auth::id(),
+            'amount' => $totalPrice,
+            'cart_items' => $cartItems
+        ]);
+        
+        // Préparer les données pour le formulaire de paiement
+        $formattedAmount = number_format($totalPrice, 2, '.', '');
+        $vendeur = CYBANK_VENDOR_CODE;
+        
+        // Créer le formulaire HTML et le soumettre automatiquement
+        echo '<!DOCTYPE html>
+        <html>
+        <head>
+            <title>Redirection vers la page de paiement...</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        </head>
+        <body>
+            <div style="text-align: center; margin-top: 50px;">
+                <h3>Redirection vers la page de paiement...</h3>
+                <p>Veuillez patienter, vous allez être redirigé automatiquement.</p>
+                <form id="cybank-form" action="' . BASE_URL . '/index.php?route=payment-simulate" method="POST">
+                    <input type="hidden" name="transaction" value="' . htmlspecialchars($transactionId) . '">
+                    <input type="hidden" name="montant" value="' . htmlspecialchars($formattedAmount) . '">
+                    <input type="hidden" name="vendeur" value="' . htmlspecialchars($vendeur) . '">
+                </form>
+                <script>
+                    document.getElementById("cybank-form").submit();
+                </script>
+            </div>
+        </body>
+        </html>';
         exit;
     }
     
